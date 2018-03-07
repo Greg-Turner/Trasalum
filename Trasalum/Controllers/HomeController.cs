@@ -17,7 +17,7 @@ namespace Trasalum.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Tracing NSS alumni in their advancement as software developers, NSS staff can update alumni profiles, log communications, and schedule pertinent speaking engagements to benefit current Cohorts.";
 
             return View();
         }

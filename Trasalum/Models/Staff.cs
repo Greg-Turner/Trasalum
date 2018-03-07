@@ -10,6 +10,9 @@ namespace Trasalum.Models
     public class Staff : IdentityUser
     {
         [Required]
+        public ApplicationUser User { get; set; }
+
+        [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
