@@ -14,6 +14,20 @@ namespace Trasalum.Data
             : base(options)
         {
         }
+        public DbSet<Alum> Alum { get; set; }
+        public DbSet<AlumTech> AlumTech { get; set; }
+        public DbSet<Cohort> Cohort { get; set; }
+        public DbSet<CohortStaff> CohortStaff { get; set; }
+        public DbSet<CohortTech> CohortTech { get; set; }
+        public DbSet<Contact> Contact { get; set; }
+        public DbSet<ContactType> ContactType { get; set; }
+        public DbSet<Engagement> Engagement { get; set; }
+        public DbSet<EngagementAlum> EngagementAlum { get; set; }
+        public DbSet<EngagementType> EngagementType { get; set; }
+        public DbSet<Meetup> Meetup { get; set; }
+        public DbSet<Note> Note { get; set; }
+        public DbSet<Staff> Staff { get; set; }
+        public DbSet<Tech> Tech { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
