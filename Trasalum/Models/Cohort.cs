@@ -12,10 +12,6 @@ namespace Trasalum.Models
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "Night Class")]
-        public bool Night { get; set; }
-
-        [Required]
         [Display(Name = "Cohort#")]
         public string Number { get; set; }
 

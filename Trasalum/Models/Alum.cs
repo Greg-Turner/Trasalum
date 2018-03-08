@@ -30,7 +30,7 @@ namespace Trasalum.Models
 
         [Required]
         [Display(Name = "Street Address 2nd line")]
-        public string Address2 { get; set; }
+        public string Address2 { get; set; } = "";
 
         [Required]
         [Display(Name = "City")]

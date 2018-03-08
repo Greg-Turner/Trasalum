@@ -38,28 +38,48 @@
                     @*search bar and buttons only revealed to authenticated users*@
                     @if (SignInManager.IsSignedIn(User))
 
-                    {
-                        @*search on left of navbar*@
-                        <div class="navbar-left" style="margin-top:8px;">
-                            @using (Html.BeginForm("Index", "Search", FormMethod.Get))
-                            {
-                                <ul class="nav navbar-nav">
-                                    <li>@Html.TextBox("id", ViewBag.CurrentFilter as string)</li>
-                                    <li><input type="submit" value="Search Alumni" /></li>
-                                </ul>
-                            }
-                        </div>
+    {
+                @*search on left of navbar*@
+                <div class="navbar-left" style="margin-top:8px;">
+                    @using (Html.BeginForm("Index", "Search", FormMethod.Get))
+    {
+                <ul class="nav navbar-nav">
+                    <li>@Html.TextBox("id", ViewBag.CurrentFilter as string)</li>
+                    <li><input type="submit" value="Find Alum" /></li>
+                </ul>
+}
+                </div>
 
-                        <li><a asp-area="" asp-controller="Home" asp-action="Home">My Account</a></li>
-                        <li><a asp-area="" asp-controller="Products" asp-action="Create">Sell a Product</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Home">Shopping Cart</a></li>
-                    }
-                    else
-                    {
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    }
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">NSS <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a asp-area="" asp-controller="Cohorts" asp-action="Index" >Cohorts</a></li>
+                        <li><a href="#">Technologies</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a asp-area="" asp-controller="Home" asp-action="Home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ALUMS <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Add Alum</a></li>
+                        <li><a href="#">Update Alum</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">LOG CONTACT</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a asp-area="" asp-controller="Home" asp-action="Home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">EVENTS <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">New Event</a></li>
+                        <li><a href="#">Update Event</a></li>
+                    </ul>
+                </li>
+}
+else
+{
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+}
 
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")

@@ -1,0 +1,64 @@
+﻿@model Trasalum.Models.CohortViewModels.CohortDetailedListViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Add">Add New Cohort</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Cohort#
+            </th>
+            <th>
+                Start Date
+            </th>
+            <th>
+                Demo Day
+            </th>
+            <th>
+                Instructors
+            </th>
+            <th>
+                Technologies
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CohortDetailedList) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cohort.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cohort.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cohort.DemoDate)
+            </td>
+            <td>
+                @foreach (Staff instructor in item.Instructors)
+                    {
+                        @Html.DisplayFor(person => instructor.LastName)<br />
+                    }
+            </td>
+            <td>
+                @foreach (Tech tech in item.Tech)
+                    {
+                        @Html.DisplayFor(t => tech.Name)<br />
+                    }
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Cohort.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Cohort.Id">Details</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
