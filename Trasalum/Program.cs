@@ -33,11 +33,11 @@ namespace Trasalum
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                var context = services.GetRequiredService<ApplicationDbContext>();
-                var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+                //var context = services.GetRequiredService<ApplicationDbContext>();
+                //var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                 try
                 {
-                    SeedData.Initialize(services, userManager);
+                    SeedData.Initialize(services);
                 }
                 catch (Exception ex)
                 {

@@ -27,8 +27,7 @@ namespace Trasalum.Models
 
         [Required]
         [Display(Name = "Contact Initiated By")]
-        public int StaffId { get; set; }
-        public Staff Staff { get; set; }
+        public ApplicationUser Initiator { get; set; }
 
         [Required]
         [Display(Name = "Communication Method")]

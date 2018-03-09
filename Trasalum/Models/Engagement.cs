@@ -35,8 +35,7 @@ namespace Trasalum.Models
 
         [Required]
         [Display(Name = "Organizer")]
-        public int StaffId { get; set; }
-        public Staff Staff { get; set; }
+        public ApplicationUser Organizer { get; set; }
 
         [Display(Name = "Comments")]
         public int? NoteId { get; set; }

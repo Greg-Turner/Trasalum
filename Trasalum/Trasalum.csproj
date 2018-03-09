@@ -5,6 +5,15 @@
     <UserSecretsId>aspnet-Trasalum-8306E3D4-C503-4E82-93D8-42433A05745A</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20180308212207_consolidated firstname and lastname into single name property in staff model.cs" />
+    <Compile Remove="Data\Migrations\20180308212207_consolidated firstname and lastname into single name property in staff model.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180308213825_added Application User foreign key property to Staff model.cs" />
+    <Compile Remove="Data\Migrations\20180308213825_added Application User foreign key property to Staff model.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180308214316_corrected Application User reference in staff model.cs" />
+    <Compile Remove="Data\Migrations\20180308214316_corrected Application User reference in staff model.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.1" />

@@ -12,8 +12,15 @@ namespace Trasalum.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public bool CurrentEmploy { get; set; }
 
-        //AppUserId is a foreign key in the Staff table, this collection is for lazy loading of the Staff
-        public virtual ICollection<Staff> Staff { get; set; }
+        //ApplicationUserId is a foreign key in the Contact table, this collection is for lazy loading of the Contacts
+        public virtual ICollection<Contact> Contact { get; set; }
+
+        //ApplicationUserId is a foreign key in the Engagement table, this collection is for lazy loading of the Engagements
+        public virtual ICollection<Engagement> Engagement { get; set; }
+
+        //ApplicationUserId is a foreign key in the CohortStaff table, this collection is for lazy loading of the CohortStaff
+        public virtual ICollection<CohortStaff> CohortStaff { get; set; }
     }
 }

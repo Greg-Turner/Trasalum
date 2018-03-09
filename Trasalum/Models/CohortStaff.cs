@@ -12,8 +12,7 @@ namespace Trasalum.Models
         public int Id { get; set; }
 
         [Required]
-        public int StaffId { get; set; }
-        public Staff Staff { get; set; }
+        public ApplicationUser Staff { get; set; }
 
         [Required]
         public int CohortId { get; set; }
