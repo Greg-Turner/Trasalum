@@ -53,8 +53,8 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">NSS <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a asp-area="" asp-controller="Cohorts" asp-action="Index" >Cohorts</a></li>
-                        <li><a href="#">Technologies</a></li>
+                        <li><a asp-area="" asp-controller="Cohort" asp-action="Index">Cohorts</a></li>
+                        <li><a asp-area="" asp-controller="Tech" asp-action="Index">Technologies</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -71,6 +71,13 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#">New Event</a></li>
                         <li><a href="#">Update Event</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a asp-area="" asp-controller="Home" asp-action="Home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">EXTERNAL GROUPS <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a asp-area="" asp-controller="Meetup" asp-action="Index">Meetups</a></li>
+                        <li><a href="#">Companies</a></li>
                     </ul>
                 </li>
 }

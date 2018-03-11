@@ -34,10 +34,10 @@ namespace Trasalum
             {
                 var services = scope.ServiceProvider;
                 //var context = services.GetRequiredService<ApplicationDbContext>();
-                //var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+                var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                 try
                 {
-                    SeedData.Initialize(services);
+                    SeedData.Initialize(services, userManager);
                 }
                 catch (Exception ex)
                 {

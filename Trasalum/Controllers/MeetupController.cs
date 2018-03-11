@@ -10,22 +10,23 @@ using Trasalum.Models;
 
 namespace Trasalum.Controllers
 {
-    public class TechesController : Controller
+    public class MeetupController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public TechesController(ApplicationDbContext context)
+        public MeetupController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Teches
+        // GET: Meetup
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Tech.ToListAsync());
+            var applicationDbContext = _context.Meetup.Include(m => m.Tech);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Teches/Details/5
+        // GET: Meetup/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +34,42 @@ namespace Trasalum.Controllers
                 return NotFound();
             }
 
-            var tech = await _context.Tech
+            var meetup = await _context.Meetup
+                .Include(m => m.Tech)
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (tech == null)
+            if (meetup == null)
             {
                 return NotFound();
             }
 
-            return View(tech);
+            return View(meetup);
         }
 
-        // GET: Teches/Create
+        // GET: Meetup/Create
         public IActionResult Create()
         {
+            ViewData["TechId"] = new SelectList(_context.Tech, "Id", "Name");
             return View();
         }
 
-        // POST: Teches/Create
+        // POST: Meetup/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Tech tech)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,TechId")] Meetup meetup)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(tech);
+                _context.Add(meetup);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(tech);
+            ViewData["TechId"] = new SelectList(_context.Tech, "Id", "Name", meetup.TechId);
+            return View(meetup);
         }
 
-        // GET: Teches/Edit/5
+        // GET: Meetup/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +77,23 @@ namespace Trasalum.Controllers
                 return NotFound();
             }
 
-            var tech = await _context.Tech.SingleOrDefaultAsync(m => m.Id == id);
-            if (tech == null)
+            var meetup = await _context.Meetup.SingleOrDefaultAsync(m => m.Id == id);
+            if (meetup == null)
             {
                 return NotFound();
             }
-            return View(tech);
+            ViewData["TechId"] = new SelectList(_context.Tech, "Id", "Name", meetup.TechId);
+            return View(meetup);
         }
 
-        // POST: Teches/Edit/5
+        // POST: Meetup/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Tech tech)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,TechId")] Meetup meetup)
         {
-            if (id != tech.Id)
+            if (id != meetup.Id)
             {
                 return NotFound();
             }
@@ -97,12 +102,12 @@ namespace Trasalum.Controllers
             {
                 try
                 {
-                    _context.Update(tech);
+                    _context.Update(meetup);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TechExists(tech.Id))
+                    if (!MeetupExists(meetup.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +118,11 @@ namespace Trasalum.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(tech);
+            ViewData["TechId"] = new SelectList(_context.Tech, "Id", "Name", meetup.TechId);
+            return View(meetup);
         }
 
-        // GET: Teches/Delete/5
+        // GET: Meetup/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +130,31 @@ namespace Trasalum.Controllers
                 return NotFound();
             }
 
-            var tech = await _context.Tech
+            var meetup = await _context.Meetup
+                .Include(m => m.Tech)
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (tech == null)
+            if (meetup == null)
             {
                 return NotFound();
             }
 
-            return View(tech);
+            return View(meetup);
         }
 
-        // POST: Teches/Delete/5
+        // POST: Meetup/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tech = await _context.Tech.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Tech.Remove(tech);
+            var meetup = await _context.Meetup.SingleOrDefaultAsync(m => m.Id == id);
+            _context.Meetup.Remove(meetup);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TechExists(int id)
+        private bool MeetupExists(int id)
         {
-            return _context.Tech.Any(e => e.Id == id);
+            return _context.Meetup.Any(e => e.Id == id);
         }
     }
 }

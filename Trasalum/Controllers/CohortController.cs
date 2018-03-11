@@ -35,7 +35,7 @@ namespace Trasalum.Controllers
                     Cohort = cohort
                 };
 
-                listmodel.Instructors = await _context.CohortStaff.Include(cs => cs.Staff).Where(cs => cs.CohortId == listmodel.Cohort.Id).Select(s => s.Staff).ToListAsync();
+                listmodel.Instructors = await _context.CohortStaff.Include(cs => cs.StaffId).Where(cs => cs.CohortId == listmodel.Cohort.Id).Select(s => s.StaffId).ToListAsync();
 
                 listmodel.Tech = await _context.CohortTech.Include(cs => cs.Tech).Where(cs => cs.CohortId == listmodel.Cohort.Id).Select(s => s.Tech).ToListAsync();
 
@@ -63,7 +63,7 @@ namespace Trasalum.Controllers
                 return NotFound();
             }
 
-            model.Instructors = await _context.CohortStaff.Include(cs => cs.Staff).Where(cs => cs.CohortId == model.Cohort.Id).Select(s => s.Staff).ToListAsync();
+            model.Instructors = await _context.CohortStaff.Include(cs => cs.StaffId).Where(cs => cs.CohortId == model.Cohort.Id).Select(s => s.StaffId).ToListAsync();
 
             if (model.Cohort == null)
             {

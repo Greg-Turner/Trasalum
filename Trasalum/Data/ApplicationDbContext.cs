@@ -27,6 +27,7 @@ namespace Trasalum.Data
         public DbSet<Meetup> Meetup { get; set; }
         public DbSet<Note> Note { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<TechType> TechType { get; set; }
         public DbSet<Tech> Tech { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

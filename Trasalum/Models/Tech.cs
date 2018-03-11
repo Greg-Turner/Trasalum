@@ -14,6 +14,9 @@ namespace Trasalum.Models
         [Required]
         public string Name { get; set; }
 
+        public int? TechTypeId { get; set; }
+        public TechType TechType { get; set; }
+
         //TechId is a foreign key in the Meetup table, this collection is for lazy loading of the Meetups
         public virtual ICollection<Meetup> Meetup { get; set; }
 

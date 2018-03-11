@@ -12,11 +12,9 @@ namespace Trasalum.Models
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "Name")]
-        public DateTime Date { get; set; }
+        public string Name { get; set; }
 
         [Required]
-        [Display(Name = "Description")]
         public string Description { get; set; } = "Description";
 
         [Display(Name = "Technology Focus")]

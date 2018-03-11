@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 
 namespace Trasalum.Models
 {
-    public class CohortStaff
+    public class TechType
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public ApplicationUser StaffId { get; set; }
+        public string Name { get; set; }
 
-        [Required]
-        public int CohortId { get; set; }
-        public Cohort Cohort { get; set; }
+        //TechId is a foreign key in the Tech table, this collection is for lazy loading of the Techs
+        public virtual ICollection<Tech> Tech { get; set; }
     }
 }

@@ -21,11 +21,11 @@ namespace Trasalum
         {
             var context = new ApplicationDbContext(serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>());
 
-                /************************/
-                /* Seeding Cohort Table */
-                /************************/
-                if (!context.Cohort.Any())
-                {
+            /************************/
+            /* Seeding Cohort Table */
+            /************************/
+            if (!context.Cohort.Any())
+            {
                 context.Cohort.Add(new Cohort
                 {
                     Number = "C1",
@@ -39,49 +39,49 @@ namespace Trasalum
                     StartDate = DateTime.ParseExact("01/01/2013 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("30/06/2013 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
-                
+
                 context.Cohort.Add(new Cohort
                 {
                     Number = "C3",
                     StartDate = DateTime.ParseExact("01/09/2013 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("30/03/2014 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
-                
+
                 context.Cohort.Add(new Cohort
                 {
                     Number = "C4",
                     StartDate = DateTime.ParseExact("04/01/2014 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("22/06/2014 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
-                
+
                 context.Cohort.Add(new Cohort
                 {
                     Number = "C5",
                     StartDate = DateTime.ParseExact("05/04/2014 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("24/09/2014 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
-                
+
                 context.Cohort.Add(new Cohort
                 {
                     Number = "C6",
                     StartDate = DateTime.ParseExact("05/07/2014 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("13/01/2015 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
-                
+
                 context.Cohort.Add(new Cohort
                 {
                     Number = "C7",
                     StartDate = DateTime.ParseExact("03/09/2014 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("24/03/2015 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
-                
+
                 context.Cohort.Add(new Cohort
                 {
                     Number = "C8",
                     StartDate = DateTime.ParseExact("04/01/2015 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("23/06/2015 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
-                
+
                 context.Cohort.Add(new Cohort
                 {
                     Number = "E1",
@@ -788,93 +788,179 @@ namespace Trasalum
                 await userstore.CreateAsync(user);
                 await userstore.AddToRoleAsync(user, "Educator");
             }
-            /************************/
+            /**************************/
+            /* Seeding TechType Table */
+            /**************************/
+            if (!context.TechType.Any())
+            {
+                context.TechType.Add(new TechType
+                {
+                    Name = "Language",
+                });
+                context.TechType.Add(new TechType
+                {
+                    Name = "Framework",
+                });
+                context.TechType.Add(new TechType
+                {
+                    Name = "Tool",
+                });
+                context.TechType.Add(new TechType
+                {
+                    Name = "Process",
+                });
+
+                context.SaveChanges();
+            }
+
+            /**********************/
             /* Seeding Tech Table */
-            /************************/
+            /**********************/
             if (!context.Tech.Any())
             {
+                int language = (from tt in context.TechType
+                          where tt.Name.Equals("Language")
+                          select tt.Id).Single();
+                int framework = (from tt in context.TechType
+                                where tt.Name.Equals("Framework")
+                                select tt.Id).Single();
+                int tool = (from tt in context.TechType
+                                where tt.Name.Equals("Tool")
+                                select tt.Id).Single();
+                int process = (from tt in context.TechType
+                                where tt.Name.Equals("Process")
+                                select tt.Id).Single();
+
                 context.Tech.Add(new Tech
                 {
                     Name = "HTML",
+                    TechTypeId = language
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "JavaScript",
+                    TechTypeId = language
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "CSS",
+                    TechTypeId = language
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "C#",
+                    TechTypeId = language
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "Ruby on Rails",
+                    TechTypeId = language
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "Python",
+                    TechTypeId = language
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "Git",
+                    TechTypeId = tool
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = ".NET",
+                    TechTypeId = framework
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "GitHub",
+                    TechTypeId = tool
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "ASP.NET",
+                    TechTypeId = framework
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "SASS",
+                    TechTypeId = framework
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "Visual Studio",
+                    TechTypeId = tool
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "Visual Studio Code",
+                    TechTypeId = tool
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "SCRUM",
+                    TechTypeId = process
+                });
+                context.Tech.Add(new Tech
+                {
+                    Name = "Kanban",
+                    TechTypeId = process
+                });
+                context.Tech.Add(new Tech
+                {
+                    Name = "Agile",
+                    TechTypeId = process
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "Firebase",
+                    TechTypeId = tool
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "SQL Server",
+                    TechTypeId = tool
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "SQLLite",
+                    TechTypeId = tool
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "Node.JS",
+                    TechTypeId = language
                 });
                 context.Tech.Add(new Tech
                 {
                     Name = "Django",
+                    TechTypeId = framework
                 });
+                context.Tech.Add(new Tech
+                {
+                    Name = "Angular.JS",
+                    TechTypeId = framework
+                });
+                context.Tech.Add(new Tech
+                {
+                    Name = "General/Non-Specific"
+                });
+                context.Tech.Add(new Tech
+                {
+                    Name = "Unknown"
+                });
+                context.Tech.Add(new Tech
+                {
+                    Name = "N/A"
+                });
+
                 context.SaveChanges();
             }
-            
+
             /*****************************/
             /* Seeding CohortStaff Table */
             /*****************************/
+            /*
             if (!context.CohortStaff.Any())
             {
                 ApplicationUser john = userManager.FindByNameAsync("john@email.com").Result;
@@ -920,38 +1006,38 @@ namespace Trasalum
                           where c.Number.Equals("C9")
                           select c.Id).Single();
                 int c10 = (from c in context.Cohort
-                          where c.Number.Equals("C10")
-                          select c.Id).Single();
+                           where c.Number.Equals("C10")
+                           select c.Id).Single();
                 int c11 = (from c in context.Cohort
-                          where c.Number.Equals("C11")
-                          select c.Id).Single();
+                           where c.Number.Equals("C11")
+                           select c.Id).Single();
                 int c12 = (from c in context.Cohort
-                          where c.Number.Equals("C12")
-                          select c.Id).Single();
+                           where c.Number.Equals("C12")
+                           select c.Id).Single();
                 int c13 = (from c in context.Cohort
-                          where c.Number.Equals("C13")
-                          select c.Id).Single();
+                           where c.Number.Equals("C13")
+                           select c.Id).Single();
                 int c14 = (from c in context.Cohort
-                          where c.Number.Equals("C14")
-                          select c.Id).Single();
+                           where c.Number.Equals("C14")
+                           select c.Id).Single();
                 int c15 = (from c in context.Cohort
-                          where c.Number.Equals("C15")
-                          select c.Id).Single();
+                           where c.Number.Equals("C15")
+                           select c.Id).Single();
                 int c16 = (from c in context.Cohort
-                          where c.Number.Equals("C16")
-                          select c.Id).Single();
+                           where c.Number.Equals("C16")
+                           select c.Id).Single();
                 int c17 = (from c in context.Cohort
-                          where c.Number.Equals("C17")
-                          select c.Id).Single();
+                           where c.Number.Equals("C17")
+                           select c.Id).Single();
                 int c18 = (from c in context.Cohort
-                          where c.Number.Equals("C18")
-                          select c.Id).Single();
+                           where c.Number.Equals("C18")
+                           select c.Id).Single();
                 int c19 = (from c in context.Cohort
-                          where c.Number.Equals("C19")
-                          select c.Id).Single();
+                           where c.Number.Equals("C19")
+                           select c.Id).Single();
                 int c20 = (from c in context.Cohort
-                          where c.Number.Equals("C20")
-                          select c.Id).Single();
+                           where c.Number.Equals("C20")
+                           select c.Id).Single();
                 int c21 = (from c in context.Cohort
                            where c.Number.Equals("C21")
                            select c.Id).Single();
@@ -968,8 +1054,8 @@ namespace Trasalum
                            where c.Number.Equals("C25")
                            select c.Id).Single();
                 int e1 = (from c in context.Cohort
-                           where c.Number.Equals("E1")
-                           select c.Id).Single();
+                          where c.Number.Equals("E1")
+                          select c.Id).Single();
                 int e2 = (from c in context.Cohort
                           where c.Number.Equals("E2")
                           select c.Id).Single();
@@ -990,427 +1076,427 @@ namespace Trasalum
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c1,
-                    Staff = john
+                    StaffId = john
                 });
                 //c1
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c1,
-                    Staff = eliza
+                    StaffId = eliza
                 });
                 //c2
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c2,
-                    Staff = adam
+                    StaffId = adam
                 });
                 //c2
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c2,
-                    Staff = eliza
+                    StaffId = eliza
                 });
                 //c2
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c2,
-                    Staff = john
+                    StaffId = john
                 });
                 //c3
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c3,
-                    Staff = eliza
+                    StaffId = eliza
                 });
                 //c3
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c3,
-                    Staff = chyld
+                    StaffId = chyld
                 });
                 //c4
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c4,
-                    Staff = chyld
+                    StaffId = chyld
                 });
                 //c4
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c4,
-                    Staff = eliza
+                    StaffId = eliza
                 });
                 //c5
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c5,
-                    Staff = chyld
+                    StaffId = chyld
                 });
                 //c5
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c5,
-                    Staff = eliza
+                    StaffId = eliza
                 });
                 //c6
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c6,
-                    Staff = chyld
+                    StaffId = chyld
                 });
                 //c7
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c7,
-                    Staff = eliza
+                    StaffId = eliza
                 });
                 //c7
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c7,
-                    Staff = scott
+                    StaffId = scott
                 });
                 //c7
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c7,
-                    Staff = jurnell
+                    StaffId = jurnell
                 });
                 //c8
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c8,
-                    Staff = eliza
+                    StaffId = eliza
                 });
                 //c8
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c8,
-                    Staff = scott
+                    StaffId = scott
                 });
                 //c8
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c8,
-                    Staff = jurnell
+                    StaffId = jurnell
                 });
                 //c9
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c9,
-                    Staff = scott
+                    StaffId = scott
                 });
                 //c10
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c10,
-                    Staff = eliza
+                    StaffId = eliza
                 });
                 //c10
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c10,
-                    Staff = steve
+                    StaffId = steve
                 });
                 //c10
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c10,
-                    Staff = jurnell
+                    StaffId = jurnell
                 });
                 //c11
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c11,
-                    Staff = steve
+                    StaffId = steve
                 });
                 //c11
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c11,
-                    Staff = scott
+                    StaffId = scott
                 });
                 //c12
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c12,
-                    Staff = caitlyn
+                    StaffId = caitlyn
                 });
                 //c12
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c12,
-                    Staff = denise
+                    StaffId = denise
                 });
                 //c12
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c12,
-                    Staff = steve
+                    StaffId = steve
                 });
                 //c12
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c12,
-                    Staff = joe
+                    StaffId = joe
                 });
                 //c13
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c13,
-                    Staff = joe
+                    StaffId = joe
                 });
                 //c13
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c13,
-                    Staff = scott
+                    StaffId = scott
                 });
                 //c13
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c13,
-                    Staff = steve
+                    StaffId = steve
                 });
                 //c14
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c14,
-                    Staff = joe
+                    StaffId = joe
                 });
                 //c14
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c14,
-                    Staff = scott
+                    StaffId = scott
                 });
                 //c14
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c14,
-                    Staff = callan
+                    StaffId = callan
                 });
                 //c15
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c15,
-                    Staff = caitlyn
+                    StaffId = caitlyn
                 });
                 //c15
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c15,
-                    Staff = joe
+                    StaffId = joe
                 });
                 //c15
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c15,
-                    Staff = scott
+                    StaffId = scott
                 });
                 //c15
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c15,
-                    Staff = denise
+                    StaffId = denise
                 });
                 //c15
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c15,
-                    Staff = greg
+                    StaffId = greg
                 });
                 //c16
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c16,
-                    Staff = brenda
+                    StaffId = brenda
                 });
                 //c16
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c16,
-                    Staff = joe
+                    StaffId = joe
                 });
                 //c16
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c16,
-                    Staff = steve
+                    StaffId = steve
                 });
                 //c17
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c17,
-                    Staff = joe
+                    StaffId = joe
                 });
                 //c17
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c17,
-                    Staff = scott
+                    StaffId = scott
                 });
                 //c18
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c18,
-                    Staff = brenda
+                    StaffId = brenda
                 });
                 //c18
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c18,
-                    Staff = steve
+                    StaffId = steve
                 });
                 //c19
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c19,
-                    Staff = brenda
+                    StaffId = brenda
                 });
                 //c19
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c19,
-                    Staff = steve
+                    StaffId = steve
                 });
                 //c20
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c20,
-                    Staff = joe
+                    StaffId = joe
                 });
                 //c21
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c21,
-                    Staff = brenda
+                    StaffId = brenda
                 });
                 //c21
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c21,
-                    Staff = steve
+                    StaffId = steve
                 });
                 //c22
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c22,
-                    Staff = steve
+                    StaffId = steve
                 });
                 //c23
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c23,
-                    Staff = joe
+                    StaffId = joe
                 });
                 //c24
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c24,
-                    Staff = brenda
+                    StaffId = brenda
                 });
                 //c25
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = c25,
-                    Staff = steve
+                    StaffId = steve
                 });
 
                 //e1
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = e1,
-                    Staff = steve
+                    StaffId = steve
                 });
                 //e1
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = e1,
-                    Staff = jurnell
+                    StaffId = jurnell
                 });
                 //e2
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = e2,
-                    Staff = steve
+                    StaffId = steve
                 });
                 //e2
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = e2,
-                    Staff = jurnell
+                    StaffId = jurnell
                 });
                 //e2
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = e2,
-                    Staff = joe
+                    StaffId = joe
                 });
                 //e3
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = e3,
-                    Staff = zoe
+                    StaffId = zoe
                 });
                 //e3
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = e3,
-                    Staff = jurnell
+                    StaffId = jurnell
                 });
                 //e3
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = e3,
-                    Staff = joe
+                    StaffId = joe
                 });
                 //e4
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = e4,
-                    Staff = zoe
+                    StaffId = zoe
                 });
                 //e4
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = e4,
-                    Staff = jurnell
+                    StaffId = jurnell
                 });
                 //e4
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = e4,
-                    Staff = nathan
+                    StaffId = nathan
                 });
                 //e5
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = e5,
-                    Staff = zoe
+                    StaffId = zoe
                 });
                 //e5
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = e5,
-                    Staff = jurnell
+                    StaffId = jurnell
                 });
                 //e6
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = e6,
-                    Staff = zoe
+                    StaffId = zoe
                 });
                 //e6
                 context.CohortStaff.Add(new CohortStaff
                 {
                     CohortId = e6,
-                    Staff = jurnell
+                    StaffId = jurnell
                 });
 
                 context.SaveChanges();
             }
-
+            */
             /*****************************/
             /* Seeding CohortTech Table */
             /*****************************/
@@ -1517,8 +1603,8 @@ namespace Trasalum
                              where t.Name.Equals("JavaScript")
                              select t.Id).Single();
                 int tcss = (from t in context.Tech
-                             where t.Name.Equals("CSS")
-                             select t.Id).Single();
+                            where t.Name.Equals("CSS")
+                            select t.Id).Single();
                 int tnode = (from t in context.Tech
                              where t.Name.Equals("Node.JS")
                              select t.Id).Single();
@@ -1526,41 +1612,44 @@ namespace Trasalum
                              where t.Name.Equals("Ruby on Rails")
                              select t.Id).Single();
                 int tgit = (from t in context.Tech
-                             where t.Name.Equals("Git")
-                             select t.Id).Single();
+                            where t.Name.Equals("Git")
+                            select t.Id).Single();
                 int tfire = (from t in context.Tech
                              where t.Name.Equals("Firebase")
                              select t.Id).Single();
                 int tstudio = (from t in context.Tech
-                             where t.Name.Equals("Visual Studio")
-                             select t.Id).Single();
+                               where t.Name.Equals("Visual Studio")
+                               select t.Id).Single();
                 int tsql = (from t in context.Tech
-                             where t.Name.Equals("SQL Server")
-                             select t.Id).Single();
+                            where t.Name.Equals("SQL Server")
+                            select t.Id).Single();
                 int tlite = (from t in context.Tech
                              where t.Name.Equals("SQLLite")
                              select t.Id).Single();
                 int tcsharp = (from t in context.Tech
-                             where t.Name.Equals("C#")
-                             select t.Id).Single();
+                               where t.Name.Equals("C#")
+                               select t.Id).Single();
                 int tnet = (from t in context.Tech
-                             where t.Name.Equals(".NET")
-                             select t.Id).Single();
+                            where t.Name.Equals(".NET")
+                            select t.Id).Single();
                 int tasp = (from t in context.Tech
-                             where t.Name.Equals("ASP.NET")
-                             select t.Id).Single();
+                            where t.Name.Equals("ASP.NET")
+                            select t.Id).Single();
                 int tpython = (from t in context.Tech
-                             where t.Name.Equals("Python")
-                             select t.Id).Single();
+                               where t.Name.Equals("Python")
+                               select t.Id).Single();
                 int tdjango = (from t in context.Tech
-                             where t.Name.Equals("Django")
-                             select t.Id).Single();
+                               where t.Name.Equals("Django")
+                               select t.Id).Single();
                 int tvscode = (from t in context.Tech
-                             where t.Name.Equals("Visual Studio Code")
-                             select t.Id).Single();
+                               where t.Name.Equals("Visual Studio Code")
+                               select t.Id).Single();
                 int tsass = (from t in context.Tech
                              where t.Name.Equals("SASS")
                              select t.Id).Single();
+                int tangular = (from t in context.Tech
+                                where t.Name.Equals("Angular.JS")
+                                select t.Id).Single();
 
                 //c1
                 context.CohortTech.Add(new CohortTech
@@ -1742,6 +1831,12 @@ namespace Trasalum
                     CohortId = c22,
                     TechId = tnet
                 });
+                //c22
+                context.CohortTech.Add(new CohortTech
+                {
+                    CohortId = c22,
+                    TechId = tangular
+                });
                 //c23
                 context.CohortTech.Add(new CohortTech
                 {
@@ -1779,9 +1874,190 @@ namespace Trasalum
                     TechId = tdjango
                 });
 
+                //e1
+                context.CohortTech.Add(new CohortTech
+                {
+                    CohortId = e1,
+                    TechId = tcsharp
+                });
+
+                //e1
+                context.CohortTech.Add(new CohortTech
+                {
+                    CohortId = e1,
+                    TechId = tnet
+                });
+
+                //e2
+                context.CohortTech.Add(new CohortTech
+                {
+                    CohortId = e2,
+                    TechId = tcsharp
+                });
+
+                //e2
+                context.CohortTech.Add(new CohortTech
+                {
+                    CohortId = e2,
+                    TechId = tnet
+                });
+
+                //e3
+                context.CohortTech.Add(new CohortTech
+                {
+                    CohortId = e3,
+                    TechId = tcsharp
+                });
+
+                //e3
+                context.CohortTech.Add(new CohortTech
+                {
+                    CohortId = e3,
+                    TechId = tnet
+                });
+
+                //e4
+                context.CohortTech.Add(new CohortTech
+                {
+                    CohortId = e4,
+                    TechId = tcsharp
+                });
+
+                //e4
+                context.CohortTech.Add(new CohortTech
+                {
+                    CohortId = e4,
+                    TechId = tnet
+                });
+
+                //e5
+                context.CohortTech.Add(new CohortTech
+                {
+                    CohortId = e5,
+                    TechId = tcsharp
+                });
+
+                //e5
+                context.CohortTech.Add(new CohortTech
+                {
+                    CohortId = e5,
+                    TechId = tnet
+                });
+
+                //e6
+                context.CohortTech.Add(new CohortTech
+                {
+                    CohortId = e6,
+                    TechId = tcsharp
+                });
+
+                //e6
+                context.CohortTech.Add(new CohortTech
+                {
+                    CohortId = e6,
+                    TechId = tnet
+                });
                 context.SaveChanges();
+            }
+
+            /************************/
+            /* Seeding Meetup Table */
+            /************************/
+            if (!context.Meetup.Any())
+            {
+                int thtml = (from t in context.Tech
+                             where t.Name.Equals("HTML")
+                             select t.Id).Single();
+                int tjava = (from t in context.Tech
+                             where t.Name.Equals("JavaScript")
+                             select t.Id).Single();
+                int tcss = (from t in context.Tech
+                            where t.Name.Equals("CSS")
+                            select t.Id).Single();
+                int tnode = (from t in context.Tech
+                             where t.Name.Equals("Node.JS")
+                             select t.Id).Single();
+                int truby = (from t in context.Tech
+                             where t.Name.Equals("Ruby on Rails")
+                             select t.Id).Single();
+                int tgit = (from t in context.Tech
+                            where t.Name.Equals("Git")
+                            select t.Id).Single();
+                int tfire = (from t in context.Tech
+                             where t.Name.Equals("Firebase")
+                             select t.Id).Single();
+                int tstudio = (from t in context.Tech
+                               where t.Name.Equals("Visual Studio")
+                               select t.Id).Single();
+                int tsql = (from t in context.Tech
+                            where t.Name.Equals("SQL Server")
+                            select t.Id).Single();
+                int tlite = (from t in context.Tech
+                             where t.Name.Equals("SQLLite")
+                             select t.Id).Single();
+                int tcsharp = (from t in context.Tech
+                               where t.Name.Equals("C#")
+                               select t.Id).Single();
+                int tnet = (from t in context.Tech
+                            where t.Name.Equals(".NET")
+                            select t.Id).Single();
+                int tasp = (from t in context.Tech
+                            where t.Name.Equals("ASP.NET")
+                            select t.Id).Single();
+                int tpython = (from t in context.Tech
+                               where t.Name.Equals("Python")
+                               select t.Id).Single();
+                int tdjango = (from t in context.Tech
+                               where t.Name.Equals("Django")
+                               select t.Id).Single();
+                int tvscode = (from t in context.Tech
+                               where t.Name.Equals("Visual Studio Code")
+                               select t.Id).Single();
+                int tsass = (from t in context.Tech
+                             where t.Name.Equals("SASS")
+                             select t.Id).Single();
+                int tangular = (from t in context.Tech
+                             where t.Name.Equals("Angular.JS")
+                             select t.Id).Single();
+                int tgeneral = (from t in context.Tech
+                                where t.Name.Equals("General/Non-Specific")
+                                select t.Id).Single();
+                int tunknown = (from t in context.Tech
+                                where t.Name.Equals("Unknown")
+                                select t.Id).Single();
 
 
+                //Developer Launchpad
+                context.Meetup.Add(new Meetup
+                {
+                    Name = "Developer Launchpad",
+                    Description = "If you're looking to launch your developer career to the next level and are looking for a friendly group in the Nashville area to code with, join Developer Launchpad Nashville!",
+                    TechId = tgeneral
+                });
+                //'Boro Dev Breakfast
+                context.Meetup.Add(new Meetup
+                {
+                    Name = "'Boro Dev Breakfast",
+                    Description = "Anyone is welcome to come eat breakfast with us. This is an open group. We will discuss .NET, CMS, PHP, & JS. BoroDev is a collection of top web and app development talent in and around Murfreesboro, TN. Our goal is to continually learn and grow as developers and ultimately establish Murfreesboro as a tech hub. We’re a supportive resource for aspiring, growing, and experienced developers alike.",
+                    TechId = tgeneral
+                });
+                //NashJS
+                context.Meetup.Add(new Meetup
+                {
+                    Name = "NashJS",
+                    Description = "A group for people interested in software development using Javascript. ",
+                    TechId = tjava
+                });
+                //All Things Angular
+                context.Meetup.Add(new Meetup
+                {
+                    Name = "All Things Angular",
+                    Description = "A community of Angular enthusiasts and professionals meeting near Franklin, TN.",
+                    TechId = tangular
+                });
+                
+                context.SaveChanges();
             }
         }
+    }
 }
