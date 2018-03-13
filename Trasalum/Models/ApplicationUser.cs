@@ -12,7 +12,6 @@ namespace Trasalum.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public bool CurrentEmploy { get; set; }
 
         //ApplicationUserId is a foreign key in the Contact table, this collection is for lazy loading of the Contacts
         public virtual ICollection<Contact> Contact { get; set; }

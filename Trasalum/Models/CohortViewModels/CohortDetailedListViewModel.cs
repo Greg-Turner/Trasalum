@@ -7,6 +7,6 @@ namespace Trasalum.Models.CohortViewModels
 {
     public class CohortDetailedListViewModel
     {
-        public List<CohortDetailedList> CohortDetailedList { get; set; }
+        public IEnumerable<CohortDetailedList> CohortDetailedList { get; set; }
     }
 }

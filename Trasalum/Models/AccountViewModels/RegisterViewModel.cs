@@ -34,10 +34,5 @@ namespace Trasalum.Models.AccountViewModels
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required]
-        [StringLength(10, ErrorMessage = "{0} must be at either Educator or Operations.", MinimumLength = 8)]
-        [Display(Name = "Role (Educator or Operations)")]
-        public string Role { get; set; }
-
     }
 }

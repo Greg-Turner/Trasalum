@@ -21,12 +21,15 @@ namespace Trasalum.Data
         public DbSet<CohortTech> CohortTech { get; set; }
         public DbSet<Contact> Contact { get; set; }
         public DbSet<ContactType> ContactType { get; set; }
+        public DbSet<Department> Department { get; set; }
         public DbSet<Engagement> Engagement { get; set; }
         public DbSet<EngagementAlum> EngagementAlum { get; set; }
         public DbSet<EngagementType> EngagementType { get; set; }
         public DbSet<Meetup> Meetup { get; set; }
         public DbSet<Note> Note { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<Staff> Staff { get; set; }
+        public DbSet<StaffTech> StaffTech { get; set; }
         public DbSet<TechType> TechType { get; set; }
         public DbSet<Tech> Tech { get; set; }
 

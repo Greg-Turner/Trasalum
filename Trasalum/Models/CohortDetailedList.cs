@@ -11,7 +11,7 @@ namespace Trasalum.Models
         public Cohort Cohort { get; set; }
 
         [Display(Name = "Instructors")]
-        public IEnumerable<ApplicationUser> Instructors { get; set; }
+        public IEnumerable<Staff> Instructors { get; set; }
 
         [Display(Name = "Technologies")]
         public IEnumerable<Tech> Tech { get; set; }

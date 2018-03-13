@@ -23,27 +23,24 @@ namespace Trasalum.Controllers
         // GET: Cohorts
         public async Task<IActionResult> Index()
         {
+            //var applicationDbContext = _context.Cohort
+            //.OrderBy(t => t.DemoDate);
+            //.Include(t => t.Tech);
+
+            //return View(await applicationDbContext.ToListAsync());
             CohortDetailedListViewModel model = new CohortDetailedListViewModel();
-            model.CohortDetailedList = new List<CohortDetailedList>();
-
-            List<Cohort> CohortList =  await _context.Cohort.ToListAsync();
-
-            foreach (Cohort cohort in CohortList)
-            {
-                CohortDetailedList listmodel = new CohortDetailedList
+            model.CohortDetailedList = 
+                _context.Cohort
+                .Include("CohortStaff")
+                .Include("CohortTech")
+                .Select(cohort => new CohortDetailedList
                 {
-                    Cohort = cohort
-                };
-
-                listmodel.Instructors = await _context.CohortStaff.Include(cs => cs.StaffId).Where(cs => cs.CohortId == listmodel.Cohort.Id).Select(s => s.StaffId).ToListAsync();
-
-                listmodel.Tech = await _context.CohortTech.Include(cs => cs.Tech).Where(cs => cs.CohortId == listmodel.Cohort.Id).Select(s => s.Tech).ToListAsync();
-
-                model.CohortDetailedList.Add(listmodel);
-
-            }
-
-            return View(model);
+                    Cohort = cohort,
+                    Instructors = cohort.CohortStaff.Select(cs => cs.Staff),
+                    Tech = cohort.CohortTech.Select(ct => ct.Tech)
+                });
+            
+            return View(model); 
         }
 
         // GET: Cohorts/Details/5
@@ -62,8 +59,10 @@ namespace Trasalum.Controllers
             {
                 return NotFound();
             }
-
-            model.Instructors = await _context.CohortStaff.Include(cs => cs.StaffId).Where(cs => cs.CohortId == model.Cohort.Id).Select(s => s.StaffId).ToListAsync();
+            
+            return View(model);
+            /*
+            model.Instructors = await _context.CohortStaff.Include(cs => cs.Staff).Where(cs => cs.CohortId == model.Cohort.Id).Select(s => s.Staff).ToListAsync();
 
             if (model.Cohort == null)
             {
@@ -77,7 +76,7 @@ namespace Trasalum.Controllers
                 return NotFound();
             }
 
-            return View(model);
+            return View(model); */
         }
 
         // GET: Cohorts/Create

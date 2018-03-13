@@ -21,6 +21,23 @@ namespace Trasalum
         {
             var context = new ApplicationDbContext(serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>());
 
+            /****************************/
+            /* Seeding Department Table */
+            /****************************/
+            if (!context.Department.Any())
+            {
+                context.Department.Add(new Department
+                {
+                    Name = "Educator",
+                });
+
+                context.Department.Add(new Department
+                {
+                    Name = "Operations",
+                });
+                context.SaveChanges();
+            }
+
             /************************/
             /* Seeding Cohort Table */
             /************************/
@@ -397,396 +414,99 @@ namespace Trasalum
                 context.SaveChanges();
             }*/
 
-            /***************************************/
-            /* Seeding ASP.NET ROLES Table         */
-            /* Provides roles for ApplicationUsers */
-            /***************************************/
-            var roleStore = new RoleStore<IdentityRole>(context);
-            var userstore = new UserStore<ApplicationUser>(context);
+            /***********************/
+            /* Seeding Staff Table */
+            /***********************/
+            if (!context.Staff.Any())
+            {
+                int educator = (from d in context.Department
+                                where d.Name.Equals("Educator")
+                                select d.Id).Single();
+                int operations = (from d in context.Department
+                                 where d.Name.Equals("Operations")
+                                 select d.Id).Single();
 
-            if (!context.Roles.Any(r => r.Name == "Educator"))
-            {
-                var role = new IdentityRole { Name = "Educator", NormalizedName = "Educator" };
-                await roleStore.CreateAsync(role);
-            }
-            if (!context.Roles.Any(r => r.Name == "Operations"))
-            {
-                var role = new IdentityRole { Name = "Operations", NormalizedName = "Operations" };
-                await roleStore.CreateAsync(role);
-            }
-
-            /*********************************/
-            /* Seeding ApplicationUser Table */
-            /*********************************/
-            if (!context.ApplicationUser.Any(u => u.Email == "steve@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
+                context.Staff.Add(new Staff
                 {
-                    FirstName = "Steve",
-                    LastName = "Brownlee",
-                    CurrentEmploy = true,
-                    UserName = "steve@email.com",
-                    NormalizedUserName = "steve@email.com",
-                    Email = "steve@email.com",
-                    NormalizedEmail = "STEVE@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
-            }
-            if (!context.ApplicationUser.Any(u => u.Email == "greg@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
+                    Name = "Steve Brownlee",
+                    DepartmentId = educator,
+                });
+                context.Staff.Add(new Staff
                 {
-                    FirstName = "Greg",
-                    LastName = "Korte",
-                    CurrentEmploy = true,
-                    UserName = "greg@email.com",
-                    NormalizedUserName = "GREG@EMAIL>COM",
-                    Email = "greg@email.com",
-                    NormalizedEmail = "GREG@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
-            }
-            if (!context.ApplicationUser.Any(u => u.Email == "hannah@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
+                    Name = "Greg Korte",
+                    DepartmentId = educator,
+                });
+                context.Staff.Add(new Staff
                 {
-                    FirstName = "Hannah",
-                    LastName = "Hall",
-                    CurrentEmploy = true,
-                    UserName = "hannah@email.com",
-                    NormalizedUserName = "HANNAH@EMAIL.COM",
-                    Email = "hannah@email.com",
-                    NormalizedEmail = "HANNAH@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
-            }
-            if (!context.ApplicationUser.Any(u => u.Email == "eliza@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
+                    Name = "Hannah Hall",
+                    DepartmentId = educator,
+                });
+                context.Staff.Add(new Staff
                 {
-                    FirstName = "Eliza",
-                    LastName = "Brock",
-                    CurrentEmploy = true,
-                    UserName = "eliza@email.com",
-                    NormalizedUserName = "eliza@email.com",
-                    Email = "eliza@email.com",
-                    NormalizedEmail = "ELIZA@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
-            }
-
-            if (!context.ApplicationUser.Any(u => u.Email == "john@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
+                    Name = "Eliza Brock",
+                    DepartmentId = educator,
+                });
+                context.Staff.Add(new Staff
                 {
-                    FirstName = "John",
-                    LastName = "Wark",
-                    CurrentEmploy = true,
-                    UserName = "john@email.com",
-                    NormalizedUserName = "john@email.com",
-                    Email = "john@email.com",
-                    NormalizedEmail = "JOHN@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
-            }
-
-            if (!context.ApplicationUser.Any(u => u.Email == "adam@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
+                    Name = "John Wark",
+                    DepartmentId = educator,
+                });
+                context.Staff.Add(new Staff
                 {
-                    FirstName = "Adam",
-                    LastName = "Scott",
-                    CurrentEmploy = true,
-                    UserName = "adam@email.com",
-                    NormalizedUserName = "adam@email.com",
-                    Email = "adam@email.com",
-                    NormalizedEmail = "ADAM@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
-            }
-
-            if (!context.ApplicationUser.Any(u => u.Email == "chyld@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
+                    Name = "Adam Scott",
+                    DepartmentId = educator,
+                });
+                context.Staff.Add(new Staff
                 {
-                    FirstName = "Chyld",
-                    LastName = "Medford",
-                    CurrentEmploy = true,
-                    UserName = "chyld@email.com",
-                    NormalizedUserName = "chyld@email.com",
-                    Email = "chyld@email.com",
-                    NormalizedEmail = "chyld@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
-            }
-
-            if (!context.ApplicationUser.Any(u => u.Email == "scott@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
+                    Name = "Chyld Medford",
+                    DepartmentId = educator,
+                });
+                context.Staff.Add(new Staff
                 {
-                    FirstName = "Scott",
-                    LastName = "Humphries",
-                    CurrentEmploy = true,
-                    UserName = "scott@email.com",
-                    NormalizedUserName = "scott@email.com",
-                    Email = "scott@email.com",
-                    NormalizedEmail = "SCOTT@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
-            }
-
-            if (!context.ApplicationUser.Any(u => u.Email == "jurnell@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
+                    Name = "Scott Humphries",
+                    DepartmentId = educator,
+                });
+                context.Staff.Add(new Staff
                 {
-                    FirstName = "Jurnell",
-                    LastName = "Cockhren",
-                    CurrentEmploy = true,
-                    UserName = "jurnell@email.com",
-                    NormalizedUserName = "jurnell@email.com",
-                    Email = "jurnell@email.com",
-                    NormalizedEmail = "JURNELL@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
-            }
-
-            if (!context.ApplicationUser.Any(u => u.Email == "joe@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
+                    Name = "Jurnell Cockhren",
+                    DepartmentId = educator,
+                });
+                context.Staff.Add(new Staff
                 {
-                    FirstName = "Joe",
-                    LastName = "Shepherd",
-                    CurrentEmploy = true,
-                    UserName = "joe@email.com",
-                    NormalizedUserName = "joe@email.com",
-                    Email = "joe@email.com",
-                    NormalizedEmail = "JOE@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
-            }
-
-            if (!context.ApplicationUser.Any(u => u.Email == "zoe@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
+                    Name = "Joe Shepherd",
+                    DepartmentId = educator,
+                });
+                context.Staff.Add(new Staff
                 {
-                    FirstName = "Zoe",
-                    LastName = "Ames",
-                    CurrentEmploy = true,
-                    UserName = "zoe@email.com",
-                    NormalizedUserName = "zoe@email.com",
-                    Email = "zoe@email.com",
-                    NormalizedEmail = "ZOE@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
-            }
-
-            if (!context.ApplicationUser.Any(u => u.Email == "denise@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
+                    Name = "Zoe Ames",
+                    DepartmentId = educator,
+                });
+                context.Staff.Add(new Staff
                 {
-                    FirstName = "Denise",
-                    LastName = "Tinsley",
-                    CurrentEmploy = true,
-                    UserName = "denise@email.com",
-                    NormalizedUserName = "denise@email.com",
-                    Email = "denise@email.com",
-                    NormalizedEmail = "DENISE@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
-            }
-
-            if (!context.ApplicationUser.Any(u => u.Email == "caitlyn@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
+                    Name = "Denise Tinsley",
+                    DepartmentId = educator,
+                });
+                context.Staff.Add(new Staff
                 {
-                    FirstName = "Caitlyn",
-                    LastName = "Stein",
-                    CurrentEmploy = true,
-                    UserName = "caitlyn@email.com",
-                    NormalizedUserName = "caitlyn@email.com",
-                    Email = "caitlyn@email.com",
-                    NormalizedEmail = "CAITLYN@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
-            }
-
-            if (!context.ApplicationUser.Any(u => u.Email == "callan@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
+                    Name = "Caitlyn Stein",
+                    DepartmentId = educator,
+                });
+                context.Staff.Add(new Staff
                 {
-                    FirstName = "Callan",
-                    LastName = "Callan",
-                    CurrentEmploy = true,
-                    UserName = "callan@email.com",
-                    NormalizedUserName = "callan@email.com",
-                    Email = "callan@email.com",
-                    NormalizedEmail = "CALLAN@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
-            }
-
-            if (!context.ApplicationUser.Any(u => u.Email == "nathan@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
+                    Name = "Callan Morrison",
+                    DepartmentId = educator,
+                });
+                context.Staff.Add(new Staff
                 {
-                    FirstName = "Nathan",
-                    LastName = "Gonzalez",
-                    CurrentEmploy = true,
-                    UserName = "nathan@email.com",
-                    NormalizedUserName = "nathan@email.com",
-                    Email = "nathan@email.com",
-                    NormalizedEmail = "NATHAN@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
-            }
-
-            if (!context.ApplicationUser.Any(u => u.Email == "brenda@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
+                    Name = "Nathan Gonzalez",
+                    DepartmentId = educator,
+                });
+                context.Staff.Add(new Staff
                 {
-                    FirstName = "Brenda",
-                    LastName = "Long",
-                    CurrentEmploy = true,
-                    UserName = "brenda@email.com",
-                    NormalizedUserName = "brenda@email.com",
-                    Email = "brenda@email.com",
-                    NormalizedEmail = "BRENDA@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
-            }
-
-            if (!context.ApplicationUser.Any(u => u.Email == "eliza@email.com"))
-            {
-                //  This method will be called after migrating to the latest version.
-                ApplicationUser user = new ApplicationUser
-                {
-                    FirstName = "Eliza",
-                    LastName = "Brock",
-                    CurrentEmploy = true,
-                    UserName = "eliza@email.com",
-                    NormalizedUserName = "eliza@email.com",
-                    Email = "eliza@email.com",
-                    NormalizedEmail = "ELIZA@EMAIL.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHash.HashPassword(user, "password");
-                await userstore.CreateAsync(user);
-                await userstore.AddToRoleAsync(user, "Educator");
+                    Name = "Brenda Long",
+                    DepartmentId = educator,
+                });
+                context.SaveChanges();
             }
             /**************************/
             /* Seeding TechType Table */
@@ -943,15 +663,15 @@ namespace Trasalum
                 });
                 context.Tech.Add(new Tech
                 {
-                    Name = "General/Non-Specific"
+                    Name = "(General/Non-Specific)"
                 });
                 context.Tech.Add(new Tech
                 {
-                    Name = "Unknown"
+                    Name = "(Unknown)"
                 });
                 context.Tech.Add(new Tech
                 {
-                    Name = "N/A"
+                    Name = "(N/A)"
                 });
 
                 context.SaveChanges();
@@ -960,24 +680,55 @@ namespace Trasalum
             /*****************************/
             /* Seeding CohortStaff Table */
             /*****************************/
-            /*
+            
             if (!context.CohortStaff.Any())
             {
-                ApplicationUser john = userManager.FindByNameAsync("john@email.com").Result;
-                ApplicationUser eliza = userManager.FindByNameAsync("eliza@email.com").Result;
-                ApplicationUser adam = userManager.FindByNameAsync("adam@email.com").Result;
-                ApplicationUser chyld = userManager.FindByNameAsync("chyld@email.com").Result;
-                ApplicationUser scott = userManager.FindByNameAsync("scott@email.com").Result;
-                ApplicationUser jurnell = userManager.FindByNameAsync("jurnell@email.com").Result;
-                ApplicationUser steve = userManager.FindByNameAsync("steve@email.com").Result;
-                ApplicationUser joe = userManager.FindByNameAsync("joe@email.com").Result;
-                ApplicationUser zoe = userManager.FindByNameAsync("zoe@email.com").Result;
-                ApplicationUser denise = userManager.FindByNameAsync("denise@email.com").Result;
-                ApplicationUser caitlyn = userManager.FindByNameAsync("caitlyn@email.com").Result;
-                ApplicationUser greg = userManager.FindByNameAsync("greg@email.com").Result;
-                ApplicationUser nathan = userManager.FindByNameAsync("nathan@email.com").Result;
-                ApplicationUser brenda = userManager.FindByNameAsync("brenda@email.com").Result;
-                ApplicationUser callan = userManager.FindByNameAsync("callan@email.com").Result;
+                int john = (from s in context.Staff
+                          where s.Name.Equals("John Wark")
+                          select s.Id).Single();
+                int eliza = (from s in context.Staff
+                            where s.Name.Equals("Eliza Brock")
+                            select s.Id).Single();
+                int adam = (from s in context.Staff
+                            where s.Name.Equals("Adam Scott")
+                            select s.Id).Single();
+                int chyld = (from s in context.Staff
+                            where s.Name.Equals("Chyld Medford")
+                            select s.Id).Single();
+                int scott = (from s in context.Staff
+                            where s.Name.Equals("Scott Humphries")
+                            select s.Id).Single();
+                int jurnell = (from s in context.Staff
+                            where s.Name.Equals("Jurnell Cockhren")
+                            select s.Id).Single();
+                int steve = (from s in context.Staff
+                            where s.Name.Equals("Steve Brownlee")
+                            select s.Id).Single();
+                int joe = (from s in context.Staff
+                            where s.Name.Equals("Joe Shepherd")
+                            select s.Id).Single();
+                int zoe = (from s in context.Staff
+                            where s.Name.Equals("Zoe Ames")
+                            select s.Id).Single();
+                int denise = (from s in context.Staff
+                            where s.Name.Equals("Denise Tinsley")
+                            select s.Id).Single();
+                int caitlyn = (from s in context.Staff
+                            where s.Name.Equals("Caitlyn Stein")
+                            select s.Id).Single();
+                int greg = (from s in context.Staff
+                            where s.Name.Equals("Greg Korte")
+                            select s.Id).Single();
+                int nathan = (from s in context.Staff
+                            where s.Name.Equals("Nathan Gonzalez")
+                            select s.Id).Single();
+                int brenda = (from s in context.Staff
+                            where s.Name.Equals("Brenda Long")
+                            select s.Id).Single();
+                int callan = (from s in context.Staff
+                            where s.Name.Equals("Callan Morrison")
+                            select s.Id).Single();
+                
                 int c1 = (from c in context.Cohort
                           where c.Number.Equals("C1")
                           select c.Id).Single();
@@ -1303,7 +1054,7 @@ namespace Trasalum
                 //c15
                 context.CohortStaff.Add(new CohortStaff
                 {
-                    CohortId = c15,
+                   CohortId = c15,
                     StaffId = greg
                 });
                 //c16
@@ -1496,7 +1247,7 @@ namespace Trasalum
 
                 context.SaveChanges();
             }
-            */
+            
             /*****************************/
             /* Seeding CohortTech Table */
             /*****************************/
@@ -2020,10 +1771,10 @@ namespace Trasalum
                              where t.Name.Equals("Angular.JS")
                              select t.Id).Single();
                 int tgeneral = (from t in context.Tech
-                                where t.Name.Equals("General/Non-Specific")
+                                where t.Name.Equals("(General/Non-Specific)")
                                 select t.Id).Single();
                 int tunknown = (from t in context.Tech
-                                where t.Name.Equals("Unknown")
+                                where t.Name.Equals("(Unknown)")
                                 select t.Id).Single();
 
 

@@ -19,13 +19,17 @@ namespace Trasalum.Controllers
             _context = context;
         }
 
-        // GET: Teches
+        // GET: Techs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Tech.ToListAsync());
+            var applicationDbContext = _context.Tech
+                .OrderBy(t => t.Name)
+                .Include(t => t.TechType);
+
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Teches/Details/5
+        // GET: Techs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

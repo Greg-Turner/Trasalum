@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Trasalum.Models
 {
-    public class CohortStaff
+    public class StaffTech
     {
         [Key]
         public int Id { get; set; }
@@ -15,8 +15,7 @@ namespace Trasalum.Models
         public int StaffId { get; set; }
         public Staff Staff { get; set; }
 
-        [Required]
-        public int CohortId { get; set; }
-        public Cohort Cohort { get; set; }
+        public int TechId { get; set; }
+        public Tech Tech { get; set; }
     }
 }

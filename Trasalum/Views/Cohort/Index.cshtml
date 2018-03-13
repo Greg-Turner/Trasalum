@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Cohorts</h2>
 
 <p>
     <a asp-action="Add">Add New Cohort</a>
@@ -31,7 +31,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.CohortDetailedList) {
+@foreach (var item in Model.CohortDetailedList.OrderByDescending(c => c.Cohort.DemoDate)) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Cohort.Number)

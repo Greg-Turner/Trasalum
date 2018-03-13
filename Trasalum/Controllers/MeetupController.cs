@@ -22,7 +22,7 @@ namespace Trasalum.Controllers
         // GET: Meetup
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Meetup.Include(m => m.Tech);
+            var applicationDbContext = _context.Meetup.Include(m => m.Tech).OrderBy(m => m.Name);
             return View(await applicationDbContext.ToListAsync());
         }
 
