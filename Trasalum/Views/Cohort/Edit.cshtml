@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Update</h2>
 
 <h4>Cohort</h4>
 <hr />
@@ -13,13 +13,6 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Night" /> @Html.DisplayNameFor(model => model.Night)
-                    </label>
-                </div>
-            </div>
             <div class="form-group">
                 <label asp-for="Number" class="control-label"></label>
                 <input asp-for="Number" class="form-control" />
@@ -34,6 +27,25 @@
                 <label asp-for="DemoDate" class="control-label"></label>
                 <input asp-for="DemoDate" class="form-control" />
                 <span asp-validation-for="DemoDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <div>
+                        
+                            @{
+                                
+                                List<Trasalum.Models.TechViewModels.AssignedTechData> techs = ViewBag.Techs;
+
+                                foreach (var tech in techs)
+                                {
+                                    @:<input type="checkbox" name="selectedTechs" value="@tech.TechId" @(Html.Raw(tech.Assigned ? "checked=\"checked\"" : "")) />
+                                               @:  @tech.TechName
+                            
+                                }
+                                
+                            }
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />

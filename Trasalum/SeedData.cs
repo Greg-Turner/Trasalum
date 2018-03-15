@@ -266,13 +266,26 @@ namespace Trasalum
             /*************************/
             /* Seeding Alum Table */
             /*************************/
-            /*if (!context.Alum.Any())
+            if (!context.Alum.Any())
             {
+                int c1 = (from c in context.Cohort
+                          where c.Number.Equals("C1")
+                          select c.Id).Single();
+                int c2 = (from c in context.Cohort
+                          where c.Number.Equals("C2")
+                          select c.Id).Single();
+                int c3 = (from c in context.Cohort
+                          where c.Number.Equals("C3")
+                          select c.Id).Single();
+                int c4 = (from c in context.Cohort
+                          where c.Number.Equals("C4")
+                          select c.Id).Single();
+
                 context.Alum.Add(new Alum
                 {
                     FirstName = "John",
                     LastName = "Smith",
-                    CohortId = 1,
+                    CohortId = c1,
                     Address = "1 Main St.",
                     Address2 = "Apt A-1",
                     City = "Nashville",
@@ -285,134 +298,278 @@ namespace Trasalum
                     Slack = "john-smith"
                 });
 
-                /*context.Alum.Add(new Alum
+                context.Alum.Add(new Alum
                 {
-                    User = user1,
-                    Name = "Knit Scarf",
-                    Description = "A beautifully knitted scarf for a toddler girl.",
-                    CohortId = AlumCohortId,
-                    Status = true,
-                    Price = 25.00,
-                    DateCreated = DateTime.Now,
-                    Quantity = 4,
-                    Photo = "",
-                    City = "Nashville",
+                    FirstName = "Jane",
+                    LastName = "Doe",
+                    CohortId = c1,
+                    Address = "2 Broad St.",
+                    Address2 = "",
+                    City = "Murfreesboro",
                     State = "TN",
-                    DeliverLocal = false,
+                    ZipCode = "37129",
+                    Phone = "615-333-2255",
+                    Email = "jdoe@email.com",
+                    GitHub = "jane-doe",
+                    LinkedIn = "jane-doe",
+                    Slack = "jane-doe"
                 });
 
                 context.Alum.Add(new Alum
                 {
-                    User = user1,
-                    Name = "Knit Mittens",
-                    Description = "Beautifully knitted mittens for a toddler girl.",
-                    CohortId = AlumCohortId,
-                    Status = true,
-                    Price = 25.00,
-                    DateCreated = DateTime.Now,
-                    Quantity = 3,
-                    Photo = "",
-                    City = "Nashville",
+                    FirstName = "Scott",
+                    LastName = "Gordon",
+                    CohortId = c2,
+                    Address = "3 West St.",
+                    Address2 = "",
+                    City = "Clarksville",
                     State = "TN",
-                    DeliverLocal = false,
-                });
-
-                AlumCohortId = (from ct in context.Cohort
-                                     where ct.CohortType.Equals("Jewelry & Accessories")
-                                     select ct.Id).Single();
-
-                context.Alum.Add(new Alum
-                {
-                    User = user1,
-                    Name = "Beaded Bracelet",
-                    Description = "A beautiful handmade beaded bracelet.",
-                    CohortId = AlumCohortId,
-                    Status = true,
-                    Price = 28.50,
-                    DateCreated = DateTime.Now,
-                    Quantity = 6,
-                    Photo = "",
-                    City = "Nashville",
-                    State = "TN",
-                    DeliverLocal = false,
+                    ZipCode = "37024",
+                    Phone = "615-777-5533",
+                    Email = "sgordon@email.com",
+                    GitHub = "scott-gordon",
+                    LinkedIn = "scott-gordon",
+                    Slack = "scott-gordon"
                 });
 
                 context.Alum.Add(new Alum
                 {
-                    User = user1,
-                    Name = "Charm Bracelet",
-                    Description = "A beautiful handmade charm bracelet.",
-                    CohortId = AlumCohortId,
-                    Status = true,
-                    Price = 42.00,
-                    DateCreated = DateTime.Now,
-                    Quantity = 3,
-                    Photo = "",
-                    City = "Nashville",
+                    FirstName = "Renee",
+                    LastName = "Lynn",
+                    CohortId = c2,
+                    Address = "12 East Ave.",
+                    Address2 = "",
+                    City = "Hendersonville",
                     State = "TN",
-                    DeliverLocal = false,
+                    ZipCode = "37066",
+                    Phone = "615-579-2134",
+                    Email = "rlynn@email.com",
+                    GitHub = "renee-lynn",
+                    LinkedIn = "renee-lynn",
+                    Slack = "renee-lynn"
                 });
-
-                ApplicationUser user2 = userManager.FindByNameAsync("jdoe@email.com").Result;
-
-                AlumCohortId = (from ct in context.Cohort
-                                     where ct.CohortType.Equals("Arts & Collectibles")
-                                     select ct.Id).Single();
-
                 context.Alum.Add(new Alum
                 {
-                    User = user2,
-                    Name = "Sunset Painting",
-                    Description = "A beautiful oil painting of a beach during sunset.",
-                    CohortId = AlumCohortId,
-                    Status = true,
-                    Price = 225.00,
-                    DateCreated = DateTime.Now,
-                    Quantity = 1,
-                    Photo = "",
-                    City = "Nashville",
+                    FirstName = "Tom",
+                    LastName = "Williams",
+                    CohortId = c2,
+                    Address = "456 King Blvd.",
+                    Address2 = "",
+                    City = "Rockvale",
                     State = "TN",
-                    DeliverLocal = false,
+                    ZipCode = "37031",
+                    Phone = "615-923-8765",
+                    Email = "twilliams@email.com",
+                    GitHub = "tom-williams",
+                    LinkedIn = "tom-williams",
+                    Slack = "tom-williams"
                 });
 
                 context.Alum.Add(new Alum
                 {
-                    User = user2,
-                    Name = "Paris Cafe Painting",
-                    Description = "A beautiful oil painting a cafe in Paris.",
-                    CohortId = AlumCohortId,
-                    Status = true,
-                    Price = 350.00,
-                    DateCreated = DateTime.Now,
-                    Quantity = 1,
-                    Photo = "",
+                    FirstName = "Robert",
+                    LastName = "Roberts",
+                    CohortId = c3,
+                    Address = "11 Roberta Lane.",
+                    Address2 = "",
                     City = "Nashville",
                     State = "TN",
-                    DeliverLocal = false,
+                    ZipCode = "37214",
+                    Phone = "615-324-1234",
+                    Email = "rroberts@email.com",
+                    GitHub = "robert-roberts",
+                    LinkedIn = "robert-roberts",
+                    Slack = "robert-roberts"
                 });
-
-                AlumCohortId = (from ct in context.Cohort
-                                     where ct.CohortType.Equals("Home & Living")
-                                     select ct.Id).Single();
 
                 context.Alum.Add(new Alum
                 {
-                    User = user2,
-                    Name = "Handmade Quilt",
-                    Description = "A very warm beautifully hand crafted quilt.",
-                    CohortId = AlumCohortId,
-                    Status = true,
-                    Price = 155.25,
-                    DateCreated = DateTime.Now,
-                    Quantity = 1,
-                    Photo = "",
-                    City = "Nashville",
+                    FirstName = "Kim",
+                    LastName = "Fields",
+                    CohortId = c3,
+                    Address = "98 Pasture St.",
+                    Address2 = "",
+                    City = "Smyrna",
                     State = "TN",
-                    DeliverLocal = false,
+                    ZipCode = "37126",
+                    Phone = "615-345-7654",
+                    Email = "kfields@email.com",
+                    GitHub = "kim-fields",
+                    LinkedIn = "kim-fields",
+                    Slack = "kim-fields"
                 });
 
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Larry",
+                    LastName = "Thomas",
+                    CohortId = c3,
+                    Address = "65 1st St.",
+                    Address2 = "",
+                    City = "Nashville",
+                    State = "TN",
+                    ZipCode = "37201",
+                    Phone = "615-865-9078",
+                    Email = "lthomas@email.com",
+                    GitHub = "larry-thomas",
+                    LinkedIn = "larry-thomas",
+                    Slack = "larry-thomas"
+                });
+
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Jeff",
+                    LastName = "Stanton",
+                    CohortId = c3,
+                    Address = "101 Champion St.",
+                    Address2 = "",
+                    City = "White Bluff",
+                    State = "TN",
+                    ZipCode = "37113",
+                    Phone = "615-723-1738",
+                    Email = "jstanton@email.com",
+                    GitHub = "jeff-stanton",
+                    LinkedIn = "jeff-stanton",
+                    Slack = "jeff-stanton"
+                });
+
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Damon",
+                    LastName = "Bradshaw",
+                    CohortId = c3,
+                    Address = "101 Speedy Way",
+                    Address2 = "",
+                    City = "Murfreesboro",
+                    State = "TN",
+                    ZipCode = "37127",
+                    Phone = "615-327-8371",
+                    Email = "dbradshaw@email.com",
+                    GitHub = "damon-bradshaw",
+                    LinkedIn = "damon-bradshaw",
+                    Slack = "damon-bradshaw"
+                });
+
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Sue",
+                    LastName = "Ward",
+                    CohortId = c3,
+                    Address = "7 Bridal Dr.",
+                    Address2 = "",
+                    City = "Lascassas",
+                    State = "TN",
+                    ZipCode = "37134",
+                    Phone = "615-221-9335",
+                    Email = "sward@email.com",
+                    GitHub = "sue-ward",
+                    LinkedIn = "sue-ward",
+                    Slack = "sue-ward"
+                });
+
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Ricky",
+                    LastName = "Carmichael",
+                    CohortId = c3,
+                    Address = "4 Goat St.",
+                    Address2 = "",
+                    City = "Murfreesboro",
+                    State = "TN",
+                    ZipCode = "37130",
+                    Phone = "615-546-9976",
+                    Email = "rcarmichael@email.com",
+                    GitHub = "ricky-carmichael",
+                    LinkedIn = "ricky-carmichael",
+                    Slack = "ricky-carmichael"
+                });
+
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Justin",
+                    LastName = "Barcia",
+                    CohortId = c3,
+                    Address = "23 Bam Bam St.",
+                    Address2 = "",
+                    City = "Hermitage",
+                    State = "TN",
+                    ZipCode = "37076",
+                    Phone = "615-812-1298",
+                    Email = "jbarcia@email.com",
+                    GitHub = "justin-barcia",
+                    LinkedIn = "justin-barcia",
+                    Slack = "justin-barcia"
+                });
+
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Mike",
+                    LastName = "Alessi",
+                    CohortId = c3,
+                    Address = "2 Crash St.",
+                    Address2 = "",
+                    City = "Nashville",
+                    State = "TN",
+                    ZipCode = "37221",
+                    Phone = "615-383-9747",
+                    Email = "malessi@email.com",
+                    GitHub = "mike-alessi",
+                    LinkedIn = "mike-alessi",
+                    Slack = "mike-alessi"
+                });
+
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Andrew",
+                    LastName = "Short",
+                    CohortId = c3,
+                    Address = "28 Rider Dr.",
+                    Address2 = "",
+                    City = "Mt Juliet",
+                    State = "TN",
+                    ZipCode = "37122",
+                    Phone = "615-325-0026",
+                    Email = "ashort@email.com",
+                    GitHub = "andrew-short",
+                    LinkedIn = "andrew-short",
+                    Slack = "andrew-short"
+                });
+
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Samantha",
+                    LastName = "Burns",
+                    CohortId = c4,
+                    Address = "344 View St.",
+                    Address2 = "",
+                    City = "Nashville",
+                    State = "TN",
+                    ZipCode = "37205",
+                    Phone = "615-865-9846",
+                    Email = "sburns@email.com",
+                    GitHub = "samantha-burns",
+                    LinkedIn = "samantha-burns",
+                    Slack = "samanatha-burns"
+                });
+
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Guy",
+                    LastName = "Cooper",
+                    CohortId = c4,
+                    Address = "5 Airtime Lane.",
+                    Address2 = "",
+                    City = "Nashville",
+                    State = "TN",
+                    ZipCode = "37215",
+                    Phone = "615-332-4599",
+                    Email = "gcooper@email.com",
+                    GitHub = "guy-cooper",
+                    LinkedIn = "guy-cooper",
+                    Slack = "guy-cooper"
+                });
                 context.SaveChanges();
-            }*/
+            }
 
             /***********************/
             /* Seeding Staff Table */
@@ -1711,6 +1868,212 @@ namespace Trasalum
                 context.SaveChanges();
             }
 
+            /*****************************/
+            /* Seeding AlumTech Table */
+            /*****************************/
+            if (!context.AlumTech.Any())
+            {
+                int thtml = (from t in context.Tech
+                             where t.Name.Equals("HTML")
+                             select t.Id).Single();
+                int tjava = (from t in context.Tech
+                             where t.Name.Equals("JavaScript")
+                             select t.Id).Single();
+                int tcss = (from t in context.Tech
+                            where t.Name.Equals("CSS")
+                            select t.Id).Single();
+                int tnode = (from t in context.Tech
+                             where t.Name.Equals("Node.JS")
+                             select t.Id).Single();
+                int truby = (from t in context.Tech
+                             where t.Name.Equals("Ruby on Rails")
+                             select t.Id).Single();
+                int tgit = (from t in context.Tech
+                            where t.Name.Equals("Git")
+                            select t.Id).Single();
+                int tfire = (from t in context.Tech
+                             where t.Name.Equals("Firebase")
+                             select t.Id).Single();
+                int tstudio = (from t in context.Tech
+                               where t.Name.Equals("Visual Studio")
+                               select t.Id).Single();
+                int tsql = (from t in context.Tech
+                            where t.Name.Equals("SQL Server")
+                            select t.Id).Single();
+                int tlite = (from t in context.Tech
+                             where t.Name.Equals("SQLLite")
+                             select t.Id).Single();
+                int tcsharp = (from t in context.Tech
+                               where t.Name.Equals("C#")
+                               select t.Id).Single();
+                int tnet = (from t in context.Tech
+                            where t.Name.Equals(".NET")
+                            select t.Id).Single();
+                int tasp = (from t in context.Tech
+                            where t.Name.Equals("ASP.NET")
+                            select t.Id).Single();
+                int tpython = (from t in context.Tech
+                               where t.Name.Equals("Python")
+                               select t.Id).Single();
+                int tdjango = (from t in context.Tech
+                               where t.Name.Equals("Django")
+                               select t.Id).Single();
+                int tvscode = (from t in context.Tech
+                               where t.Name.Equals("Visual Studio Code")
+                               select t.Id).Single();
+                int tsass = (from t in context.Tech
+                             where t.Name.Equals("SASS")
+                             select t.Id).Single();
+                int tangular = (from t in context.Tech
+                                where t.Name.Equals("Angular.JS")
+                                select t.Id).Single();
+                int tgeneral = (from t in context.Tech
+                                where t.Name.Equals("(General/Non-Specific)")
+                                select t.Id).Single();
+                int tunknown = (from t in context.Tech
+                                where t.Name.Equals("(Unknown)")
+                                select t.Id).Single();
+
+                int jsmith = (from a in context.Alum
+                              where a.Email.Equals("jsmith@email.com")
+                              select a.Id).Single();
+                int jdoe = (from a in context.Alum
+                            where a.Email.Equals("jdoe@email.com")
+                            select a.Id).Single();
+                int sgordon = (from a in context.Alum
+                               where a.Email.Equals("sgordon@email.com")
+                               select a.Id).Single();
+                int rlynn = (from a in context.Alum
+                             where a.Email.Equals("rlynn@email.com")
+                             select a.Id).Single();
+                int twilliams = (from a in context.Alum
+                                 where a.Email.Equals("twilliams@email.com")
+                                 select a.Id).Single();
+                int rroberts = (from a in context.Alum
+                                where a.Email.Equals("rroberts@email.com")
+                                select a.Id).Single();
+                int kfields = (from a in context.Alum
+                               where a.Email.Equals("kfields@email.com")
+                               select a.Id).Single();
+                int lthomas = (from a in context.Alum
+                               where a.Email.Equals("lthomas@email.com")
+                               select a.Id).Single();
+                int jstanton = (from a in context.Alum
+                                where a.Email.Equals("jstanton@email.com")
+                                select a.Id).Single();
+                int dbradshaw = (from a in context.Alum
+                                 where a.Email.Equals("dbradshaw@email.com")
+                                 select a.Id).Single();
+                int sward = (from a in context.Alum
+                             where a.Email.Equals("sward@email.com")
+                             select a.Id).Single();
+                int rcarmichael = (from a in context.Alum
+                                   where a.Email.Equals("rcarmichael@email.com")
+                                   select a.Id).Single();
+                int jbarcia = (from a in context.Alum
+                               where a.Email.Equals("jbarcia@email.com")
+                               select a.Id).Single();
+                int malessi = (from a in context.Alum
+                               where a.Email.Equals("malessi@email.com")
+                               select a.Id).Single();
+                int ashort = (from a in context.Alum
+                              where a.Email.Equals("ashort@email.com")
+                              select a.Id).Single();
+                int sburns = (from a in context.Alum
+                              where a.Email.Equals("sburns@email.com")
+                              select a.Id).Single();
+                int gcooper = (from a in context.Alum
+                               where a.Email.Equals("gcooper@email.com")
+                               select a.Id).Single();
+
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = jsmith,
+                    TechId = truby
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = jdoe,
+                    TechId = truby
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = sgordon,
+                    TechId = truby
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = rlynn,
+                    TechId = truby
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = twilliams,
+                    TechId = truby
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = rroberts,
+                    TechId = truby
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = kfields,
+                    TechId = truby
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = lthomas,
+                    TechId = truby
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = jstanton,
+                    TechId = truby
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = dbradshaw,
+                    TechId = truby
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = sward,
+                    TechId = truby
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = rcarmichael,
+                    TechId = truby
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = jbarcia,
+                    TechId = truby
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = malessi,
+                    TechId = truby
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = ashort,
+                    TechId = truby
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = sburns,
+                    TechId = truby
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = gcooper,
+                    TechId = truby
+                });
+                context.SaveChanges();
+            }
+
             /************************/
             /* Seeding Meetup Table */
             /************************/
@@ -1809,6 +2172,84 @@ namespace Trasalum
                 
                 context.SaveChanges();
             }
+            /****************************/
+            /* Seeding ContactType Table */
+            /****************************/
+            if (!context.ContactType.Any())
+            {
+                context.ContactType.Add(new ContactType
+                {
+                    Name = "Phone",
+                });
+                context.ContactType.Add(new ContactType
+                {
+                    Name = "Email",
+                });
+                context.ContactType.Add(new ContactType
+                {
+                    Name = "Slack Message",
+                });
+                context.ContactType.Add(new ContactType
+                {
+                    Name = "LinkedIn Message",
+                });
+                context.ContactType.Add(new ContactType
+                {
+                    Name = "Letter",
+                });
+                context.ContactType.Add(new ContactType
+                {
+                    Name = "In-person conversation",
+                });
+
+                context.SaveChanges();
+            }
+
+            /****************************/
+            /* Seeding Note Table */
+            /****************************/
+            if (!context.Note.Any())
+            {
+                context.Note.Add(new Note
+                {
+                    Detail = "Phone number is no longer valid. Will update the alum profile and try another method to make contact.",
+                });
+                context.SaveChanges();
+            }
+            /*************************/
+            /* Seeding Contact Table */
+            /*************************/
+            if (!context.Contact.Any())
+            {
+
+                int jsmith = (from a in context.Alum
+                              where a.Email.Equals("jsmith@email.com")
+                              select a.Id).Single();
+
+                int steve = (from s in context.Staff
+                             where s.Name.Equals("Steve Brownlee")
+                             select s.Id).Single();
+
+                int phone = (from ct in context.ContactType
+                             where ct.Name.Equals("Phone")
+                             select ct.Id).Single();
+
+                int note1 = (from n in context.Note
+                             where n.Detail.Equals("Phone number is no longer valid. Will update the alum profile and try another method to make contact.")
+                             select n.Id).Single();
+
+                context.Contact.Add(new Contact
+                {
+                    Success = false,
+                    Date = DateTime.ParseExact("14/03/2018 10:04:00", "dd/MM/yyyy HH:mm:ss", null),
+                    AlumId = jsmith,
+                    StaffId = steve,
+                    ContactTypeId = phone,
+                    NoteId = note1
+                });
+                context.SaveChanges();
+            }
+
         }
     }
 }

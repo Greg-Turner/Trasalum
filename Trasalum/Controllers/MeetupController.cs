@@ -20,10 +20,27 @@ namespace Trasalum.Controllers
         }
 
         // GET: Meetup
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
+            /*if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString; */
+
             var applicationDbContext = _context.Meetup.Include(m => m.Tech).OrderBy(m => m.Name);
-            return View(await applicationDbContext.ToListAsync());
+
+            /*if (!String.IsNullOrEmpty(searchString))
+            {
+                applicationDbContext = applicationDbContext.Where(m => m.Name.Contains(searchString));
+            }*/
+            int pageSize = 4;
+            return View(await PaginatedList<Meetup>.CreateAsync(applicationDbContext.AsNoTracking(), page ?? 1, pageSize));
         }
 
         // GET: Meetup/Details/5
@@ -77,7 +94,8 @@ namespace Trasalum.Controllers
                 return NotFound();
             }
 
-            var meetup = await _context.Meetup.SingleOrDefaultAsync(m => m.Id == id);
+            var meetup = await _context.Meetup
+                .SingleOrDefaultAsync(m => m.Id == id);
             if (meetup == null)
             {
                 return NotFound();
@@ -85,6 +103,7 @@ namespace Trasalum.Controllers
             ViewData["TechId"] = new SelectList(_context.Tech, "Id", "Name", meetup.TechId);
             return View(meetup);
         }
+
 
         // POST: Meetup/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Trasalum.Models
 {
@@ -13,6 +14,7 @@ namespace Trasalum.Models
 
         [Required]
         [Display(Name = "Cohort#")]
+        [Remote("IsNumberAvailable", "Cohort", ErrorMessage = "Tag Already Exist.")]
         public string Number { get; set; }
 
         [Required]

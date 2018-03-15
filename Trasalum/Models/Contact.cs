@@ -22,12 +22,13 @@ namespace Trasalum.Models
 
         [Required]
         [Display(Name = "Alum")]
-        public int AlumID { get; set; }
+        public int AlumId { get; set; }
         public Alum Alum { get; set; }
 
         [Required]
         [Display(Name = "Contact Initiated By")]
-        public ApplicationUser Initiator { get; set; }
+        public int StaffId { get; set; }
+        public Staff Staff { get; set; }
 
         [Required]
         [Display(Name = "Communication Method")]

@@ -21,7 +21,10 @@ namespace Trasalum.Models
         //StaffId is a foreign key in the CohortStaff table, this collection is for lazy loading of the CohortStaff
         public virtual ICollection<CohortStaff> CohortStaff { get; set; }
 
-        //StaffId is a foreign key in the StaffTech table, this collection is for lazy loading of the STaffTech
+        //StaffId is a foreign key in the StaffTech table, this collection is for lazy loading of the StaffTech
         public virtual ICollection<StaffTech> StaffTech { get; set; }
+
+        //StaffId is a foreign key in the Contact table, this collection is for lazy loading of the Contact
+        public virtual ICollection<Contact> Contact { get; set; }
     }
 }

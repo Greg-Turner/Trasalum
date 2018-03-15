@@ -41,13 +41,14 @@
     {
                 @*search on left of navbar*@
                 <div class="navbar-left" style="margin-top:8px;">
-                    @using (Html.BeginForm("Index", "Search", FormMethod.Get))
-    {
-                <ul class="nav navbar-nav">
-                    <li>@Html.TextBox("id", ViewBag.CurrentFilter as string)</li>
-                    <li><input type="submit" value="Find Alum" /></li>
-                </ul>
-}
+                    <form asp-controller="Alum" asp-action="Index" method="get">
+                        <div class="form-actions no-color">
+                            <p>
+                                <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+                                <input type="submit" value="Search Alums" class="btn btn-default" /> |
+                            </p>
+                        </div>
+                    </form>
                 </div>
 
                 <li class="dropdown">
@@ -57,15 +58,7 @@
                         <li><a asp-area="" asp-controller="Tech" asp-action="Index">Technologies</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a asp-area="" asp-controller="Home" asp-action="Home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ALUMS <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Add Alum</a></li>
-                        <li><a href="#">Update Alum</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">LOG CONTACT</a></li>
-                    </ul>
-                </li>
+                <li><a asp-area="" asp-controller="Alum" asp-action="Index">ALUMS</a></li>
                 <li class="dropdown">
                     <a asp-area="" asp-controller="Home" asp-action="Home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">EVENTS <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
