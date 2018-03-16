@@ -29,21 +29,30 @@
                 <span asp-validation-for="DemoDate" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label >Instructors</label>
                 <div class="col-md-offset-2 col-md-10">
                     <div>
-                        
-                            @{
-                                
-                                List<Trasalum.Models.TechViewModels.AssignedTechData> techs = ViewBag.Techs;
-
-                                foreach (var tech in techs)
-                                {
-                                    @:<input type="checkbox" name="selectedTechs" value="@tech.TechId" @(Html.Raw(tech.Assigned ? "checked=\"checked\"" : "")) />
-                                               @:  @tech.TechName
-                            
-                                }
-                                
+                        @{List<Trasalum.Models.StaffViewModels.AssignedStaffData> staffs = ViewBag.Staffs;
+                            foreach (var staff in staffs)
+                            {
+                                @:<input type="checkbox" name="selectedStaffs" value="@staff.StaffId" @(Html.Raw(staff.Assigned ? "checked=\"checked\"" : "")) />
+                                @:  @staff.StaffName
                             }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Technologies</label>
+                <div class="col-md-offset-2 col-md-10">
+                    <div>
+                        @{List<Trasalum.Models.TechViewModels.AssignedTechData> techs = ViewBag.Techs;
+                            foreach (var tech in techs)
+                            {
+                                @:<input type="checkbox" name="selectedTechs" value="@tech.TechId" @(Html.Raw(tech.Assigned ? "checked=\"checked\"" : "")) />
+                                @:  @tech.TechName
+                            }
+                        }
                     </div>
                 </div>
             </div>

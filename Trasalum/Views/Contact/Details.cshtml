@@ -1,0 +1,54 @@
+﻿@model Trasalum.Models.Contact
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Contact</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Success)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Success)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Alum)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Alum.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContactType.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Note.Detail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Staff)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Staff.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

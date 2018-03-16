@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Trasalum.Models.Contact>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Past Contacts</h2>
+
+<p>
+    
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Success)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Staff)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Success)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alum.FirstName) @Html.DisplayFor(modelItem => item.Alum.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note.Detail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Staff.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> | 
+                <a asp-action="Create" asp-route-id="@item.AlumId">Log New Contact</a>
+                @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+        </tr>
+
+}
+        
+    </tbody>
+</table>

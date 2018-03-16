@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Trasalum.Data;
 using Trasalum.Models;
 using Trasalum.Models.CohortViewModels;
+using Trasalum.Models.StaffViewModels;
 using Trasalum.Models.TechViewModels;
 
 namespace Trasalum.Controllers
@@ -46,8 +47,10 @@ namespace Trasalum.Controllers
         public IActionResult Add()
         {
             var cohort = new Cohort();
+            cohort.CohortStaff = new List<CohortStaff>();
             cohort.CohortTech = new List<CohortTech>();
             ViewData["Techs"] = PopulateAssignedTechData(cohort);
+            ViewData["Staffs"] = PopulateAssignedStaffData(cohort);
             return View(cohort);
         }
 
@@ -56,7 +59,7 @@ namespace Trasalum.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Add([Bind("Id,Number,StartDate,DemoDate")] Cohort cohort, int[] selectedTechs)
+        public async Task<IActionResult> Add([Bind("Id,Number,StartDate,DemoDate")] Cohort cohort, int[] selectedTechs, int[] selectedStaffs)
         {
             if (selectedTechs != null)
             {
@@ -70,6 +73,19 @@ namespace Trasalum.Controllers
             {
                 cohort.CohortTech = new List<CohortTech>();
             }
+            if (selectedStaffs != null)
+            {
+                cohort.CohortStaff = new List<CohortStaff>();
+                foreach (var staff in selectedStaffs)
+                {
+                    var staffToAdd = new CohortStaff { CohortId = cohort.Id, StaffId = staff };
+                    cohort.CohortStaff.Add(staffToAdd);
+                }
+            }
+            else
+            {
+                cohort.CohortStaff = new List<CohortStaff>();
+            }
 
             if (ModelState.IsValid)
             {
@@ -78,6 +94,7 @@ namespace Trasalum.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["Techs"] = PopulateAssignedTechData(cohort);
+            ViewData["Staffs"] = PopulateAssignedTechData(cohort);
             return View(cohort);
         }
 
@@ -90,13 +107,14 @@ namespace Trasalum.Controllers
             }
 
             var cohort = await _context.Cohort
-                .Include(i => i.CohortTech).ThenInclude(i => i.Tech)
+                .Include(i => i.CohortTech).ThenInclude(i => i.Tech).Include(i => i.CohortStaff).ThenInclude(i => i.Staff)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (cohort == null)
             {
                 return NotFound();
             }
             ViewData["Techs"] = PopulateAssignedTechData(cohort);
+            ViewData["Staffs"] = PopulateAssignedStaffData(cohort);
             return View(cohort);
         }
 
@@ -113,6 +131,24 @@ namespace Trasalum.Controllers
                     TechId = tech.Id,
                     TechName = tech.Name,
                     Assigned = cohortTechs.Contains(tech.Id)
+                });
+            }
+            return viewModel;
+        }
+
+        // Adding viewmodel to display multiple Staff checkboxes
+        private List<AssignedStaffData> PopulateAssignedStaffData(Cohort cohort)
+        {
+            var allStaffs = _context.Staff;
+            var cohortStaffs = new HashSet<int>(cohort.CohortStaff.Select(c => c.StaffId)); 
+            var viewModel = new List<AssignedStaffData>();
+            foreach (var staff in allStaffs)
+            {
+                viewModel.Add(new AssignedStaffData
+                {
+                    StaffId = staff.Id,
+                    StaffName = staff.Name,
+                    Assigned = cohortStaffs.Contains(staff.Id)
                 });
             }
             return viewModel;
