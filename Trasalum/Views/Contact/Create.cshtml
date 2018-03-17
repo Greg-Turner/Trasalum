@@ -4,27 +4,85 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>Past Contacts</h2>
+
+<p>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Date/Time
+            </th>
+            <th>
+                Initiated By
+            </th>
+            <th>
+                Contact Method
+            </th>
+            <th>
+                Notes
+            </th>
+            <th>
+                Successful?
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.ContactHistory)
+        {
+            <tr>
+                <td>
+                    @item.Date
+                </td>
+                <td>
+                    @item.Staff.Name
+                </td>
+                <td>
+                    @item.ContactType.Name
+                </td>
+                <td>
+                    @item.Note.Detail
+                </td>
+                <td>
+                    @item.Success
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+
+
+<h2>Log New</h2>
 
 <h4>Contact</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <lable>Alum:</lable>
-                <label> @ViewBag.AlumName</label>
+                <lable class="control-label">Alum:</lable>
+                <label class="form-control"> @ViewBag.AlumFirst @ViewBag.AlumLast</label>
+                <input type="hidden" name="AlumFirst" class="form-control" value="@ViewBag.AlumFirst" />
+                <input type="hidden" name="AlumLast" class="form-control" value="@ViewBag.AlumLast" />
             </div>
             <div class="form-group">
-                <label>Initiator:</label>
+                <label class="control-label">Initiator:</label>
                 @*<select asp-for="Initiator" class="form-control" asp-items="ViewBag.Initiator"></select>*@
-                <label>@ViewBag.Initiator</label>
+                <label class="form-control">@ViewBag.Initiator</label>
+                <input type="hidden" name="Initiator" class="form-control" value="@ViewBag.Initiator" />
             </div>
             <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
+                <label class="control-label">Date/Time of Contact (defaults to now if blank)</label>
                 <input asp-for="Date" class="form-control" placeholder='<% @ViewBag.Date %>' />
-                <span asp-validation-for="Date" class="text-danger"></span>
+                @*<span asp-validation-for="Date" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label>Contact Method</label>

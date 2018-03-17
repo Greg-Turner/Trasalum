@@ -13,5 +13,6 @@ namespace Trasalum.Models
         public IEnumerable<ContactType> ContactMethods { get; set; }
         public bool Success { get; set; }
         public string Notes { get; set; }
+        public IEnumerable<Contact> ContactHistory { get; set; }
     }
 }

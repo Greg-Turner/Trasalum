@@ -23,8 +23,9 @@ namespace Trasalum.Controllers
         // GET: Contact
         public async Task<IActionResult> Index(int id)
         {
-            var applicationDbContext = _context.Contact.Where(c => c.AlumId == id).Include(c => c.Alum).Include(c => c.ContactType).Include(c => c.Note).Include(c => c.Staff);
-            return View(await applicationDbContext.ToListAsync());
+            var viewModel = PopulateHistoricalContacts(id);
+            
+            return View(viewModel);
         }
 
         // GET: Contact/Details/5
@@ -53,17 +54,20 @@ namespace Trasalum.Controllers
         public IActionResult Create(int id)
         {
             var person = _context.Alum.Where(a => a.Id == id).Single();
-            string alumName = person.FirstName + " " + person.LastName;
+            string alumFirst = person.FirstName;
+            string alumLast = person.LastName;
             var userId = User.Identity.GetUserId();
             var user = _context.ApplicationUser.Where(u => u.Id == userId).Single();
             string userName = user.FirstName + " " + user.LastName;
             var initiator = _context.Staff.Where(s => s.Name == userName).Single();
             string initiatorName = initiator.Name;
             DateTime suggestTime = DateTime.Now;
+            var pastContacts = PopulateHistoricalContacts(id);
 
-            ViewData["AlumName"] = alumName;
+            ViewData["ContactHistory"] = pastContacts;
+            ViewData["AlumFirst"] = alumFirst;
+            ViewData["AlumLast"] = alumLast;
             ViewData["ContactMethod"] = new SelectList(_context.ContactType, "Id", "Name");
-            //ViewData["NoteId"] = new SelectList(_context.Note, "Id", "Detail");
             ViewData["Initiator"] = initiatorName;
             ViewData["Date"] = suggestTime;
             return View();
@@ -74,19 +78,70 @@ namespace Trasalum.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Success,Date,AlumId,StaffId,ContactTypeId,NoteId")] Contact contact)
+        public async Task<IActionResult> Create(Contact contact, bool Success, ContactType ContactMethod, DateTime Date, string AlumFirst, string AlumLast, string Initiator, string Notes) 
         {
+            if (Date != null)
+            {
+                contact.Date = Date;
+            }
+            else
+            {
+                contact.Date = DateTime.Now;
+            }
+
+            contact.AlumId = _context.Alum.Where(a => a.FirstName == AlumFirst && a.LastName == AlumLast).Single().Id;
+
+            string alumFullName = AlumFirst + " " + AlumLast;
+
+            contact.ContactTypeId = ContactMethod.Id;
+
+            contact.StaffId = _context.Staff.Where(s => s.Name == Initiator).Single().Id;
+
+            var noteToAdd = new Note { Detail = Notes };
+            _context.Note.Add(noteToAdd);
+            await _context.SaveChangesAsync();
+            contact.NoteId = noteToAdd.Id;
+
+            contact.Success = Success;
+
             if (ModelState.IsValid)
             {
-                _context.Add(contact);
+       
+                _context.Contact.Add(contact);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ContactNotes viewModel = new ContactNotes()
+            {
+                AlumName = alumFullName,
+                Date = Date,
+                Initiator = Initiator,
+                ContactMethods = _context.ContactType.ToList(),
+                Success = Success,
+                Notes = Notes,
+                ContactHistory = PopulateHistoricalContacts(contact.AlumId)
+            };
+            return View(viewModel);
+            /*
+            ViewData["ContactHistory"] = pastContacts;
+            ViewData["AlumFirst"] = alumFirst;
+            ViewData["AlumLast"] = alumLast;
+            ViewData["ContactMethod"] = new SelectList(_context.ContactType, "Id", "Name");
+            ViewData["Initiator"] = initiatorName;
+            ViewData["Date"] = suggestTime;
+
             ViewData["AlumId"] = new SelectList(_context.Alum, "Id", "Address", contact.AlumId);
             ViewData["ContactTypeId"] = new SelectList(_context.ContactType, "Id", "Name", contact.ContactTypeId);
             ViewData["NoteId"] = new SelectList(_context.Note, "Id", "Detail", contact.NoteId);
             ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Name", contact.StaffId);
-            return View(contact);
+             */
+        }
+
+        // Method to generate historical contacts for an alum
+        private List<Contact> PopulateHistoricalContacts(int id)
+        {
+            List<Contact> historicalContacts = _context.Contact.Where(c => c.AlumId == id).Include(c => c.Alum).Include(c => c.ContactType).Include(c => c.Note).Include(c => c.Staff).ToList();
+            return historicalContacts;
         }
 
         // GET: Contact/Edit/5
