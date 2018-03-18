@@ -99,13 +99,9 @@ namespace Trasalum.Controllers
         }
 
         // GET: Cohorts/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
+            
             var cohort = await _context.Cohort
                 .Include(i => i.CohortTech).ThenInclude(i => i.Tech).Include(i => i.CohortStaff).ThenInclude(i => i.Staff)
                 .SingleOrDefaultAsync(m => m.Id == id);
@@ -159,7 +155,7 @@ namespace Trasalum.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, int[] selectedTechs, [Bind("Id,Number,StartDate,DemoDate")] Cohort cohort)
+        public async Task<IActionResult> Edit(string id, int[] selectedTechs, [Bind("Id,Number,StartDate,DemoDate")] Cohort cohort)
         {
             if (id != cohort.Id)
             {
@@ -176,7 +172,7 @@ namespace Trasalum.Controllers
             if (await TryUpdateModelAsync<Cohort>(
                 cohortToUpdate,
                 "",
-                c => c.Number, c => c.StartDate, c => c.DemoDate, c => c.CohortStaff, c => c.CohortTech))
+                c => c.Id, c => c.StartDate, c => c.DemoDate, c => c.CohortStaff, c => c.CohortTech))
             { 
                 UpdateCohortTechs(selectedTechs, cohortToUpdate);
                 try
@@ -232,7 +228,7 @@ namespace Trasalum.Controllers
             }
         }
 
-        private bool CohortExists(int id)
+        private bool CohortExists(string id)
         {
             return _context.Cohort.Any(e => e.Id == id);
         }

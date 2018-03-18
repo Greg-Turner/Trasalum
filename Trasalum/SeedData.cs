@@ -45,217 +45,217 @@ namespace Trasalum
             {
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C1",
+                    Id = "C1",
                     StartDate = DateTime.ParseExact("01/06/2012 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("30/11/2015 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C2",
+                    Id = "C2",
                     StartDate = DateTime.ParseExact("01/01/2013 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("30/06/2013 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C3",
+                    Id = "C3",
                     StartDate = DateTime.ParseExact("01/09/2013 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("30/03/2014 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C4",
+                    Id = "C4",
                     StartDate = DateTime.ParseExact("04/01/2014 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("22/06/2014 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C5",
+                    Id = "C5",
                     StartDate = DateTime.ParseExact("05/04/2014 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("24/09/2014 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C6",
+                    Id = "C6",
                     StartDate = DateTime.ParseExact("05/07/2014 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("13/01/2015 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C7",
+                    Id = "C7",
                     StartDate = DateTime.ParseExact("03/09/2014 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("24/03/2015 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C8",
+                    Id = "C8",
                     StartDate = DateTime.ParseExact("04/01/2015 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("23/06/2015 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "E1",
+                    Id = "E1",
                     StartDate = DateTime.ParseExact("06/02/2015 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("12/01/2016 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C9",
+                    Id = "C9",
                     StartDate = DateTime.ParseExact("06/04/2015 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("25/09/2015 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C10",
+                    Id = "C10",
                     StartDate = DateTime.ParseExact("06/07/2015 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("12/01/2016 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "E2",
+                    Id = "E2",
                     StartDate = DateTime.ParseExact("06/07/2016 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("23/06/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C11",
+                    Id = "C11",
                     StartDate = DateTime.ParseExact("05/10/2015 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("25/03/2016 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "E3",
+                    Id = "E3",
                     StartDate = DateTime.ParseExact("03/01/2016 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("10/01/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C12",
+                    Id = "C12",
                     StartDate = DateTime.ParseExact("02/01/2016 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("23/06/2016 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C13",
+                    Id = "C13",
                     StartDate = DateTime.ParseExact("04/04/2016 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("23/09/2016 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C14",
+                    Id = "C14",
                     StartDate = DateTime.ParseExact("14/05/2016 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("04/11/2016 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C15",
+                    Id = "C15",
                     StartDate = DateTime.ParseExact("05/07/2016 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("10/01/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "E4",
+                    Id = "E4",
                     StartDate = DateTime.ParseExact("05/07/2016 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("23/06/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C16",
+                    Id = "C16",
                     StartDate = DateTime.ParseExact("03/10/2016 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("24/03/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C17",
+                    Id = "C17",
                     StartDate = DateTime.ParseExact("14/11/2016 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("19/05/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C18",
+                    Id = "C18",
                     StartDate = DateTime.ParseExact("03/01/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("23/06/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "E5",
+                    Id = "E5",
                     StartDate = DateTime.ParseExact("03/01/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("09/01/2018 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C19",
+                    Id = "C19",
                     StartDate = DateTime.ParseExact("03/04/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("22/09/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C20",
+                    Id = "C20",
                     StartDate = DateTime.ParseExact("22/05/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("10/11/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C21",
+                    Id = "C21",
                     StartDate = DateTime.ParseExact("05/07/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("09/01/2018 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "E6",
+                    Id = "E6",
                     StartDate = DateTime.ParseExact("05/07/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("22/06/2018 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C22",
+                    Id = "C22",
                     StartDate = DateTime.ParseExact("02/10/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("23/03/2018 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C23",
+                    Id = "C23",
                     StartDate = DateTime.ParseExact("13/11/2017 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("18/05/2018 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C24",
+                    Id = "C24",
                     StartDate = DateTime.ParseExact("02/01/2018 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("22/06/2018 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
                 context.Cohort.Add(new Cohort
                 {
-                    Number = "C25",
+                    Id = "C25",
                     StartDate = DateTime.ParseExact("02/04/2018 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
                     DemoDate = DateTime.ParseExact("21/09/2018 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
@@ -268,17 +268,20 @@ namespace Trasalum
             /*************************/
             if (!context.Alum.Any())
             {
-                int c1 = (from c in context.Cohort
-                          where c.Number.Equals("C1")
+                string c1 = (from c in context.Cohort
+                          where c.Id.Equals("C1")
                           select c.Id).Single();
-                int c2 = (from c in context.Cohort
-                          where c.Number.Equals("C2")
+                string c2 = (from c in context.Cohort
+                          where c.Id.Equals("C2")
                           select c.Id).Single();
-                int c3 = (from c in context.Cohort
-                          where c.Number.Equals("C3")
+                string c3 = (from c in context.Cohort
+                          where c.Id.Equals("C3")
                           select c.Id).Single();
-                int c4 = (from c in context.Cohort
-                          where c.Number.Equals("C4")
+                string c4 = (from c in context.Cohort
+                          where c.Id.Equals("C4")
+                          select c.Id).Single();
+                string c22 = (from c in context.Cohort
+                          where c.Id.Equals("C22")
                           select c.Id).Single();
 
                 context.Alum.Add(new Alum
@@ -287,7 +290,6 @@ namespace Trasalum
                     LastName = "Smith",
                     CohortId = c1,
                     Address = "1 Main St.",
-                    Address2 = "Apt A-1",
                     City = "Nashville",
                     State = "TN",
                     ZipCode = "37201",
@@ -304,7 +306,6 @@ namespace Trasalum
                     LastName = "Doe",
                     CohortId = c1,
                     Address = "2 Broad St.",
-                    Address2 = "",
                     City = "Murfreesboro",
                     State = "TN",
                     ZipCode = "37129",
@@ -321,7 +322,6 @@ namespace Trasalum
                     LastName = "Gordon",
                     CohortId = c2,
                     Address = "3 West St.",
-                    Address2 = "",
                     City = "Clarksville",
                     State = "TN",
                     ZipCode = "37024",
@@ -338,7 +338,6 @@ namespace Trasalum
                     LastName = "Lynn",
                     CohortId = c2,
                     Address = "12 East Ave.",
-                    Address2 = "",
                     City = "Hendersonville",
                     State = "TN",
                     ZipCode = "37066",
@@ -354,7 +353,6 @@ namespace Trasalum
                     LastName = "Williams",
                     CohortId = c2,
                     Address = "456 King Blvd.",
-                    Address2 = "",
                     City = "Rockvale",
                     State = "TN",
                     ZipCode = "37031",
@@ -370,8 +368,7 @@ namespace Trasalum
                     FirstName = "Robert",
                     LastName = "Roberts",
                     CohortId = c3,
-                    Address = "11 Roberta Lane.",
-                    Address2 = "",
+                    Address = "11 Roberta Lane.",               
                     City = "Nashville",
                     State = "TN",
                     ZipCode = "37214",
@@ -387,8 +384,7 @@ namespace Trasalum
                     FirstName = "Kim",
                     LastName = "Fields",
                     CohortId = c3,
-                    Address = "98 Pasture St.",
-                    Address2 = "",
+                    Address = "98 Pasture St.",              
                     City = "Smyrna",
                     State = "TN",
                     ZipCode = "37126",
@@ -404,8 +400,7 @@ namespace Trasalum
                     FirstName = "Larry",
                     LastName = "Thomas",
                     CohortId = c3,
-                    Address = "65 1st St.",
-                    Address2 = "",
+                    Address = "65 1st St.",     
                     City = "Nashville",
                     State = "TN",
                     ZipCode = "37201",
@@ -422,7 +417,6 @@ namespace Trasalum
                     LastName = "Stanton",
                     CohortId = c3,
                     Address = "101 Champion St.",
-                    Address2 = "",
                     City = "White Bluff",
                     State = "TN",
                     ZipCode = "37113",
@@ -439,7 +433,6 @@ namespace Trasalum
                     LastName = "Bradshaw",
                     CohortId = c3,
                     Address = "101 Speedy Way",
-                    Address2 = "",
                     City = "Murfreesboro",
                     State = "TN",
                     ZipCode = "37127",
@@ -456,7 +449,6 @@ namespace Trasalum
                     LastName = "Ward",
                     CohortId = c3,
                     Address = "7 Bridal Dr.",
-                    Address2 = "",
                     City = "Lascassas",
                     State = "TN",
                     ZipCode = "37134",
@@ -473,7 +465,6 @@ namespace Trasalum
                     LastName = "Carmichael",
                     CohortId = c3,
                     Address = "4 Goat St.",
-                    Address2 = "",
                     City = "Murfreesboro",
                     State = "TN",
                     ZipCode = "37130",
@@ -490,7 +481,6 @@ namespace Trasalum
                     LastName = "Barcia",
                     CohortId = c3,
                     Address = "23 Bam Bam St.",
-                    Address2 = "",
                     City = "Hermitage",
                     State = "TN",
                     ZipCode = "37076",
@@ -507,7 +497,6 @@ namespace Trasalum
                     LastName = "Alessi",
                     CohortId = c3,
                     Address = "2 Crash St.",
-                    Address2 = "",
                     City = "Nashville",
                     State = "TN",
                     ZipCode = "37221",
@@ -524,7 +513,6 @@ namespace Trasalum
                     LastName = "Short",
                     CohortId = c3,
                     Address = "28 Rider Dr.",
-                    Address2 = "",
                     City = "Mt Juliet",
                     State = "TN",
                     ZipCode = "37122",
@@ -541,7 +529,6 @@ namespace Trasalum
                     LastName = "Burns",
                     CohortId = c4,
                     Address = "344 View St.",
-                    Address2 = "",
                     City = "Nashville",
                     State = "TN",
                     ZipCode = "37205",
@@ -557,8 +544,7 @@ namespace Trasalum
                     FirstName = "Guy",
                     LastName = "Cooper",
                     CohortId = c4,
-                    Address = "5 Airtime Lane.",
-                    Address2 = "",
+                    Address = "5 Airtime Lane",
                     City = "Nashville",
                     State = "TN",
                     ZipCode = "37215",
@@ -567,6 +553,186 @@ namespace Trasalum
                     GitHub = "guy-cooper",
                     LinkedIn = "guy-cooper",
                     Slack = "guy-cooper"
+                });
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Greg",
+                    LastName = "Lawrence",
+                    CohortId = c22,
+                    Address = "1 Rockstar Blvd",
+                    City = "Nashville",
+                    State = "TN",
+                    ZipCode = "37205",
+                    Phone = "615-352-9737",
+                    Email = "gregaudio@gmail.com",
+                    GitHub = "https://github.com/chewieez",
+                    LinkedIn = "https://www.linkedIn.com/in/gregmlawrence",
+                    Slack = "Greg Lawrence"
+                });
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Jason",
+                    LastName = "Figueroa",
+                    CohortId = c22,
+                    Address = "1 Microsoft St.",
+                    City = "Nashville",
+                    State = "TN",
+                    ZipCode = "37214",
+                    Phone = "615-383-4406",
+                    Email = "jason.figueroa2@gmail.com",
+                    GitHub = "https://github.com/jasonfigueroa",
+                    LinkedIn = "https://www.linkedin.com/in/jason-figueroa-b59a3798/",
+                    Slack = "Jason Figueroa"
+                });
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Kimberly",
+                    LastName = "Bird",
+                    CohortId = c22,
+                    Address = "1 Avian Ave.",
+                    City = "Nashville",
+                    State = "TN",
+                    ZipCode = "37221",
+                    Phone = "615-646-1973",
+                    Email = "kimberly.j.bird@gmail.com",
+                    GitHub = "https://github.com/kimberly-bird",
+                    LinkedIn = "https://www.linkedin.com/in/kimberly-j-bird/",
+                    Slack = "Kimmy Bird"
+                });
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Erin",
+                    LastName = "Agobert",
+                    CohortId = c22,
+                    Address = "1 Coffee Into Code Circle",
+                    City = "Nashville",
+                    State = "TN",
+                    ZipCode = "37221",
+                    Phone = "615-588-9638",
+                    Email = "eagobert1@gmail.com",
+                    GitHub = "https://github.com/eagobert",
+                    LinkedIn = "https://www.linkedin.com/in/eagobert/",
+                    Slack = "Erin Agobert"
+                });
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Ray",
+                    LastName = "Medrano",
+                    CohortId = c22,
+                    Address = "1 Greetings Way",
+                    City = "Mt Juliet",
+                    State = "TN",
+                    ZipCode = "37122",
+                    Phone = "615-221-1791",
+                    Email = "rmbw74@gmail.com",
+                    GitHub = "www.github.com/rmbw74",
+                    LinkedIn = "www.linkedin.com/in/rmbw74",
+                    Slack = "Ray Medrano"
+                });
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Kevin",
+                    LastName = "Haggerty",
+                    CohortId = c22,
+                    Address = "1 Next Adventure Circle",
+                    City = "Franklin",
+                    State = "TN",
+                    ZipCode = "37064",
+                    Phone = "615-642-5582",
+                    Email = "kghaggerty@gmail.com",
+                    GitHub = "www.github.com/kghaggerty",
+                    LinkedIn = "https://www.linkedin.com/in/kevin-haggerty-ab310b56/",
+                    Slack = "Kevin Haggerty"
+                });
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Lissa",
+                    LastName = "Goforth",
+                    CohortId = c22,
+                    Address = "1 Sudo Commander Drive",
+                    City = "Madison",
+                    State = "TN",
+                    ZipCode = "37027",
+                    Phone = "615-331-7193",
+                    Email = "lissagoforthsoftwaredev@gmail.com",
+                    GitHub = "https://github.com/lissagoforth",
+                    LinkedIn = "linkedin.com/in/lissagoforth-softwaredeveloper/",
+                    Slack = "Lissa Goforth"
+                });
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Lissa",
+                    LastName = "Goforth",
+                    CohortId = c22,
+                    Address = "1 Sudo Commander Drive",
+                    City = "Madison",
+                    State = "TN",
+                    ZipCode = "37027",
+                    Phone = "615-331-7193",
+                    Email = "lissagoforthsoftwaredev@gmail.com",
+                    GitHub = "https://github.com/lissagoforth",
+                    LinkedIn = "linkedin.com/in/lissagoforth-softwaredeveloper/",
+                    Slack = "Lissa Goforth"
+                });
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Chris",
+                    LastName = "Miller",
+                    CohortId = c22,
+                    Address = "1 Sleeping Bed Blvd.",
+                    City = "Nashville",
+                    State = "TN",
+                    ZipCode = "37208",
+                    Phone = "615-822-3579",
+                    Email = "camiller.yr@gmail.com",
+                    GitHub = "www.github.com/camillery",
+                    LinkedIn = "www.linkedin.com/in/camilleryr",
+                    Slack = "Chris Miller"
+                });
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "John",
+                    LastName = "Delaney",
+                    CohortId = c22,
+                    Address = "1 McLovin Computers Court",
+                    City = "Nashville",
+                    State = "TN",
+                    ZipCode = "37208",
+                    Phone = "615-244-8811",
+                    Email = "john.s.dulaney1@gmail.com",
+                    GitHub = "https://github.com/john-dulaney",
+                    LinkedIn = "https://www.linkedin.com/in/john-dulaney-032143130/",
+                    Slack = "John Delaney"
+                });
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Kristen",
+                    LastName = "Norris",
+                    CohortId = c22,
+                    Address = "1 Non-Profit Tech St.",
+                    City = "Nashville",
+                    State = "TN",
+                    ZipCode = "37211",
+                    Phone = "615-838-7594",
+                    Email = "krnorris65@gmail.com",
+                    GitHub = "www.github.com/krnorris65",
+                    LinkedIn = "www.linkedin.com/in/krnorris65",
+                    Slack = "Kristen Norris"
+                });
+                context.Alum.Add(new Alum
+                {
+                    FirstName = "Chase",
+                    LastName = "Steely",
+                    CohortId = c22,
+                    Address = "1 Veteren Learner Dr.",
+                    City = "McMinnville",
+                    State = "TN",
+                    ZipCode = "37227",
+                    Phone = "615-689-2624",
+                    Email = "chasesteely@gmail.com",
+                    GitHub = "https://github.com/ChaseSteely",
+                    LinkedIn = "https://www.linkedin.com/in/chasesteely/",
+                    Slack = "Chase Steely"
                 });
                 context.SaveChanges();
             }
@@ -886,98 +1052,98 @@ namespace Trasalum
                             where s.Name.Equals("Callan Morrison")
                             select s.Id).Single();
                 
-                int c1 = (from c in context.Cohort
-                          where c.Number.Equals("C1")
+                string c1 = (from c in context.Cohort
+                          where c.Id.Equals("C1")
                           select c.Id).Single();
-                int c2 = (from c in context.Cohort
-                          where c.Number.Equals("C2")
+                string c2 = (from c in context.Cohort
+                          where c.Id.Equals("C2")
                           select c.Id).Single();
-                int c3 = (from c in context.Cohort
-                          where c.Number.Equals("C3")
+                string c3 = (from c in context.Cohort
+                          where c.Id.Equals("C3")
                           select c.Id).Single();
-                int c4 = (from c in context.Cohort
-                          where c.Number.Equals("C4")
+                string c4 = (from c in context.Cohort
+                          where c.Id.Equals("C4")
                           select c.Id).Single();
-                int c5 = (from c in context.Cohort
-                          where c.Number.Equals("C5")
+                string c5 = (from c in context.Cohort
+                          where c.Id.Equals("C5")
                           select c.Id).Single();
-                int c6 = (from c in context.Cohort
-                          where c.Number.Equals("C6")
+                string c6 = (from c in context.Cohort
+                          where c.Id.Equals("C6")
                           select c.Id).Single();
-                int c7 = (from c in context.Cohort
-                          where c.Number.Equals("C7")
+                string c7 = (from c in context.Cohort
+                          where c.Id.Equals("C7")
                           select c.Id).Single();
-                int c8 = (from c in context.Cohort
-                          where c.Number.Equals("C8")
+                string c8 = (from c in context.Cohort
+                          where c.Id.Equals("C8")
                           select c.Id).Single();
-                int c9 = (from c in context.Cohort
-                          where c.Number.Equals("C9")
+                string c9 = (from c in context.Cohort
+                          where c.Id.Equals("C9")
                           select c.Id).Single();
-                int c10 = (from c in context.Cohort
-                           where c.Number.Equals("C10")
+                string c10 = (from c in context.Cohort
+                           where c.Id.Equals("C10")
                            select c.Id).Single();
-                int c11 = (from c in context.Cohort
-                           where c.Number.Equals("C11")
+                string c11 = (from c in context.Cohort
+                           where c.Id.Equals("C11")
                            select c.Id).Single();
-                int c12 = (from c in context.Cohort
-                           where c.Number.Equals("C12")
+                string c12 = (from c in context.Cohort
+                           where c.Id.Equals("C12")
                            select c.Id).Single();
-                int c13 = (from c in context.Cohort
-                           where c.Number.Equals("C13")
+                string c13 = (from c in context.Cohort
+                           where c.Id.Equals("C13")
                            select c.Id).Single();
-                int c14 = (from c in context.Cohort
-                           where c.Number.Equals("C14")
+                string c14 = (from c in context.Cohort
+                           where c.Id.Equals("C14")
                            select c.Id).Single();
-                int c15 = (from c in context.Cohort
-                           where c.Number.Equals("C15")
+                string c15 = (from c in context.Cohort
+                           where c.Id.Equals("C15")
                            select c.Id).Single();
-                int c16 = (from c in context.Cohort
-                           where c.Number.Equals("C16")
+                string c16 = (from c in context.Cohort
+                           where c.Id.Equals("C16")
                            select c.Id).Single();
-                int c17 = (from c in context.Cohort
-                           where c.Number.Equals("C17")
+                string c17 = (from c in context.Cohort
+                           where c.Id.Equals("C17")
                            select c.Id).Single();
-                int c18 = (from c in context.Cohort
-                           where c.Number.Equals("C18")
+                string c18 = (from c in context.Cohort
+                           where c.Id.Equals("C18")
                            select c.Id).Single();
-                int c19 = (from c in context.Cohort
-                           where c.Number.Equals("C19")
+                string c19 = (from c in context.Cohort
+                           where c.Id.Equals("C19")
                            select c.Id).Single();
-                int c20 = (from c in context.Cohort
-                           where c.Number.Equals("C20")
+                string c20 = (from c in context.Cohort
+                           where c.Id.Equals("C20")
                            select c.Id).Single();
-                int c21 = (from c in context.Cohort
-                           where c.Number.Equals("C21")
+                string c21 = (from c in context.Cohort
+                           where c.Id.Equals("C21")
                            select c.Id).Single();
-                int c22 = (from c in context.Cohort
-                           where c.Number.Equals("C22")
+                string c22 = (from c in context.Cohort
+                           where c.Id.Equals("C22")
                            select c.Id).Single();
-                int c23 = (from c in context.Cohort
-                           where c.Number.Equals("C23")
+                string c23 = (from c in context.Cohort
+                           where c.Id.Equals("C23")
                            select c.Id).Single();
-                int c24 = (from c in context.Cohort
-                           where c.Number.Equals("C24")
+                string c24 = (from c in context.Cohort
+                           where c.Id.Equals("C24")
                            select c.Id).Single();
-                int c25 = (from c in context.Cohort
-                           where c.Number.Equals("C25")
+                string c25 = (from c in context.Cohort
+                           where c.Id.Equals("C25")
                            select c.Id).Single();
-                int e1 = (from c in context.Cohort
-                          where c.Number.Equals("E1")
+                string e1 = (from c in context.Cohort
+                          where c.Id.Equals("E1")
                           select c.Id).Single();
-                int e2 = (from c in context.Cohort
-                          where c.Number.Equals("E2")
+                string e2 = (from c in context.Cohort
+                          where c.Id.Equals("E2")
                           select c.Id).Single();
-                int e3 = (from c in context.Cohort
-                          where c.Number.Equals("E3")
+                string e3 = (from c in context.Cohort
+                          where c.Id.Equals("E3")
                           select c.Id).Single();
-                int e4 = (from c in context.Cohort
-                          where c.Number.Equals("E4")
+                string e4 = (from c in context.Cohort
+                          where c.Id.Equals("E4")
                           select c.Id).Single();
-                int e5 = (from c in context.Cohort
-                          where c.Number.Equals("E5")
+                string e5 = (from c in context.Cohort
+                          where c.Id.Equals("E5")
                           select c.Id).Single();
-                int e6 = (from c in context.Cohort
-                          where c.Number.Equals("E6")
+                string e6 = (from c in context.Cohort
+                          where c.Id.Equals("E6")
                           select c.Id).Single();
 
                 //c1
@@ -1410,98 +1576,98 @@ namespace Trasalum
             /*****************************/
             if (!context.CohortTech.Any())
             {
-                int c1 = (from c in context.Cohort
-                          where c.Number.Equals("C1")
+                string c1 = (from c in context.Cohort
+                          where c.Id.Equals("C1")
                           select c.Id).Single();
-                int c2 = (from c in context.Cohort
-                          where c.Number.Equals("C2")
+                string c2 = (from c in context.Cohort
+                          where c.Id.Equals("C2")
                           select c.Id).Single();
-                int c3 = (from c in context.Cohort
-                          where c.Number.Equals("C3")
+                string c3 = (from c in context.Cohort
+                          where c.Id.Equals("C3")
                           select c.Id).Single();
-                int c4 = (from c in context.Cohort
-                          where c.Number.Equals("C4")
+                string c4 = (from c in context.Cohort
+                          where c.Id.Equals("C4")
                           select c.Id).Single();
-                int c5 = (from c in context.Cohort
-                          where c.Number.Equals("C5")
+                string c5 = (from c in context.Cohort
+                          where c.Id.Equals("C5")
                           select c.Id).Single();
-                int c6 = (from c in context.Cohort
-                          where c.Number.Equals("C6")
+                string c6 = (from c in context.Cohort
+                          where c.Id.Equals("C6")
                           select c.Id).Single();
-                int c7 = (from c in context.Cohort
-                          where c.Number.Equals("C7")
+                string c7 = (from c in context.Cohort
+                          where c.Id.Equals("C7")
                           select c.Id).Single();
-                int c8 = (from c in context.Cohort
-                          where c.Number.Equals("C8")
+                string c8 = (from c in context.Cohort
+                          where c.Id.Equals("C8")
                           select c.Id).Single();
-                int c9 = (from c in context.Cohort
-                          where c.Number.Equals("C9")
+                string c9 = (from c in context.Cohort
+                          where c.Id.Equals("C9")
                           select c.Id).Single();
-                int c10 = (from c in context.Cohort
-                           where c.Number.Equals("C10")
+                string c10 = (from c in context.Cohort
+                           where c.Id.Equals("C10")
                            select c.Id).Single();
-                int c11 = (from c in context.Cohort
-                           where c.Number.Equals("C11")
+                string c11 = (from c in context.Cohort
+                           where c.Id.Equals("C11")
                            select c.Id).Single();
-                int c12 = (from c in context.Cohort
-                           where c.Number.Equals("C12")
+                string c12 = (from c in context.Cohort
+                           where c.Id.Equals("C12")
                            select c.Id).Single();
-                int c13 = (from c in context.Cohort
-                           where c.Number.Equals("C13")
+                string c13 = (from c in context.Cohort
+                           where c.Id.Equals("C13")
                            select c.Id).Single();
-                int c14 = (from c in context.Cohort
-                           where c.Number.Equals("C14")
+                string c14 = (from c in context.Cohort
+                           where c.Id.Equals("C14")
                            select c.Id).Single();
-                int c15 = (from c in context.Cohort
-                           where c.Number.Equals("C15")
+                string c15 = (from c in context.Cohort
+                           where c.Id.Equals("C15")
                            select c.Id).Single();
-                int c16 = (from c in context.Cohort
-                           where c.Number.Equals("C16")
+                string c16 = (from c in context.Cohort
+                           where c.Id.Equals("C16")
                            select c.Id).Single();
-                int c17 = (from c in context.Cohort
-                           where c.Number.Equals("C17")
+                string c17 = (from c in context.Cohort
+                           where c.Id.Equals("C17")
                            select c.Id).Single();
-                int c18 = (from c in context.Cohort
-                           where c.Number.Equals("C18")
+                string c18 = (from c in context.Cohort
+                           where c.Id.Equals("C18")
                            select c.Id).Single();
-                int c19 = (from c in context.Cohort
-                           where c.Number.Equals("C19")
+                string c19 = (from c in context.Cohort
+                           where c.Id.Equals("C19")
                            select c.Id).Single();
-                int c20 = (from c in context.Cohort
-                           where c.Number.Equals("C20")
+                string c20 = (from c in context.Cohort
+                           where c.Id.Equals("C20")
                            select c.Id).Single();
-                int c21 = (from c in context.Cohort
-                           where c.Number.Equals("C21")
+                string c21 = (from c in context.Cohort
+                           where c.Id.Equals("C21")
                            select c.Id).Single();
-                int c22 = (from c in context.Cohort
-                           where c.Number.Equals("C22")
+                string c22 = (from c in context.Cohort
+                           where c.Id.Equals("C22")
                            select c.Id).Single();
-                int c23 = (from c in context.Cohort
-                           where c.Number.Equals("C23")
+                string c23 = (from c in context.Cohort
+                           where c.Id.Equals("C23")
                            select c.Id).Single();
-                int c24 = (from c in context.Cohort
-                           where c.Number.Equals("C24")
+                string c24 = (from c in context.Cohort
+                           where c.Id.Equals("C24")
                            select c.Id).Single();
-                int c25 = (from c in context.Cohort
-                           where c.Number.Equals("C25")
+                string c25 = (from c in context.Cohort
+                           where c.Id.Equals("C25")
                            select c.Id).Single();
-                int e1 = (from c in context.Cohort
-                          where c.Number.Equals("E1")
+                string e1 = (from c in context.Cohort
+                          where c.Id.Equals("E1")
                           select c.Id).Single();
-                int e2 = (from c in context.Cohort
-                          where c.Number.Equals("E2")
+                string e2 = (from c in context.Cohort
+                          where c.Id.Equals("E2")
                           select c.Id).Single();
-                int e3 = (from c in context.Cohort
-                          where c.Number.Equals("E3")
+                string e3 = (from c in context.Cohort
+                          where c.Id.Equals("E3")
                           select c.Id).Single();
-                int e4 = (from c in context.Cohort
-                          where c.Number.Equals("E4")
+                string e4 = (from c in context.Cohort
+                          where c.Id.Equals("E4")
                           select c.Id).Single();
-                int e5 = (from c in context.Cohort
-                          where c.Number.Equals("E5")
+                string e5 = (from c in context.Cohort
+                          where c.Id.Equals("E5")
                           select c.Id).Single();
-                int e6 = (from c in context.Cohort
-                          where c.Number.Equals("E6")
+                string e6 = (from c in context.Cohort
+                          where c.Id.Equals("E6")
                           select c.Id).Single();
 
                 int thtml = (from t in context.Tech

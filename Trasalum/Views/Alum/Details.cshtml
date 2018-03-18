@@ -29,12 +29,6 @@
             @Html.DisplayFor(model => model.Address)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Address2)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Address2)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.City)
         </dt>
         <dd>
@@ -68,14 +62,14 @@
             @Html.DisplayNameFor(model => model.GitHub)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.GitHub)
+            <a href="@Html.DisplayFor(model => model.GitHub)" target="_blank">@Html.DisplayFor(model => model.GitHub)</a>
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.LinkedIn)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.LinkedIn)
-        </dd>
+            <a href="@Html.DisplayFor(model => model.LinkedIn)" target="_blank">@Html.DisplayFor(model => model.LinkedIn)</a>
+</dd>
         <dt>
             @Html.DisplayNameFor(model => model.Slack)
         </dt>
@@ -86,11 +80,11 @@
             @Html.DisplayNameFor(model => model.Cohort)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Cohort.Number)
+            @Html.DisplayFor(model => model.Cohort.Id)
         </dd>
     </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to Full List of Alums</a>
 </div>

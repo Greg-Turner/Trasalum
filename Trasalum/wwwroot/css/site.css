@@ -12,7 +12,11 @@
 
 .backgroundgraph {
     /* Background for landing page*/
-    background-image: url('../images/trasalum-graph4.jpg');
+    background-image: url('../images/trasalum-graph.jpg');
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position:center;
+    height: 600px;
 }
 
 /* Carousel */

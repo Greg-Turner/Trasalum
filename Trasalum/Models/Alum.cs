@@ -21,16 +21,12 @@ namespace Trasalum.Models
 
         [Required]
         [Display(Name = "Cohort#")]
-        public int CohortId { get; set; }
+        public string CohortId { get; set; }
         public Cohort Cohort { get; set; }
 
         [Required]
         [Display(Name = "Street Address")]
         public string Address { get; set; }
-
-        [Required]
-        [Display(Name = "Street Address 2nd line")]
-        public string Address2 { get; set; } = "";
 
         [Required]
         [Display(Name = "City")]
@@ -49,15 +45,18 @@ namespace Trasalum.Models
         public string Phone { get; set; }
 
         [Required]
+        [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "GitHub Username")]
+        [DataType(DataType.Url)]
+        [Display(Name = "GitHub Profile")]
         public string GitHub { get; set; }
 
         [Required]
-        [Display(Name = "LinkedIn URL")]
+        [DataType(DataType.Url)]
+        [Display(Name = "LinkedIn Profile")]
         public string LinkedIn { get; set; }
 
         [Required]

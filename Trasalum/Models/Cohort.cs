@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -9,22 +10,21 @@ namespace Trasalum.Models
 {
     public class Cohort
     {
-        [Key]
-        public int Id { get; set; }
 
-        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Display(Name = "Cohort#")]
-        [Remote("IsNumberAvailable", "Cohort", ErrorMessage = "Tag Already Exist.")]
-        public string Number { get; set; }
+        public string Id { get; set; }
 
         [Required]
         [Display(Name = "Start Date")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
 
         [Required]
         [Display(Name = "Demo Date")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DemoDate { get; set; }
 
         //CohortId is a foreign key in the Engagement table, this collection is for lazy loading of the Engagements

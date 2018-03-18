@@ -16,7 +16,7 @@ namespace Trasalum.Models
         public Tech Tech { get; set; }
 
         [Required]
-        public int CohortId { get; set; }
+        public string CohortId { get; set; }
         public Cohort Cohort { get; set; }
     }
 }

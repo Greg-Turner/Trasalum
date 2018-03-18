@@ -54,10 +54,10 @@ namespace Trasalum.Controllers
                     alums = alums.OrderByDescending(a => a.LastName);
                     break;
                 case "Cohort":
-                    alums = alums.OrderBy(a => a.CohortId);
+                    alums = alums.OrderBy(a => a.Cohort.Id);
                     break;
                 case "cohort_desc":
-                    alums = alums.OrderByDescending(a => a.CohortId);
+                    alums = alums.OrderByDescending(a => a.Cohort.Id);
                     break;
                 default:
                     alums = alums.OrderBy(a => a.LastName);

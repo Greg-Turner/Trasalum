@@ -78,8 +78,10 @@ namespace Trasalum.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Contact contact, bool Success, ContactType ContactMethod, DateTime Date, string AlumFirst, string AlumLast, string Initiator, string Notes) 
+        public async Task<IActionResult> Create(int ContactMethods, bool Success, DateTime Date, string AlumFirst, string AlumLast, string Initiator, string Notes) 
         {
+            Contact contact = new Contact();
+
             if (Date != null)
             {
                 contact.Date = Date;
@@ -93,7 +95,7 @@ namespace Trasalum.Controllers
 
             string alumFullName = AlumFirst + " " + AlumLast;
 
-            contact.ContactTypeId = ContactMethod.Id;
+            contact.ContactTypeId = ContactMethods;
 
             contact.StaffId = _context.Staff.Where(s => s.Name == Initiator).Single().Id;
 
@@ -109,7 +111,7 @@ namespace Trasalum.Controllers
        
                 _context.Contact.Add(contact);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Alum");
             }
             ContactNotes viewModel = new ContactNotes()
             {
@@ -140,7 +142,7 @@ namespace Trasalum.Controllers
         // Method to generate historical contacts for an alum
         private List<Contact> PopulateHistoricalContacts(int id)
         {
-            List<Contact> historicalContacts = _context.Contact.Where(c => c.AlumId == id).Include(c => c.Alum).Include(c => c.ContactType).Include(c => c.Note).Include(c => c.Staff).ToList();
+            List<Contact> historicalContacts = _context.Contact.Where(c => c.AlumId == id).Include(c => c.Alum).Include(c => c.ContactType).Include(c => c.Note).Include(c => c.Staff).OrderByDescending(c => c.Date).ToList();
             return historicalContacts;
         }
 
