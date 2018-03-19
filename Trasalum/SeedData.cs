@@ -661,21 +661,6 @@ namespace Trasalum
                 });
                 context.Alum.Add(new Alum
                 {
-                    FirstName = "Lissa",
-                    LastName = "Goforth",
-                    CohortId = c22,
-                    Address = "1 Sudo Commander Drive",
-                    City = "Madison",
-                    State = "TN",
-                    ZipCode = "37027",
-                    Phone = "615-331-7193",
-                    Email = "lissagoforthsoftwaredev@gmail.com",
-                    GitHub = "https://github.com/lissagoforth",
-                    LinkedIn = "linkedin.com/in/lissagoforth-softwaredeveloper/",
-                    Slack = "Lissa Goforth"
-                });
-                context.Alum.Add(new Alum
-                {
                     FirstName = "Chris",
                     LastName = "Miller",
                     CohortId = c22,
@@ -828,6 +813,11 @@ namespace Trasalum
                 {
                     Name = "Brenda Long",
                     DepartmentId = educator,
+                });
+                context.Staff.Add(new Staff
+                {
+                    Name = "Greg Turner",
+                    DepartmentId = operations,
                 });
                 context.SaveChanges();
             }
@@ -2376,6 +2366,10 @@ namespace Trasalum
             /****************************/
             if (!context.Note.Any())
             {
+                context.Note.Add(new Note
+                {
+                    Detail = "NO CONTACTS LOGGED",
+                });
                 context.Note.Add(new Note
                 {
                     Detail = "Phone number is no longer valid. Will update the alum profile and try another method to make contact.",

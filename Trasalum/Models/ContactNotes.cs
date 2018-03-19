@@ -7,6 +7,7 @@ namespace Trasalum.Models
 {
     public class ContactNotes
     {
+        public int AlumId { get; set; }
         public string AlumName { get; set; }
         public DateTime Date { get; set; }
         public string Initiator { get; set; }

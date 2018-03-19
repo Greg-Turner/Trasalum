@@ -26,7 +26,7 @@
             @Html.DisplayNameFor(model => model.Alum)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Alum.Address)
+            @Html.DisplayFor(model => model.Alum.FirstName) @Html.DisplayFor(model => model.Alum.LastName)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ContactType)
@@ -50,5 +50,5 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Create" asp-route-id="@Model.AlumId">Log New Contact with @Model.Alum.FirstName</a>
 </div>

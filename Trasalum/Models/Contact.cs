@@ -16,7 +16,7 @@ namespace Trasalum.Models
         public bool Success { get; set; }
 
         [Required]
-        [Display(Name = "Date of Contact Attempt")]
+        [Display(Name = "Date of Contact")]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
@@ -26,7 +26,7 @@ namespace Trasalum.Models
         public Alum Alum { get; set; }
 
         [Required]
-        [Display(Name = "Contact Initiated By")]
+        [Display(Name = "Initiated By")]
         public int StaffId { get; set; }
         public Staff Staff { get; set; }
 

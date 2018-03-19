@@ -8,6 +8,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    margin-bottom: 50px;
 }
 
 .backgroundgraph {
@@ -17,6 +18,17 @@
     background-size: 50%;
     background-position:center;
     height: 600px;
+}
+
+.blackedoutfoot {
+    background-color: #000000;
+    color: #808080;
+    text-align: center;
+}
+
+.zeromargin {
+    margin: 0;
+    padding-top: 0;
 }
 
 /* Carousel */

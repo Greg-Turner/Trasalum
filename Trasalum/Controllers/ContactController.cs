@@ -54,22 +54,18 @@ namespace Trasalum.Controllers
         public IActionResult Create(int id)
         {
             var person = _context.Alum.Where(a => a.Id == id).Single();
-            string alumFirst = person.FirstName;
-            string alumLast = person.LastName;
+
             var userId = User.Identity.GetUserId();
             var user = _context.ApplicationUser.Where(u => u.Id == userId).Single();
             string userName = user.FirstName + " " + user.LastName;
-            var initiator = _context.Staff.Where(s => s.Name == userName).Single();
-            string initiatorName = initiator.Name;
-            DateTime suggestTime = DateTime.Now;
-            var pastContacts = PopulateHistoricalContacts(id);
 
-            ViewData["ContactHistory"] = pastContacts;
-            ViewData["AlumFirst"] = alumFirst;
-            ViewData["AlumLast"] = alumLast;
+            ViewData["ContactHistory"] = PopulateHistoricalContacts(id);
+            ViewData["AlumId"] = person.Id;
+            ViewData["AlumFirst"] = person.FirstName;
+            ViewData["AlumLast"] = person.LastName;
             ViewData["ContactMethod"] = new SelectList(_context.ContactType, "Id", "Name");
-            ViewData["Initiator"] = initiatorName;
-            ViewData["Date"] = suggestTime;
+            ViewData["Initiator"] = _context.Staff.Where(s => s.Name == userName).Single().Name;
+            ViewData["Date"] = DateTime.Now;
             return View();
         }
 
@@ -111,7 +107,7 @@ namespace Trasalum.Controllers
        
                 _context.Contact.Add(contact);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Alum");
+                return RedirectToAction("Index", new { id = contact.AlumId });
             }
             ContactNotes viewModel = new ContactNotes()
             {
@@ -143,6 +139,7 @@ namespace Trasalum.Controllers
         private List<Contact> PopulateHistoricalContacts(int id)
         {
             List<Contact> historicalContacts = _context.Contact.Where(c => c.AlumId == id).Include(c => c.Alum).Include(c => c.ContactType).Include(c => c.Note).Include(c => c.Staff).OrderByDescending(c => c.Date).ToList();
+            
             return historicalContacts;
         }
 
