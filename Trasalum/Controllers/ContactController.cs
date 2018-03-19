@@ -24,7 +24,9 @@ namespace Trasalum.Controllers
         public async Task<IActionResult> Index(int id)
         {
             var viewModel = PopulateHistoricalContacts(id);
-            
+
+            ViewData["AlumId"] = id;
+            ViewData["AlumFirstName"] = _context.Alum.Where(a => a.Id == id).Single().FirstName;
             return View(viewModel);
         }
 
@@ -120,19 +122,6 @@ namespace Trasalum.Controllers
                 ContactHistory = PopulateHistoricalContacts(contact.AlumId)
             };
             return View(viewModel);
-            /*
-            ViewData["ContactHistory"] = pastContacts;
-            ViewData["AlumFirst"] = alumFirst;
-            ViewData["AlumLast"] = alumLast;
-            ViewData["ContactMethod"] = new SelectList(_context.ContactType, "Id", "Name");
-            ViewData["Initiator"] = initiatorName;
-            ViewData["Date"] = suggestTime;
-
-            ViewData["AlumId"] = new SelectList(_context.Alum, "Id", "Address", contact.AlumId);
-            ViewData["ContactTypeId"] = new SelectList(_context.ContactType, "Id", "Name", contact.ContactTypeId);
-            ViewData["NoteId"] = new SelectList(_context.Note, "Id", "Detail", contact.NoteId);
-            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Name", contact.StaffId);
-             */
         }
 
         // Method to generate historical contacts for an alum
@@ -156,10 +145,13 @@ namespace Trasalum.Controllers
             {
                 return NotFound();
             }
-            ViewData["AlumId"] = new SelectList(_context.Alum, "Id", "Address", contact.AlumId);
+            // ViewData["AlumId"] = new SelectList(_context.Alum, "Id", "Address", contact.AlumId);
+            ViewData["Alum"] = _context.Alum.Where(a => a.Id == contact.AlumId).Single();
             ViewData["ContactTypeId"] = new SelectList(_context.ContactType, "Id", "Name", contact.ContactTypeId);
-            ViewData["NoteId"] = new SelectList(_context.Note, "Id", "Detail", contact.NoteId);
-            ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Name", contact.StaffId);
+            //ViewData["NoteId"] = new SelectList(_context.Note, "Id", "Detail", contact.NoteId);
+            // ViewData["StaffId"] = new SelectList(_context.Staff, "Id", "Name", contact.StaffId);
+            ViewData["Note"] = _context.Note.Where(n => n.Id == contact.NoteId).Single();
+            ViewData["Staff"] = _context.Staff.Where(s => s.Id == contact.StaffId).Single();
             return View(contact);
         }
 

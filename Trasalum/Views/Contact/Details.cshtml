@@ -14,13 +14,13 @@
             @Html.DisplayNameFor(model => model.Success)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Success)
+            @Html.ValueFor(model => model.Success)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Date)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Date)
+            @Html.ValueFor(model => model.Date)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Alum)
@@ -49,6 +49,7 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    @* Users should not be able to alter logged contacts
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
     <a asp-action="Create" asp-route-id="@Model.AlumId">Log New Contact with @Model.Alum.FirstName</a>
 </div>

@@ -7,17 +7,17 @@
 <h2>Past Contacts</h2>
 
 <p>
-    
+
 </p>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Success)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Date)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Success)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Alum)
             </th>
@@ -35,38 +35,49 @@
     </thead>
     <tbody>
         @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Success)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Alum.FirstName) @Html.DisplayFor(modelItem => item.Alum.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContactType.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Note.Detail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Staff.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> | 
-                
-                @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
-            </td>
-        </tr>
+        {
+            <tr>
+                <td>
+                    @Html.ValueFor(modelItem => item.Success)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Alum.FirstName) @Html.DisplayFor(modelItem => item.Alum.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactType.Name)
+                </td>
+                <td>
+                    @if (item.Note.Detail.Length < 50)
+                            {
+                                string details = item.Note.Detail;
+                                @details
+                            }
+                            else
+                            {
+                                string details = item.Note.Detail.Substring(0, 50) + "...";
+                                @details
+                            }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Staff.Name)
+                </td>
+                <td>
+                    @* Users should not be able to alter logged Contacts
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
 
-}
-        
+                    <a asp-action="Details" asp-route-id="@item.Id"> View Details</a>
+                    @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                </td>
+            </tr>
+
+        }
+
     </tbody>
 </table>
 
-@* Need to send the AlumId in the ViewBag to use in this link *@
-<a asp-action="Create" asp-route-id="@Model.AlumId">Log New Contact</a>
+
+<a asp-action="Create" asp-route-id="@ViewBag.AlumId">Log New Contact with @ViewBag.AlumFirstName</a> | 
+<a asp-controller="Alum" asp-action="Index">List Alums</a>

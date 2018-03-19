@@ -27,13 +27,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="AlumId" class="control-label"></label>
-                <select asp-for="AlumId" class="form-control" asp-items="ViewBag.AlumId"></select>
-                <span asp-validation-for="AlumId" class="text-danger"></span>
+                @ViewBag.Alum.FirstName @ViewBag.Alum.LastName
             </div>
             <div class="form-group">
                 <label asp-for="StaffId" class="control-label"></label>
-                <select asp-for="StaffId" class="form-control" asp-items="ViewBag.StaffId"></select>
-                <span asp-validation-for="StaffId" class="text-danger"></span>
+                @ViewBag.Staff.Name
             </div>
             <div class="form-group">
                 <label asp-for="ContactTypeId" class="control-label"></label>
@@ -42,7 +40,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="NoteId" class="control-label"></label>
-                <select asp-for="NoteId" class="form-control" asp-items="ViewBag.NoteId"></select>
+                <input asp-for="NoteId" class="form-control" asp-placeholder="ViewBag.Note.Detail" />
                 <span asp-validation-for="NoteId" class="text-danger"></span>
             </div>
             <div class="form-group">

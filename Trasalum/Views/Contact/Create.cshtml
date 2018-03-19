@@ -29,30 +29,43 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>    
-        @foreach (var item in ViewBag.ContactHistory)
-        {
-            <tr>
-                <td>
-                    @item.Date
-                </td>
-                <td>
-                    @item.Staff.Name
-                </td>
-                <td>
-                    @item.ContactType.Name
-                </td>
-                <td>
-                    @item.Note.Detail.Substring(0, 50)...
-                </td>
-                <td>
-                    @item.Success
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.Id">View</a>
-                </td>
-            </tr>
+    <tbody>
 
+        @if (ViewBag.ContactHistory.Count != 0)
+        {
+            @foreach (var item in ViewBag.ContactHistory)
+            {
+                
+                <tr>
+                    <td>
+                        @item.Date
+                    </td>
+                    <td>
+                        @item.Staff.Name
+                    </td>
+                    <td>
+                        @item.ContactType.Name
+                    </td>
+                    <td>
+                        @if (item.Note.Detail.Length < 50)
+                            {
+                                string details = item.Note.Detail;
+                                @details
+                            }
+                            else
+                            {
+                                string details = item.Note.Detail.Substring(0, 50) + "...";
+                                @details
+                            }
+                    </td>
+                    <td>
+                        @item.Success
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">View</a>
+                    </td>
+                </tr>
+            }
         }
         @* If there is nothing in ContactHistory, display a message to this effect. *@
         @if (ViewBag.ContactHistory.Count == 0)
@@ -134,7 +147,7 @@
 </div>
 
 <div>
-    <a asp-action="Index" asp-route-id="@ViewBag.AlumId">List All @ViewBag.AlumFirst)'s Contacts</a> | 
+    <a asp-action="Index" asp-route-id="@ViewBag.AlumId">List All @ViewBag.AlumFirst's Contacts</a> | 
     <a asp-controller="Alum" asp-action="Index">List Alums</a>
 
 </div>

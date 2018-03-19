@@ -586,6 +586,21 @@ namespace Trasalum
                 });
                 context.Alum.Add(new Alum
                 {
+                    FirstName = "Leah",
+                    LastName = "Duvic",
+                    CohortId = c22,
+                    Address = "1 Fitzgerald St.",
+                    City = "Nashville",
+                    State = "TN",
+                    ZipCode = "37214",
+                    Phone = "615-383-9283",
+                    Email = "leaheduvic@gmail.com",
+                    GitHub = "https://github.com/leahduvic",
+                    LinkedIn = "https://www.linkedin.com/in/leah-duvic/",
+                    Slack = "Leah Duvic"
+                });
+                context.Alum.Add(new Alum
+                {
                     FirstName = "Kimberly",
                     LastName = "Bird",
                     CohortId = c22,
