@@ -29,7 +29,7 @@ namespace Trasalum.Models
         public int? TechId { get; set; }
         public Tech Tech { get; set; }
 
-        [Display(Name = "Meetup")]
+        [Display(Name = "Meetup Associated")]
         public int? MeetupId { get; set; }
         public Meetup Meetup { get; set; }
 

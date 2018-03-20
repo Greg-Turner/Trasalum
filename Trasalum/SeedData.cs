@@ -834,6 +834,11 @@ namespace Trasalum
                     Name = "Greg Turner",
                     DepartmentId = operations,
                 });
+                context.Staff.Add(new Staff
+                {
+                    Name = "(Not Yet Assigned)",
+                    DepartmentId = educator,
+                });
                 context.SaveChanges();
             }
             /**************************/
@@ -2708,6 +2713,9 @@ namespace Trasalum
                 int tunknown = (from t in context.Tech
                                 where t.Name.Equals("(Unknown)")
                                 select t.Id).Single();
+                int tna = (from t in context.Tech
+                                where t.Name.Equals("(N/A)")
+                                select t.Id).Single();
 
 
                 //Developer Launchpad
@@ -2737,6 +2745,13 @@ namespace Trasalum
                     Name = "All Things Angular",
                     Description = "A community of Angular enthusiasts and professionals meeting near Franklin, TN.",
                     TechId = tangular
+                });
+                //(NONE)
+                context.Meetup.Add(new Meetup
+                {
+                    Name = "(NONE)",
+                    Description = "",
+                    TechId = tna
                 });
                 
                 context.SaveChanges();
@@ -2822,7 +2837,25 @@ namespace Trasalum
                 });
                 context.SaveChanges();
             }
-
+            /********************************/
+            /* Seeding EngagementType Table */
+            /********************************/
+            if (!context.EngagementType.Any())
+            {
+                context.EngagementType.Add(new EngagementType
+                {
+                    Name = "Meetup Event",
+                });
+                context.EngagementType.Add(new EngagementType
+                {
+                    Name = "Cohort Speaker Event",
+                });
+                context.EngagementType.Add(new EngagementType
+                {
+                    Name = "Company Sponsored Event",
+                });
+                context.SaveChanges();
+            }
         }
     }
 }

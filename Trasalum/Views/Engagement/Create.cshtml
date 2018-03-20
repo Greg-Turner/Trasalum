@@ -1,0 +1,62 @@
+﻿@model Trasalum.Models.EngagementComments
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Schedule</h2>
+
+<h4>New Event / Engagement</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Date/Time of Event</label>
+                <input asp-for="Date" class="form-control" placeholder='<% @ViewBag.Date %>' />
+                @*<span asp-validation-for="Date" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label class="control-label">Organizer:</label>
+                @*<select asp-for="Organizer" class="form-control" asp-items="ViewBag.Organizer"></select>*@
+                <label class="form-control">@ViewBag.Organizer</label>
+                <input type="hidden" name="Organizer" class="form-control" value="@ViewBag.Organizer" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Description of Event</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Type of Event/Engagement</label>
+                <select asp-for="EngagementType" class="form-control" asp-items="ViewBag.EngagementType"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Technology Topic</label>
+                <select asp-for="Tech" class="form-control" asp-items="ViewBag.Tech"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Associated Meetup Group</label>
+                <select asp-for="Meetup" class="form-control" asp-items="ViewBag.Meetup"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Alum Speaker</label>
+                <select asp-for="Alum" class="form-control" asp-items="ViewBag.AlumList"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comment" class="control-label"></label>
+                <input asp-for="Comment" class="form-control" />
+                <span asp-validation-for="Comment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

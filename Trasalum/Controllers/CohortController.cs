@@ -59,7 +59,7 @@ namespace Trasalum.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Add([Bind("Id,Number,StartDate,DemoDate")] Cohort cohort, int[] selectedTechs, int[] selectedStaffs)
+        public async Task<IActionResult> Add([Bind("Id,StartDate,DemoDate")] Cohort cohort, int[] selectedTechs, int[] selectedStaffs)
         {
             if (selectedTechs != null)
             {
@@ -155,7 +155,7 @@ namespace Trasalum.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, int[] selectedTechs, [Bind("Id,Number,StartDate,DemoDate")] Cohort cohort)
+        public async Task<IActionResult> Edit(string id, int[] selectedTechs, int[] selectedStaff, [Bind("Id,StartDate,DemoDate")] Cohort cohort)
         {
             if (id != cohort.Id)
             {
@@ -175,6 +175,7 @@ namespace Trasalum.Controllers
                 c => c.Id, c => c.StartDate, c => c.DemoDate, c => c.CohortStaff, c => c.CohortTech))
             { 
                 UpdateCohortTechs(selectedTechs, cohortToUpdate);
+                UpdateCohortStaffs(selectedStaff, cohortToUpdate);
                 try
                 {
                     await _context.SaveChangesAsync();
@@ -188,8 +189,10 @@ namespace Trasalum.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            UpdateCohortStaffs(selectedStaff, cohortToUpdate);
             UpdateCohortTechs(selectedTechs, cohortToUpdate);
             PopulateAssignedTechData(cohortToUpdate);
+            PopulateAssignedStaffData(cohortToUpdate);
             return View(cohortToUpdate);
         }
 
@@ -223,6 +226,40 @@ namespace Trasalum.Controllers
                     {
                         CohortTech techToRemove = cohortToUpdate.CohortTech.SingleOrDefault(c => c.TechId == tech.Id);
                         _context.Remove(techToRemove);
+                    }
+                }
+            }
+        }
+        // Method to update CohortStaff
+        private void UpdateCohortStaffs(int[] selectedStaff, Cohort cohortToUpdate)
+        {
+            if (selectedStaff == null)
+            {
+                var unknown = (from s in _context.Staff
+                             where s.Name.Equals("(Not Yet Assigned)")
+                             select s.Id).ToArray();
+                selectedStaff = unknown;
+            }
+
+            var selectedStaffHS = new HashSet<int>(selectedStaff);
+            var cohortStaffs = new HashSet<int>
+                (cohortToUpdate.CohortStaff.Select(c => c.Staff.Id));
+            foreach (var staff in _context.Staff)
+            {
+                if (selectedStaffHS.Contains(staff.Id))
+                {
+                    if (!cohortStaffs.Contains(staff.Id))
+                    {
+                        cohortToUpdate.CohortStaff.Add(new CohortStaff { CohortId = cohortToUpdate.Id, StaffId = staff.Id });
+                    }
+                }
+                else
+                {
+
+                    if (cohortStaffs.Contains(staff.Id))
+                    {
+                        CohortStaff staffToRemove = cohortToUpdate.CohortStaff.SingleOrDefault(c => c.StaffId == staff.Id);
+                        _context.Remove(staffToRemove);
                     }
                 }
             }
