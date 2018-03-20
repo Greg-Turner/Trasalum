@@ -11,49 +11,49 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            First Name
         </dt>
         <dd>
             @Html.DisplayFor(model => model.FirstName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.LastName)
+            Last Name
         </dt>
         <dd>
             @Html.DisplayFor(model => model.LastName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Address)
+            Address
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Address)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.City)
+            City
         </dt>
         <dd>
             @Html.DisplayFor(model => model.City)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.State)
+            State
         </dt>
         <dd>
             @Html.DisplayFor(model => model.State)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ZipCode)
+            Zip Code)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ZipCode)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Phone)
+            Telephone
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Phone)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Email)
@@ -84,6 +84,111 @@
         </dd>
     </dl>
 </div>
+<div class="form-group">
+    <label>Technologies</label>
+    <div class="col-md-offset-2 col-md-10">
+        <div>
+            @{List<Trasalum.Models.TechViewModels.AssignedTechData> techs = ViewBag.AlumTechData;
+                foreach (var tech in techs)
+                {
+                    @:<input type="checkbox" Enabled="False" name="selectedTechs" value="@tech.TechId" @(Html.Raw(tech.Assigned ? "checked=\"checked\"" : "")) />
+                    @:  @tech.TechName
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<h2>Past Contacts</h2>
+
+<p>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Date/Time
+            </th>
+            <th>
+                Initiated By
+            </th>
+            <th>
+                Contact Method
+            </th>
+            <th>
+                Notes
+            </th>
+            <th>
+                Successful?
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (ViewBag.ContactHistory.Count != 0)
+        {
+            @foreach (var item in ViewBag.ContactHistory)
+            {
+                
+                <tr>
+                    <td>
+                        @item.Date
+                    </td>
+                    <td>
+                        @item.Staff.Name
+                    </td>
+                    <td>
+                        @item.ContactType.Name
+                    </td>
+                    <td>
+                        @if (item.Note.Detail.Length < 50)
+                            {
+                                string details = item.Note.Detail;
+                                @details
+                            }
+                            else
+                            {
+                                string details = item.Note.Detail.Substring(0, 50) + "...";
+                                @details
+                            }
+                    </td>
+                    <td>
+                        @item.Success
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">View</a>
+                    </td>
+                </tr>
+            }
+        }
+        @* If there is nothing in ContactHistory, display a message to this effect. *@
+        @if (ViewBag.ContactHistory.Count == 0)
+        {
+            <tr>
+                <td>
+                    
+                </td>
+                <td>
+                    NO
+                </td>
+                <td>
+                    CONTACTS
+                </td>
+                <td>
+                    LOGGED
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-controller="COntact" asp-action="Create" asp-route-id="@Model.Id">Log New Contact with @Model.FirstName</a> | 

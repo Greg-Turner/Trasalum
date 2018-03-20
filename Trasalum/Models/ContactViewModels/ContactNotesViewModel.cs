@@ -7,6 +7,6 @@ namespace Trasalum.Models.ContactViewModels
 {
     public class ContactNotesViewModel
     {
-        public IEnumerable<ContactNotes> CointactNotes { get; set; }
+        public IEnumerable<ContactNotes> ContactNotes { get; set; }
     }
 }

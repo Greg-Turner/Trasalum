@@ -2156,6 +2156,43 @@ namespace Trasalum
                 int gcooper = (from a in context.Alum
                                where a.Email.Equals("gcooper@email.com")
                                select a.Id).Single();
+                int glawrence = (from a in context.Alum
+                               where a.Email.Equals("gregaudio@gmail.com")
+                               select a.Id).Single();
+                int jfigueroa = (from a in context.Alum
+                               where a.Email.Equals("jason.figueroa2@gmail.com")
+                               select a.Id).Single();
+                int lduvic = (from a in context.Alum
+                               where a.Email.Equals("leaheduvic@gmail.com")
+                               select a.Id).Single();
+                int kbird = (from a in context.Alum
+                               where a.Email.Equals("kimberly.j.bird@gmail.com")
+                               select a.Id).Single();
+                int eagobert = (from a in context.Alum
+                               where a.Email.Equals("eagobert1@gmail.com")
+                               select a.Id).Single();
+                int rmedrano = (from a in context.Alum
+                               where a.Email.Equals("rmbw74@gmail.com")
+                               select a.Id).Single();
+                int khaggerty = (from a in context.Alum
+                               where a.Email.Equals("kghaggerty@gmail.com")
+                               select a.Id).Single();
+                int cmiller = (from a in context.Alum
+                               where a.Email.Equals("camiller.yr@gmail.com")
+                               select a.Id).Single();
+                int jdulaney = (from a in context.Alum
+                               where a.Email.Equals("john.s.dulaney1@gmail.com")
+                               select a.Id).Single();
+                int knorris = (from a in context.Alum
+                               where a.Email.Equals("krnorris65@gmail.com")
+                               select a.Id).Single();
+                int csteely = (from a in context.Alum
+                               where a.Email.Equals("chasesteely@gmail.com")
+                               select a.Id).Single();
+                int lgoforth = (from a in context.Alum
+                               where a.Email.Equals("lissagoforthsoftwaredev@gmail.com")
+                               select a.Id).Single();
+                
 
                 context.AlumTech.Add(new AlumTech
                 {
@@ -2242,6 +2279,367 @@ namespace Trasalum
                     AlumId = gcooper,
                     TechId = truby
                 });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = glawrence,
+                    TechId = tcsharp
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = glawrence,
+                    TechId = tnet
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = glawrence,
+                    TechId = tjava
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = glawrence,
+                    TechId = tgit
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = glawrence,
+                    TechId = tstudio
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = glawrence,
+                    TechId = tsql
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = jfigueroa,
+                    TechId = tcsharp
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = jfigueroa,
+                    TechId = tnet
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = jfigueroa,
+                    TechId = tjava
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = jfigueroa,
+                    TechId = tgit
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = jfigueroa,
+                    TechId = tstudio
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = jfigueroa,
+                    TechId = tsql
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = knorris,
+                    TechId = tcsharp
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = knorris,
+                    TechId = tnet
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = knorris,
+                    TechId = tjava
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = knorris,
+                    TechId = tgit
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = knorris,
+                    TechId = tstudio
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = knorris,
+                    TechId = tsql
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = csteely,
+                    TechId = tcsharp
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = csteely,
+                    TechId = tnet
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = csteely,
+                    TechId = tjava
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = csteely,
+                    TechId = tgit
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = csteely,
+                    TechId = tstudio
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = csteely,
+                    TechId = tsql
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = lduvic,
+                    TechId = tcsharp
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = lduvic,
+                    TechId = tnet
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = lduvic,
+                    TechId = tjava
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = lduvic,
+                    TechId = tgit
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = lduvic,
+                    TechId = tstudio
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = lduvic,
+                    TechId = tsql
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = eagobert,
+                    TechId = tcsharp
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = eagobert,
+                    TechId = tnet
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = eagobert,
+                    TechId = tjava
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = eagobert,
+                    TechId = tgit
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = eagobert,
+                    TechId = tstudio
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = eagobert,
+                    TechId = tsql
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = cmiller,
+                    TechId = tcsharp
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = cmiller,
+                    TechId = tnet
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = cmiller,
+                    TechId = tjava
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = cmiller,
+                    TechId = tgit
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = cmiller,
+                    TechId = tstudio
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = cmiller,
+                    TechId = tsql
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = jdulaney,
+                    TechId = tcsharp
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = jdulaney,
+                    TechId = tnet
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = jdulaney,
+                    TechId = tjava
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = jdulaney,
+                    TechId = tgit
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = jdulaney,
+                    TechId = tstudio
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = jdulaney,
+                    TechId = tsql
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = kbird,
+                    TechId = tcsharp
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = kbird,
+                    TechId = tnet
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = kbird,
+                    TechId = tjava
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = kbird,
+                    TechId = tgit
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = kbird,
+                    TechId = tstudio
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = kbird,
+                    TechId = tsql
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = lgoforth,
+                    TechId = tcsharp
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = lgoforth,
+                    TechId = tnet
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = lgoforth,
+                    TechId = tjava
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = lgoforth,
+                    TechId = tgit
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = lgoforth,
+                    TechId = tstudio
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = lgoforth,
+                    TechId = tsql
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = khaggerty,
+                    TechId = tcsharp
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = khaggerty,
+                    TechId = tnet
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = khaggerty,
+                    TechId = tjava
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = khaggerty,
+                    TechId = tgit
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = khaggerty,
+                    TechId = tstudio
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = khaggerty,
+                    TechId = tsql
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = rmedrano,
+                    TechId = tcsharp
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = rmedrano,
+                    TechId = tnet
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = rmedrano,
+                    TechId = tjava
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = rmedrano,
+                    TechId = tgit
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = rmedrano,
+                    TechId = tstudio
+                });
+                context.AlumTech.Add(new AlumTech
+                {
+                    AlumId = rmedrano,
+                    TechId = tsql
+                });
+                
                 context.SaveChanges();
             }
 

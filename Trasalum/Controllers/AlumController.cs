@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Trasalum.Data;
 using Trasalum.Models;
+using Trasalum.Models.TechViewModels;
 
 namespace Trasalum.Controllers
 {
@@ -68,29 +69,50 @@ namespace Trasalum.Controllers
             return View(await PaginatedList<Alum>.CreateAsync(alums.AsNoTracking(), page ?? 1, pageSize));
         }
 
-        // GET: Alum/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // Adding viewmodel to display multiple Tech checkboxes
+        private List<AssignedTechData> PopulateAlumTechData(Alum alum)
         {
-            if (id == null)
+            var allTechs = _context.Tech;
+            var alumTechs = new HashSet<int>(alum.AlumTech.Select(a => a.TechId)); 
+            var viewModel = new List<AssignedTechData>();
+            foreach (var tech in allTechs)
             {
-                return NotFound();
+                viewModel.Add(new AssignedTechData
+                {
+                    TechId = tech.Id,
+                    TechName = tech.Name,
+                    Assigned = alumTechs.Contains(tech.Id)
+                });
             }
+            return viewModel;
+        }
 
+        // GET: Alum/Details/5
+        public async Task<IActionResult> Details(int id)
+        {
             var alum = await _context.Alum
                 .Include(a => a.Cohort)
+                .Include(a => a.AlumTech).ThenInclude(at => at.Tech)
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (alum == null)
-            {
-                return NotFound();
-            }
 
+            ViewData["ContactHistory"] = PopulateAlumHistoricalContacts(id);
+            ViewData["AlumTechData"] = PopulateAlumTechData(_context.Alum.Where(a => a.Id == id).Single());
             return View(alum);
         }
+
+        // Method to generate alum historical contacts for an alum
+        private List<Contact> PopulateAlumHistoricalContacts(int id)
+        {
+            List<Contact> historicalContacts = _context.Contact.Where(c => c.AlumId == id).Include(c => c.Alum).Include(c => c.ContactType).Include(c => c.Note).Include(c => c.Staff).OrderByDescending(c => c.Date).ToList();
+
+            return historicalContacts;
+        }
+
 
         // GET: Alum/Create
         public IActionResult Create()
         {
-            ViewData["CohortId"] = new SelectList(_context.Cohort, "Id", "Number");
+            ViewData["CohortId"] = new SelectList(_context.Cohort, "Id", "Id");
             return View();
         }
 
@@ -107,24 +129,20 @@ namespace Trasalum.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CohortId"] = new SelectList(_context.Cohort, "Id", "Number", alum.CohortId);
+            ViewData["CohortId"] = new SelectList(_context.Cohort, "Id", alum.CohortId);
             return View(alum);
         }
 
         // GET: Alum/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var alum = await _context.Alum.SingleOrDefaultAsync(m => m.Id == id);
-            if (alum == null)
-            {
-                return NotFound();
-            }
-            ViewData["CohortId"] = new SelectList(_context.Cohort, "Id", "Number", alum.CohortId);
+            var alum = await _context.Alum
+                .Include(a => a.Cohort)
+                .Include(a => a.AlumTech).ThenInclude(at => at.Tech)
+                .SingleOrDefaultAsync(m => m.Id == id);
+            ViewData["CohortId"] = new SelectList(_context.Cohort, "Id", "Id");
+            ViewData["ContactHistory"] = PopulateAlumHistoricalContacts(id);
+            ViewData["AlumTechData"] = PopulateAlumTechData(_context.Alum.Where(a => a.Id == id).Single());
             return View(alum);
         }
 
@@ -133,37 +151,79 @@ namespace Trasalum.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,CohortId,Address,Address2,City,State,ZipCode,Phone,Email,GitHub,LinkedIn,Slack")] Alum alum)
+        public async Task<IActionResult> Edit(int id, int[] selectedTechs, [Bind("Id,FirstName,LastName,CohortId,Address,City,State,ZipCode,Phone,Email,GitHub,LinkedIn,Slack")] Alum alum)
         {
             if (id != alum.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+            var alumToUpdate = await _context.Alum
+                .Include(a => a.Cohort)
+                .Include(a => a.AlumTech).ThenInclude(at => at.Tech)
+                .SingleOrDefaultAsync(m => m.Id == id);
+
+            List<string> cohortList = _context.Cohort.Select(c => c.Id).ToList();
+
+             if (await TryUpdateModelAsync<Alum>(
+                alumToUpdate,
+                "",
+                a => a.Id, a => a.FirstName, a => a.LastName, a => a.CohortId, a => a.Address, a => a.City, a => a.State, a => a.ZipCode, a => a.Phone, a => a.Email, a => a.GitHub, a => a.LinkedIn, a => a.Slack, a => a.AlumTech))
+             { 
+                UpdateAlumTechs(selectedTechs, alumToUpdate);
                 try
                 {
-                    _context.Update(alum);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateException /* ex */)
                 {
-                    if (!AlumExists(alum.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    //Log the error (uncomment ex variable name and write a log.)
+                    ModelState.AddModelError("", "Unable to save changes. " +
+                        "Try again, and if the problem persists, " +
+                        "see your system administrator.");
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["CohortId"] = new SelectList(_context.Cohort, "Id", "Number", alum.CohortId);
-            return View(alum);
+             }
+            ViewData["CohortList"] = cohortList;
+            UpdateAlumTechs(selectedTechs, alumToUpdate);
+            PopulateAlumTechData(alumToUpdate);
+            return View(alumToUpdate);          
         }
 
+        // Method to update AlumTechs
+        private void UpdateAlumTechs(int[] selectedTechs, Alum alumToUpdate)
+        {
+            if (selectedTechs == null)
+            {
+                var unknown = (from t in _context.Tech
+                               where t.Name.Equals("(Unknown)")
+                               select t.Id).ToArray();
+                selectedTechs = unknown;
+            }
+
+            var selectedTechsHS = new HashSet<int>(selectedTechs);
+            var alumTechs = new HashSet<int>
+                (alumToUpdate.AlumTech.Select(c => c.Tech.Id));
+            foreach (var tech in _context.Tech)
+            {
+                if (selectedTechsHS.Contains(tech.Id))
+                {
+                    if (!alumTechs.Contains(tech.Id))
+                    {
+                        alumToUpdate.AlumTech.Add(new AlumTech { AlumId = alumToUpdate.Id, TechId = tech.Id });
+                    }
+                }
+                else
+                {
+
+                    if (alumTechs.Contains(tech.Id))
+                    {
+                        AlumTech techToRemove = alumToUpdate.AlumTech.SingleOrDefault(c => c.TechId == tech.Id);
+                        _context.Remove(techToRemove);
+                    }
+                }
+            }
+        }
         // GET: Alum/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

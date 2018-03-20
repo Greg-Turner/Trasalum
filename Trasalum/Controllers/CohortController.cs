@@ -118,7 +118,7 @@ namespace Trasalum.Controllers
         private List<AssignedTechData> PopulateAssignedTechData(Cohort cohort)
         {
             var allTechs = _context.Tech;
-            var cohortTechs = new HashSet<int>(cohort.CohortTech.Select(c => c.TechId)); // Does this work if a new cohort is sent and there are no CohortTech entries?
+            var cohortTechs = new HashSet<int>(cohort.CohortTech.Select(c => c.TechId)); 
             var viewModel = new List<AssignedTechData>();
             foreach (var tech in allTechs)
             {

@@ -34,7 +34,7 @@
 @foreach (var item in Model.CohortDetailedList.OrderByDescending(c => c.Cohort.DemoDate)) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Cohort.Number)
+                @Html.DisplayFor(modelItem => item.Cohort.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cohort.StartDate)
