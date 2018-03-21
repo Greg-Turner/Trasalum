@@ -44,6 +44,9 @@
     <tbody>
         @foreach (var item in Model)
         {
+            @if (item.LastName != "(NONE)")
+            {
+
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.LastName)
@@ -66,7 +69,8 @@
                     <a asp-controller="Contact" asp-action="Create" asp-route-id="@item.Id">Log new contact</a>
                 </td>
             </tr>
-        }
+                }
+            }
     </tbody>
 </table>
 @{

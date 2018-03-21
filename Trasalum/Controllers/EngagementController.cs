@@ -23,8 +23,13 @@ namespace Trasalum.Controllers
         // GET: Engagement
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Engagement.Include(e => e.EngagementType).Include(e => e.Meetup).Include(e => e.Note).Include(e => e.Tech);
-            return View(await applicationDbContext.ToListAsync());
+            var pastEvents = _context.Engagement.Where(e => e.Date < DateTime.Now).OrderByDescending(e => e.Date).Include(e => e.EngagementType).Include(e => e.Meetup).Include(e => e.Note).Include(e => e.Tech);
+
+            var futureEvents = _context.Engagement.Where(e => e.Date >= DateTime.Now).OrderByDescending(e => e.Date).Include(e => e.EngagementType).Include(e => e.Meetup).Include(e => e.Note).Include(e => e.Tech);
+
+            ViewData["PastEvents"] = pastEvents;
+            ViewData["FutureEvents"] = futureEvents;
+            return View();
         }
 
         // GET: Engagement/Details/5
@@ -69,9 +74,9 @@ namespace Trasalum.Controllers
 
             ViewData["Date"] = DateTime.Now;
             ViewData["Organizer"] = _context.Staff.Where(s => s.Name == userName).Single().Name;
-            ViewData["EngagementType"] = new SelectList(_context.EngagementType, "Id", "Name");
-            ViewData["Meetup"] = new SelectList(_context.Meetup, "Id", "Name");
-            ViewData["Tech"] = new SelectList(_context.Tech, "Id", "Name");
+            ViewData["EngagementType"] = new SelectList(_context.EngagementType.OrderBy(et => et.Name), "Id", "Name");
+            ViewData["Meetup"] = new SelectList(_context.Meetup.OrderBy(m => m.Name), "Id", "Name");
+            ViewData["Tech"] = new SelectList(_context.Tech.OrderBy(t => t.Name), "Id", "Name");
 
             return View();
         }

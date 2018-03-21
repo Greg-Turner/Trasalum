@@ -260,6 +260,13 @@ namespace Trasalum
                     DemoDate = DateTime.ParseExact("21/09/2018 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
                 });
 
+                context.Cohort.Add(new Cohort
+                {
+                    Id = "NONE",
+                    StartDate = DateTime.ParseExact("01/01/0001 00:00:00", "dd/MM/yyyy HH:mm:ss", null),
+                    DemoDate = DateTime.ParseExact("01/01/0001 00:00:00", "dd/MM/yyyy HH:mm:ss", null)
+                });
+
                 context.SaveChanges();
             }
 
@@ -269,20 +276,39 @@ namespace Trasalum
             if (!context.Alum.Any())
             {
                 string c1 = (from c in context.Cohort
-                          where c.Id.Equals("C1")
-                          select c.Id).Single();
+                             where c.Id.Equals("C1")
+                             select c.Id).Single();
                 string c2 = (from c in context.Cohort
-                          where c.Id.Equals("C2")
-                          select c.Id).Single();
+                             where c.Id.Equals("C2")
+                             select c.Id).Single();
                 string c3 = (from c in context.Cohort
-                          where c.Id.Equals("C3")
-                          select c.Id).Single();
+                             where c.Id.Equals("C3")
+                             select c.Id).Single();
                 string c4 = (from c in context.Cohort
-                          where c.Id.Equals("C4")
-                          select c.Id).Single();
+                             where c.Id.Equals("C4")
+                             select c.Id).Single();
                 string c22 = (from c in context.Cohort
-                          where c.Id.Equals("C22")
-                          select c.Id).Single();
+                              where c.Id.Equals("C22")
+                              select c.Id).Single();
+                string cna = (from c in context.Cohort
+                              where c.Id.Equals("NONE")
+                              select c.Id).Single();
+
+                context.Alum.Add(new Alum
+                {
+                    FirstName = " ",
+                    LastName = "(NONE)",
+                    CohortId = cna,
+                    Address = " ",
+                    City = " ",
+                    State = " ",
+                    ZipCode = " ",
+                    Phone = " ",
+                    Email = " ",
+                    GitHub = " ",
+                    LinkedIn = " ",
+                    Slack = " "
+                });
 
                 context.Alum.Add(new Alum
                 {
@@ -368,7 +394,7 @@ namespace Trasalum
                     FirstName = "Robert",
                     LastName = "Roberts",
                     CohortId = c3,
-                    Address = "11 Roberta Lane.",               
+                    Address = "11 Roberta Lane.",
                     City = "Nashville",
                     State = "TN",
                     ZipCode = "37214",
@@ -384,7 +410,7 @@ namespace Trasalum
                     FirstName = "Kim",
                     LastName = "Fields",
                     CohortId = c3,
-                    Address = "98 Pasture St.",              
+                    Address = "98 Pasture St.",
                     City = "Smyrna",
                     State = "TN",
                     ZipCode = "37126",
@@ -400,7 +426,7 @@ namespace Trasalum
                     FirstName = "Larry",
                     LastName = "Thomas",
                     CohortId = c3,
-                    Address = "65 1st St.",     
+                    Address = "65 1st St.",
                     City = "Nashville",
                     State = "TN",
                     ZipCode = "37201",
@@ -746,8 +772,8 @@ namespace Trasalum
                                 where d.Name.Equals("Educator")
                                 select d.Id).Single();
                 int operations = (from d in context.Department
-                                 where d.Name.Equals("Operations")
-                                 select d.Id).Single();
+                                  where d.Name.Equals("Operations")
+                                  select d.Id).Single();
 
                 context.Staff.Add(new Staff
                 {
@@ -839,6 +865,16 @@ namespace Trasalum
                     Name = "(Not Yet Assigned)",
                     DepartmentId = educator,
                 });
+                context.Staff.Add(new Staff
+                {
+                    Name = "Jessica Brawner",
+                    DepartmentId = operations,
+                });
+                context.Staff.Add(new Staff
+                {
+                    Name = "Kristin McKinney",
+                    DepartmentId = operations,
+                });
                 context.SaveChanges();
             }
             /**************************/
@@ -872,17 +908,17 @@ namespace Trasalum
             if (!context.Tech.Any())
             {
                 int language = (from tt in context.TechType
-                          where tt.Name.Equals("Language")
-                          select tt.Id).Single();
+                                where tt.Name.Equals("Language")
+                                select tt.Id).Single();
                 int framework = (from tt in context.TechType
-                                where tt.Name.Equals("Framework")
-                                select tt.Id).Single();
+                                 where tt.Name.Equals("Framework")
+                                 select tt.Id).Single();
                 int tool = (from tt in context.TechType
-                                where tt.Name.Equals("Tool")
-                                select tt.Id).Single();
+                            where tt.Name.Equals("Tool")
+                            select tt.Id).Single();
                 int process = (from tt in context.TechType
-                                where tt.Name.Equals("Process")
-                                select tt.Id).Single();
+                               where tt.Name.Equals("Process")
+                               select tt.Id).Single();
 
                 context.Tech.Add(new Tech
                 {
@@ -1013,148 +1049,148 @@ namespace Trasalum
             /*****************************/
             /* Seeding CohortStaff Table */
             /*****************************/
-            
+
             if (!context.CohortStaff.Any())
             {
                 int john = (from s in context.Staff
-                          where s.Name.Equals("John Wark")
-                          select s.Id).Single();
-                int eliza = (from s in context.Staff
-                            where s.Name.Equals("Eliza Brock")
+                            where s.Name.Equals("John Wark")
                             select s.Id).Single();
+                int eliza = (from s in context.Staff
+                             where s.Name.Equals("Eliza Brock")
+                             select s.Id).Single();
                 int adam = (from s in context.Staff
                             where s.Name.Equals("Adam Scott")
                             select s.Id).Single();
                 int chyld = (from s in context.Staff
-                            where s.Name.Equals("Chyld Medford")
-                            select s.Id).Single();
+                             where s.Name.Equals("Chyld Medford")
+                             select s.Id).Single();
                 int scott = (from s in context.Staff
-                            where s.Name.Equals("Scott Humphries")
-                            select s.Id).Single();
+                             where s.Name.Equals("Scott Humphries")
+                             select s.Id).Single();
                 int jurnell = (from s in context.Staff
-                            where s.Name.Equals("Jurnell Cockhren")
-                            select s.Id).Single();
+                               where s.Name.Equals("Jurnell Cockhren")
+                               select s.Id).Single();
                 int steve = (from s in context.Staff
-                            where s.Name.Equals("Steve Brownlee")
-                            select s.Id).Single();
+                             where s.Name.Equals("Steve Brownlee")
+                             select s.Id).Single();
                 int joe = (from s in context.Staff
-                            where s.Name.Equals("Joe Shepherd")
-                            select s.Id).Single();
+                           where s.Name.Equals("Joe Shepherd")
+                           select s.Id).Single();
                 int zoe = (from s in context.Staff
-                            where s.Name.Equals("Zoe Ames")
-                            select s.Id).Single();
+                           where s.Name.Equals("Zoe Ames")
+                           select s.Id).Single();
                 int denise = (from s in context.Staff
-                            where s.Name.Equals("Denise Tinsley")
-                            select s.Id).Single();
+                              where s.Name.Equals("Denise Tinsley")
+                              select s.Id).Single();
                 int caitlyn = (from s in context.Staff
-                            where s.Name.Equals("Caitlyn Stein")
-                            select s.Id).Single();
+                               where s.Name.Equals("Caitlyn Stein")
+                               select s.Id).Single();
                 int greg = (from s in context.Staff
                             where s.Name.Equals("Greg Korte")
                             select s.Id).Single();
                 int nathan = (from s in context.Staff
-                            where s.Name.Equals("Nathan Gonzalez")
-                            select s.Id).Single();
+                              where s.Name.Equals("Nathan Gonzalez")
+                              select s.Id).Single();
                 int brenda = (from s in context.Staff
-                            where s.Name.Equals("Brenda Long")
-                            select s.Id).Single();
+                              where s.Name.Equals("Brenda Long")
+                              select s.Id).Single();
                 int callan = (from s in context.Staff
-                            where s.Name.Equals("Callan Morrison")
-                            select s.Id).Single();
-                
+                              where s.Name.Equals("Callan Morrison")
+                              select s.Id).Single();
+
                 string c1 = (from c in context.Cohort
-                          where c.Id.Equals("C1")
-                          select c.Id).Single();
+                             where c.Id.Equals("C1")
+                             select c.Id).Single();
                 string c2 = (from c in context.Cohort
-                          where c.Id.Equals("C2")
-                          select c.Id).Single();
+                             where c.Id.Equals("C2")
+                             select c.Id).Single();
                 string c3 = (from c in context.Cohort
-                          where c.Id.Equals("C3")
-                          select c.Id).Single();
+                             where c.Id.Equals("C3")
+                             select c.Id).Single();
                 string c4 = (from c in context.Cohort
-                          where c.Id.Equals("C4")
-                          select c.Id).Single();
+                             where c.Id.Equals("C4")
+                             select c.Id).Single();
                 string c5 = (from c in context.Cohort
-                          where c.Id.Equals("C5")
-                          select c.Id).Single();
+                             where c.Id.Equals("C5")
+                             select c.Id).Single();
                 string c6 = (from c in context.Cohort
-                          where c.Id.Equals("C6")
-                          select c.Id).Single();
+                             where c.Id.Equals("C6")
+                             select c.Id).Single();
                 string c7 = (from c in context.Cohort
-                          where c.Id.Equals("C7")
-                          select c.Id).Single();
+                             where c.Id.Equals("C7")
+                             select c.Id).Single();
                 string c8 = (from c in context.Cohort
-                          where c.Id.Equals("C8")
-                          select c.Id).Single();
+                             where c.Id.Equals("C8")
+                             select c.Id).Single();
                 string c9 = (from c in context.Cohort
-                          where c.Id.Equals("C9")
-                          select c.Id).Single();
+                             where c.Id.Equals("C9")
+                             select c.Id).Single();
                 string c10 = (from c in context.Cohort
-                           where c.Id.Equals("C10")
-                           select c.Id).Single();
+                              where c.Id.Equals("C10")
+                              select c.Id).Single();
                 string c11 = (from c in context.Cohort
-                           where c.Id.Equals("C11")
-                           select c.Id).Single();
+                              where c.Id.Equals("C11")
+                              select c.Id).Single();
                 string c12 = (from c in context.Cohort
-                           where c.Id.Equals("C12")
-                           select c.Id).Single();
+                              where c.Id.Equals("C12")
+                              select c.Id).Single();
                 string c13 = (from c in context.Cohort
-                           where c.Id.Equals("C13")
-                           select c.Id).Single();
+                              where c.Id.Equals("C13")
+                              select c.Id).Single();
                 string c14 = (from c in context.Cohort
-                           where c.Id.Equals("C14")
-                           select c.Id).Single();
+                              where c.Id.Equals("C14")
+                              select c.Id).Single();
                 string c15 = (from c in context.Cohort
-                           where c.Id.Equals("C15")
-                           select c.Id).Single();
+                              where c.Id.Equals("C15")
+                              select c.Id).Single();
                 string c16 = (from c in context.Cohort
-                           where c.Id.Equals("C16")
-                           select c.Id).Single();
+                              where c.Id.Equals("C16")
+                              select c.Id).Single();
                 string c17 = (from c in context.Cohort
-                           where c.Id.Equals("C17")
-                           select c.Id).Single();
+                              where c.Id.Equals("C17")
+                              select c.Id).Single();
                 string c18 = (from c in context.Cohort
-                           where c.Id.Equals("C18")
-                           select c.Id).Single();
+                              where c.Id.Equals("C18")
+                              select c.Id).Single();
                 string c19 = (from c in context.Cohort
-                           where c.Id.Equals("C19")
-                           select c.Id).Single();
+                              where c.Id.Equals("C19")
+                              select c.Id).Single();
                 string c20 = (from c in context.Cohort
-                           where c.Id.Equals("C20")
-                           select c.Id).Single();
+                              where c.Id.Equals("C20")
+                              select c.Id).Single();
                 string c21 = (from c in context.Cohort
-                           where c.Id.Equals("C21")
-                           select c.Id).Single();
+                              where c.Id.Equals("C21")
+                              select c.Id).Single();
                 string c22 = (from c in context.Cohort
-                           where c.Id.Equals("C22")
-                           select c.Id).Single();
+                              where c.Id.Equals("C22")
+                              select c.Id).Single();
                 string c23 = (from c in context.Cohort
-                           where c.Id.Equals("C23")
-                           select c.Id).Single();
+                              where c.Id.Equals("C23")
+                              select c.Id).Single();
                 string c24 = (from c in context.Cohort
-                           where c.Id.Equals("C24")
-                           select c.Id).Single();
+                              where c.Id.Equals("C24")
+                              select c.Id).Single();
                 string c25 = (from c in context.Cohort
-                           where c.Id.Equals("C25")
-                           select c.Id).Single();
+                              where c.Id.Equals("C25")
+                              select c.Id).Single();
                 string e1 = (from c in context.Cohort
-                          where c.Id.Equals("E1")
-                          select c.Id).Single();
+                             where c.Id.Equals("E1")
+                             select c.Id).Single();
                 string e2 = (from c in context.Cohort
-                          where c.Id.Equals("E2")
-                          select c.Id).Single();
+                             where c.Id.Equals("E2")
+                             select c.Id).Single();
                 string e3 = (from c in context.Cohort
-                          where c.Id.Equals("E3")
-                          select c.Id).Single();
+                             where c.Id.Equals("E3")
+                             select c.Id).Single();
                 string e4 = (from c in context.Cohort
-                          where c.Id.Equals("E4")
-                          select c.Id).Single();
+                             where c.Id.Equals("E4")
+                             select c.Id).Single();
                 string e5 = (from c in context.Cohort
-                          where c.Id.Equals("E5")
-                          select c.Id).Single();
+                             where c.Id.Equals("E5")
+                             select c.Id).Single();
                 string e6 = (from c in context.Cohort
-                          where c.Id.Equals("E6")
-                          select c.Id).Single();
+                             where c.Id.Equals("E6")
+                             select c.Id).Single();
 
                 //c1
                 context.CohortStaff.Add(new CohortStaff
@@ -1387,7 +1423,7 @@ namespace Trasalum
                 //c15
                 context.CohortStaff.Add(new CohortStaff
                 {
-                   CohortId = c15,
+                    CohortId = c15,
                     StaffId = greg
                 });
                 //c16
@@ -1580,105 +1616,105 @@ namespace Trasalum
 
                 context.SaveChanges();
             }
-            
+
             /*****************************/
             /* Seeding CohortTech Table */
             /*****************************/
             if (!context.CohortTech.Any())
             {
                 string c1 = (from c in context.Cohort
-                          where c.Id.Equals("C1")
-                          select c.Id).Single();
+                             where c.Id.Equals("C1")
+                             select c.Id).Single();
                 string c2 = (from c in context.Cohort
-                          where c.Id.Equals("C2")
-                          select c.Id).Single();
+                             where c.Id.Equals("C2")
+                             select c.Id).Single();
                 string c3 = (from c in context.Cohort
-                          where c.Id.Equals("C3")
-                          select c.Id).Single();
+                             where c.Id.Equals("C3")
+                             select c.Id).Single();
                 string c4 = (from c in context.Cohort
-                          where c.Id.Equals("C4")
-                          select c.Id).Single();
+                             where c.Id.Equals("C4")
+                             select c.Id).Single();
                 string c5 = (from c in context.Cohort
-                          where c.Id.Equals("C5")
-                          select c.Id).Single();
+                             where c.Id.Equals("C5")
+                             select c.Id).Single();
                 string c6 = (from c in context.Cohort
-                          where c.Id.Equals("C6")
-                          select c.Id).Single();
+                             where c.Id.Equals("C6")
+                             select c.Id).Single();
                 string c7 = (from c in context.Cohort
-                          where c.Id.Equals("C7")
-                          select c.Id).Single();
+                             where c.Id.Equals("C7")
+                             select c.Id).Single();
                 string c8 = (from c in context.Cohort
-                          where c.Id.Equals("C8")
-                          select c.Id).Single();
+                             where c.Id.Equals("C8")
+                             select c.Id).Single();
                 string c9 = (from c in context.Cohort
-                          where c.Id.Equals("C9")
-                          select c.Id).Single();
+                             where c.Id.Equals("C9")
+                             select c.Id).Single();
                 string c10 = (from c in context.Cohort
-                           where c.Id.Equals("C10")
-                           select c.Id).Single();
+                              where c.Id.Equals("C10")
+                              select c.Id).Single();
                 string c11 = (from c in context.Cohort
-                           where c.Id.Equals("C11")
-                           select c.Id).Single();
+                              where c.Id.Equals("C11")
+                              select c.Id).Single();
                 string c12 = (from c in context.Cohort
-                           where c.Id.Equals("C12")
-                           select c.Id).Single();
+                              where c.Id.Equals("C12")
+                              select c.Id).Single();
                 string c13 = (from c in context.Cohort
-                           where c.Id.Equals("C13")
-                           select c.Id).Single();
+                              where c.Id.Equals("C13")
+                              select c.Id).Single();
                 string c14 = (from c in context.Cohort
-                           where c.Id.Equals("C14")
-                           select c.Id).Single();
+                              where c.Id.Equals("C14")
+                              select c.Id).Single();
                 string c15 = (from c in context.Cohort
-                           where c.Id.Equals("C15")
-                           select c.Id).Single();
+                              where c.Id.Equals("C15")
+                              select c.Id).Single();
                 string c16 = (from c in context.Cohort
-                           where c.Id.Equals("C16")
-                           select c.Id).Single();
+                              where c.Id.Equals("C16")
+                              select c.Id).Single();
                 string c17 = (from c in context.Cohort
-                           where c.Id.Equals("C17")
-                           select c.Id).Single();
+                              where c.Id.Equals("C17")
+                              select c.Id).Single();
                 string c18 = (from c in context.Cohort
-                           where c.Id.Equals("C18")
-                           select c.Id).Single();
+                              where c.Id.Equals("C18")
+                              select c.Id).Single();
                 string c19 = (from c in context.Cohort
-                           where c.Id.Equals("C19")
-                           select c.Id).Single();
+                              where c.Id.Equals("C19")
+                              select c.Id).Single();
                 string c20 = (from c in context.Cohort
-                           where c.Id.Equals("C20")
-                           select c.Id).Single();
+                              where c.Id.Equals("C20")
+                              select c.Id).Single();
                 string c21 = (from c in context.Cohort
-                           where c.Id.Equals("C21")
-                           select c.Id).Single();
+                              where c.Id.Equals("C21")
+                              select c.Id).Single();
                 string c22 = (from c in context.Cohort
-                           where c.Id.Equals("C22")
-                           select c.Id).Single();
+                              where c.Id.Equals("C22")
+                              select c.Id).Single();
                 string c23 = (from c in context.Cohort
-                           where c.Id.Equals("C23")
-                           select c.Id).Single();
+                              where c.Id.Equals("C23")
+                              select c.Id).Single();
                 string c24 = (from c in context.Cohort
-                           where c.Id.Equals("C24")
-                           select c.Id).Single();
+                              where c.Id.Equals("C24")
+                              select c.Id).Single();
                 string c25 = (from c in context.Cohort
-                           where c.Id.Equals("C25")
-                           select c.Id).Single();
+                              where c.Id.Equals("C25")
+                              select c.Id).Single();
                 string e1 = (from c in context.Cohort
-                          where c.Id.Equals("E1")
-                          select c.Id).Single();
+                             where c.Id.Equals("E1")
+                             select c.Id).Single();
                 string e2 = (from c in context.Cohort
-                          where c.Id.Equals("E2")
-                          select c.Id).Single();
+                             where c.Id.Equals("E2")
+                             select c.Id).Single();
                 string e3 = (from c in context.Cohort
-                          where c.Id.Equals("E3")
-                          select c.Id).Single();
+                             where c.Id.Equals("E3")
+                             select c.Id).Single();
                 string e4 = (from c in context.Cohort
-                          where c.Id.Equals("E4")
-                          select c.Id).Single();
+                             where c.Id.Equals("E4")
+                             select c.Id).Single();
                 string e5 = (from c in context.Cohort
-                          where c.Id.Equals("E5")
-                          select c.Id).Single();
+                             where c.Id.Equals("E5")
+                             select c.Id).Single();
                 string e6 = (from c in context.Cohort
-                          where c.Id.Equals("E6")
-                          select c.Id).Single();
+                             where c.Id.Equals("E6")
+                             select c.Id).Single();
 
                 int thtml = (from t in context.Tech
                              where t.Name.Equals("HTML")
@@ -2162,32 +2198,32 @@ namespace Trasalum
                                where a.Email.Equals("gcooper@email.com")
                                select a.Id).Single();
                 int glawrence = (from a in context.Alum
-                               where a.Email.Equals("gregaudio@gmail.com")
-                               select a.Id).Single();
+                                 where a.Email.Equals("gregaudio@gmail.com")
+                                 select a.Id).Single();
                 int jfigueroa = (from a in context.Alum
-                               where a.Email.Equals("jason.figueroa2@gmail.com")
-                               select a.Id).Single();
+                                 where a.Email.Equals("jason.figueroa2@gmail.com")
+                                 select a.Id).Single();
                 int lduvic = (from a in context.Alum
-                               where a.Email.Equals("leaheduvic@gmail.com")
-                               select a.Id).Single();
+                              where a.Email.Equals("leaheduvic@gmail.com")
+                              select a.Id).Single();
                 int kbird = (from a in context.Alum
-                               where a.Email.Equals("kimberly.j.bird@gmail.com")
-                               select a.Id).Single();
+                             where a.Email.Equals("kimberly.j.bird@gmail.com")
+                             select a.Id).Single();
                 int eagobert = (from a in context.Alum
-                               where a.Email.Equals("eagobert1@gmail.com")
-                               select a.Id).Single();
+                                where a.Email.Equals("eagobert1@gmail.com")
+                                select a.Id).Single();
                 int rmedrano = (from a in context.Alum
-                               where a.Email.Equals("rmbw74@gmail.com")
-                               select a.Id).Single();
+                                where a.Email.Equals("rmbw74@gmail.com")
+                                select a.Id).Single();
                 int khaggerty = (from a in context.Alum
-                               where a.Email.Equals("kghaggerty@gmail.com")
-                               select a.Id).Single();
+                                 where a.Email.Equals("kghaggerty@gmail.com")
+                                 select a.Id).Single();
                 int cmiller = (from a in context.Alum
                                where a.Email.Equals("camiller.yr@gmail.com")
                                select a.Id).Single();
                 int jdulaney = (from a in context.Alum
-                               where a.Email.Equals("john.s.dulaney1@gmail.com")
-                               select a.Id).Single();
+                                where a.Email.Equals("john.s.dulaney1@gmail.com")
+                                select a.Id).Single();
                 int knorris = (from a in context.Alum
                                where a.Email.Equals("krnorris65@gmail.com")
                                select a.Id).Single();
@@ -2195,9 +2231,9 @@ namespace Trasalum
                                where a.Email.Equals("chasesteely@gmail.com")
                                select a.Id).Single();
                 int lgoforth = (from a in context.Alum
-                               where a.Email.Equals("lissagoforthsoftwaredev@gmail.com")
-                               select a.Id).Single();
-                
+                                where a.Email.Equals("lissagoforthsoftwaredev@gmail.com")
+                                select a.Id).Single();
+
 
                 context.AlumTech.Add(new AlumTech
                 {
@@ -2644,7 +2680,7 @@ namespace Trasalum
                     AlumId = rmedrano,
                     TechId = tsql
                 });
-                
+
                 context.SaveChanges();
             }
 
@@ -2705,8 +2741,8 @@ namespace Trasalum
                              where t.Name.Equals("SASS")
                              select t.Id).Single();
                 int tangular = (from t in context.Tech
-                             where t.Name.Equals("Angular.JS")
-                             select t.Id).Single();
+                                where t.Name.Equals("Angular.JS")
+                                select t.Id).Single();
                 int tgeneral = (from t in context.Tech
                                 where t.Name.Equals("(General/Non-Specific)")
                                 select t.Id).Single();
@@ -2714,8 +2750,8 @@ namespace Trasalum
                                 where t.Name.Equals("(Unknown)")
                                 select t.Id).Single();
                 int tna = (from t in context.Tech
-                                where t.Name.Equals("(N/A)")
-                                select t.Id).Single();
+                           where t.Name.Equals("(N/A)")
+                           select t.Id).Single();
 
 
                 //Developer Launchpad
@@ -2753,7 +2789,7 @@ namespace Trasalum
                     Description = "",
                     TechId = tna
                 });
-                
+
                 context.SaveChanges();
             }
             /****************************/
@@ -2801,6 +2837,26 @@ namespace Trasalum
                 context.Note.Add(new Note
                 {
                     Detail = "Phone number is no longer valid. Will update the alum profile and try another method to make contact.",
+                });
+                context.Note.Add(new Note
+                {
+                    Detail = "Jason Orendorff will discuss Kanban process to Cohort 22.",
+                });
+                context.Note.Add(new Note
+                {
+                    Detail = "Kyle Ducharme will discuss design process and how designers and developers can best work together to complete a goal.",
+                });
+                context.Note.Add(new Note
+                {
+                    Detail = "Key staff at Accenture will provide clarity to the software development roles within their organization. They are currently looking to fill junior developer positions.",
+                });
+                context.Note.Add(new Note
+                {
+                    Detail = "Matt at Letter Logic will describe his experience the job search process post Demo Day.",
+                });
+                context.Note.Add(new Note
+                {
+                    Detail = "Monthly NashJS meeting at NSS",
                 });
                 context.SaveChanges();
             }
@@ -2855,6 +2911,167 @@ namespace Trasalum
                     Name = "Company Sponsored Event",
                 });
                 context.SaveChanges();
+            }
+
+
+            /****************************/
+            /* Seeding Engagement Table */
+            /****************************/
+            if (!context.Engagement.Any())
+            {
+                int meetup = (from et in context.EngagementType
+                              where et.Name.Equals("Meetup Event")
+                              select et.Id).Single();
+                int speaker = (from et in context.EngagementType
+                               where et.Name.Equals("Cohort Speaker Event")
+                               select et.Id).Single();
+                int company = (from et in context.EngagementType
+                               where et.Name.Equals("Company Sponsored Event")
+                               select et.Id).Single();
+
+                int thtml = (from t in context.Tech
+                             where t.Name.Equals("HTML")
+                             select t.Id).Single();
+                int tjava = (from t in context.Tech
+                             where t.Name.Equals("JavaScript")
+                             select t.Id).Single();
+                int tcss = (from t in context.Tech
+                            where t.Name.Equals("CSS")
+                            select t.Id).Single();
+                int tnode = (from t in context.Tech
+                             where t.Name.Equals("Node.JS")
+                             select t.Id).Single();
+                int truby = (from t in context.Tech
+                             where t.Name.Equals("Ruby on Rails")
+                             select t.Id).Single();
+                int tgit = (from t in context.Tech
+                            where t.Name.Equals("Git")
+                            select t.Id).Single();
+                int tfire = (from t in context.Tech
+                             where t.Name.Equals("Firebase")
+                             select t.Id).Single();
+                int tstudio = (from t in context.Tech
+                               where t.Name.Equals("Visual Studio")
+                               select t.Id).Single();
+                int tsql = (from t in context.Tech
+                            where t.Name.Equals("SQL Server")
+                            select t.Id).Single();
+                int tlite = (from t in context.Tech
+                             where t.Name.Equals("SQLLite")
+                             select t.Id).Single();
+                int tcsharp = (from t in context.Tech
+                               where t.Name.Equals("C#")
+                               select t.Id).Single();
+                int tnet = (from t in context.Tech
+                            where t.Name.Equals(".NET")
+                            select t.Id).Single();
+                int tasp = (from t in context.Tech
+                            where t.Name.Equals("ASP.NET")
+                            select t.Id).Single();
+                int tpython = (from t in context.Tech
+                               where t.Name.Equals("Python")
+                               select t.Id).Single();
+                int tdjango = (from t in context.Tech
+                               where t.Name.Equals("Django")
+                               select t.Id).Single();
+                int tvscode = (from t in context.Tech
+                               where t.Name.Equals("Visual Studio Code")
+                               select t.Id).Single();
+                int tsass = (from t in context.Tech
+                             where t.Name.Equals("SASS")
+                             select t.Id).Single();
+                int tangular = (from t in context.Tech
+                                where t.Name.Equals("Angular.JS")
+                                select t.Id).Single();
+                int tgeneral = (from t in context.Tech
+                                where t.Name.Equals("(General/Non-Specific)")
+                                select t.Id).Single();
+                int tunknown = (from t in context.Tech
+                                where t.Name.Equals("(Unknown)")
+                                select t.Id).Single();
+                int tna = (from t in context.Tech
+                           where t.Name.Equals("(N/A)")
+                           select t.Id).Single();
+                int tkanban = (from t in context.Tech
+                               where t.Name.Equals("Kanban")
+                               select t.Id).Single();
+
+                int jessica = (from s in context.Staff
+                            where s.Name.Equals("Jessica Brawner")
+                            select s.Id).Single();
+                int kristin = (from s in context.Staff
+                            where s.Name.Equals("Kristin McKinney")
+                            select s.Id).Single();
+                int gregt = (from s in context.Staff
+                               where s.Name.Equals("Greg Turner")
+                               select s.Id).Single();
+
+                int nashjs = (from m in context.Meetup
+                              where m.Name.Equals("NashJS")
+                              select m.Id).Single();
+
+                int jocomment = (from n in context.Note
+                                 where n.Detail.Equals("Jason Orendorff will discuss Kanban process to Cohort 22.")
+                                 select n.Id).Single();
+                int kdcomment = (from n in context.Note
+                                 where n.Detail.Equals("Kyle Ducharme will discuss design process and how designers and developers can best work together to complete a goal.")
+                                 select n.Id).Single();
+                int acomment = (from n in context.Note
+                                where n.Detail.Equals("Key staff at Accenture will provide clarity to the software development roles within their organization. They are currently looking to fill junior developer positions.")
+                                select n.Id).Single();
+                int llcomment = (from n in context.Note
+                                 where n.Detail.Equals("Matt at Letter Logic will describe his experience the job search process post Demo Day.")
+                                 select n.Id).Single();
+                int njscomment = (from n in context.Note
+                                 where n.Detail.Equals("Monthly NashJS meeting at NSS")
+                                 select n.Id).Single();
+
+                context.Engagement.Add(new Engagement
+                {
+                    Date = DateTime.ParseExact("28/02/2018 10:00:00", "dd/MM/yyyy HH:mm:ss", null),
+                    Description = "Introducing the Kanban process",
+                    EngagementTypeId = speaker,
+                    StaffId = jessica,
+                    TechId = tkanban,
+                    NoteId = jocomment
+                });
+                context.Engagement.Add(new Engagement
+                {
+                    Date = DateTime.ParseExact("02/03/2018 13:00:00", "dd/MM/yyyy HH:mm:ss", null),
+                    Description = "Design and Developer",
+                    EngagementTypeId = speaker,
+                    StaffId = jessica,
+                    NoteId = kdcomment
+                });
+                context.Engagement.Add(new Engagement
+                {
+                    Date = DateTime.ParseExact("07/03/2018 16:00:00", "dd/MM/yyyy HH:mm:ss", null),
+                    Description = "Evening Sponsored by Accenture",
+                    EngagementTypeId = company,
+                    StaffId = kristin,
+                    NoteId = acomment
+                });
+                context.Engagement.Add(new Engagement
+                {
+                    Date = DateTime.ParseExact("08/03/2018 13:00:00", "dd/MM/yyyy HH:mm:ss", null),
+                    Description = "The post Demo Day job search",
+                    EngagementTypeId = speaker,
+                    StaffId = jessica,
+                    NoteId = llcomment
+                });
+                context.Engagement.Add(new Engagement
+                {
+                    Date = DateTime.ParseExact("28/04/2018 15:00:00", "dd/MM/yyyy HH:mm:ss", null),
+                    Description = "Monthly meeting with speaker and Javascropt coding.",
+                    EngagementTypeId = meetup,
+                    TechId = tjava,
+                    MeetupId = nashjs,
+                    StaffId = gregt,
+                    NoteId = njscomment
+                });
+
+                context.SaveChanges();
+
             }
         }
     }

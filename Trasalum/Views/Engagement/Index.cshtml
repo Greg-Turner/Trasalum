@@ -9,55 +9,137 @@
 <p>
     <a asp-action="Create">Schedule Event</a>
 </p>
+
 <table class="table">
-    <thead>
+    <thead>Upcoming Events/Engagements
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Date)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
             <th>
-                @Html.DisplayNameFor(model => model.EngagementType)
+                Date/Time of Event
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Meetup)
+                Description
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Note)
+                Type of Engagement
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tech)
+                Comments
+            </th>
+            <th>
+                Technology Focus of Event
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in ViewBag.FutureEvents) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
+            <td style="width:10%">
+                @item.Date
+            </td>
+            <td style="width:25%">
+                @item.Description
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @item.EngagementType.Name
+            </td>
+            <td style="width:30%">
+                @if (item.Note.Detail.Length < 50)
+                    {
+                        string details = item.Note.Detail;
+                        @details
+                    }
+                else
+                    {
+                        string details = item.Note.Detail.Substring(0, 50) + "...";
+                        @details
+                    }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EngagementType.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Meetup.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Note.Detail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tech.Name)
+                @if (item.TechId == null)
+                    {
+                        string noTech = " ";
+                        @noTech
+                    }
+                else
+                    {
+                        @item.Tech.Name
+                    }
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Update</a> |
                 <a asp-action="Details" asp-route-id="@item.Id"> View Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>Past Events/Engagements
+        <tr>
+            <th>
+                Date/Time of Event
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Type of Engagement
+            </th>
+            <th>
+                Comments
+            </th>
+            <th>
+                Technology Focus of Event
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in ViewBag.PastEvents) {
+        <tr>
+            <td style="width:10%">
+                @item.Date
+            </td>
+            <td>
+                @item.Description
+            </td>
+            <td>
+                @item.EngagementType.Name
+            </td>
+            <td style="width:30%">
+                @if (item.Note.Detail.Length < 50)
+                    {
+                        string details = item.Note.Detail;
+                        @details
+                    }
+                else
+                    {
+                        string details = item.Note.Detail.Substring(0, 50) + "...";
+                        @details
+                    }
+            </td>
+            <td>
+                @if (item.TechId == null)
+                    {
+                        string noTech = " ";
+                        @noTech
+                    }
+                else
+                    {
+                        @item.Tech.Name
+                    }
+            </td>
+            <td>
+                @* Users should not be able to Update Events that are complete 
+                    stretch goal - make Comment for a past event updatable to add feedback from attendees*@
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Update</a> |*@
+
+                <a asp-action="Details" asp-route-id="@item.Id"> View Details</a>
+                @* Users should not be able to Delete Events that are complete *@
+                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
             </td>
         </tr>
 }

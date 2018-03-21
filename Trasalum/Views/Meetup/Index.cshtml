@@ -27,6 +27,8 @@
     <tbody>
         @foreach (var item in Model)
         {
+            @if (item.Name != "(NONE)")
+            {
             <tr>
                 <td style="width:15%">
                     @Html.DisplayFor(modelItem => item.Name)
@@ -43,6 +45,8 @@
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
+
+            }
         }
     </tbody>
 </table>

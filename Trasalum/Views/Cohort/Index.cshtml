@@ -32,6 +32,8 @@
     </thead>
     <tbody>
 @foreach (var item in Model.CohortDetailedList.OrderByDescending(c => c.Cohort.DemoDate)) {
+    @if (item.Cohort.Id != "NONE")
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Cohort.Id)
@@ -44,20 +46,21 @@
             </td>
             <td>
                 @foreach (Staff instructor in item.Instructors)
-                    {
+                {
                         @Html.DisplayFor(person => instructor.Name)<br />
-                    }
+                }
             </td>
             <td>
                 @foreach (Tech tech in item.Tech)
-                    {
+                {
                         @Html.DisplayFor(t => tech.Name)<br />
-                    }
+                }
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Cohort.Id">UPDATE</a>
             </td>
         </tr>
-}
+        }
+    }
     </tbody>
 </table>
