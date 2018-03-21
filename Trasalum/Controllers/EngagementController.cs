@@ -86,19 +86,59 @@ namespace Trasalum.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Date,Description,EngagementTypeId,TechId,MeetupId,NoteId")] Engagement engagement)
+        public async Task<IActionResult> Create(DateTime Date, string Description, int EngagementType, int Tech, int Meetup, string Comment, string Organizer, int Alum)
         {
+            
+
             if (ModelState.IsValid)
             {
-                _context.Add(engagement);
+               // Save new Note in Note table
+                var noteToAdd = new Note { Detail = Comment };
+                _context.Note.Add(noteToAdd);
+                await _context.SaveChangesAsync();
+
+                // Save new Engagement in Engagement table
+                var engagementToAdd = new Engagement();
+                engagementToAdd.Date = Date;
+                engagementToAdd.Description = Description;
+                engagementToAdd.EngagementTypeId = EngagementType;
+                engagementToAdd.TechId = Tech;
+                engagementToAdd.MeetupId = Meetup;
+                engagementToAdd.StaffId = _context.Staff.Where(s => s.Name == Organizer).Single().Id;
+                engagementToAdd.NoteId = noteToAdd.Id;
+                _context.Engagement.Add(engagementToAdd);
+                await _context.SaveChangesAsync();
+
+                // Save new EngagementAlum in EngagementAlum table
+                var engagementAlumToAdd = new EngagementAlum();
+                engagementAlumToAdd.AlumId = Alum;
+                engagementAlumToAdd.EngagementId = engagementToAdd.Id;
+                _context.EngagementAlum.Add(engagementAlumToAdd);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EngagementTypeId"] = new SelectList(_context.EngagementType, "Id", "Name", engagement.EngagementTypeId);
-            ViewData["MeetupId"] = new SelectList(_context.Meetup, "Id", "Description", engagement.MeetupId);
-            ViewData["NoteId"] = new SelectList(_context.Note, "Id", "Detail", engagement.NoteId);
-            ViewData["TechId"] = new SelectList(_context.Tech, "Id", "Name", engagement.TechId);
-            return View(engagement);
+
+            var userId = User.Identity.GetUserId();
+            var user = _context.ApplicationUser.Where(u => u.Id == userId).Single();
+            string userName = user.FirstName + " " + user.LastName;
+
+            ViewData["AlumList"] =
+                    new SelectList((from a in _context.Alum.OrderBy(a => a.LastName).ToList()
+                                    select new
+                                    {
+                                        Id = a.Id,
+                                        FullName = a.LastName + ", " + a.FirstName
+                                    }),
+                    "Id",
+                    "FullName",
+                    null);
+
+            ViewData["Date"] = DateTime.Now;
+            ViewData["Organizer"] = _context.Staff.Where(s => s.Name == userName).Single().Name;
+            ViewData["EngagementType"] = new SelectList(_context.EngagementType.OrderBy(et => et.Name), "Id", "Name");
+            ViewData["Meetup"] = new SelectList(_context.Meetup.OrderBy(m => m.Name), "Id", "Name");
+            ViewData["Tech"] = new SelectList(_context.Tech.OrderBy(t => t.Name), "Id", "Name");
+            return View();
         }
 
         // GET: Engagement/Edit/5
@@ -114,10 +154,37 @@ namespace Trasalum.Controllers
             {
                 return NotFound();
             }
+
+            var alumSpeakerId = _context.EngagementAlum.Where(ea => ea.EngagementId == id).Single().AlumId;
+            var alumSpeaker = _context.Alum.Where(a => a.Id == alumSpeakerId).Single();
+            var currentSpeaker = "";
+            if (alumSpeaker.LastName == "(NONE)")
+            {
+                currentSpeaker = alumSpeaker.LastName;
+            } else
+            {
+                currentSpeaker = alumSpeaker.LastName + ", " + alumSpeaker.FirstName;
+            }
+            
+            var currentStaff = _context.Staff.Where(s => s.Id == engagement.StaffId).Single().Name;
+
+            ViewData["AlumList"] =
+                    new SelectList((from a in _context.Alum.OrderBy(a => a.LastName).ToList()
+                                    select new
+                                    {
+                                        Id = a.Id,
+                                        FullName = a.LastName + ", " + a.FirstName
+                                    }),
+                    "Id",
+                    "FullName",
+                    null);
+            ViewData["CurrentAlum"] = currentSpeaker;
+            ViewData["CurrentOrganizer"] = currentStaff;
             ViewData["EngagementTypeId"] = new SelectList(_context.EngagementType, "Id", "Name", engagement.EngagementTypeId);
-            ViewData["MeetupId"] = new SelectList(_context.Meetup, "Id", "Description", engagement.MeetupId);
+            ViewData["MeetupId"] = new SelectList(_context.Meetup, "Id", "Name", engagement.MeetupId);
             ViewData["NoteId"] = new SelectList(_context.Note, "Id", "Detail", engagement.NoteId);
             ViewData["TechId"] = new SelectList(_context.Tech, "Id", "Name", engagement.TechId);
+            ViewData["OrganizerId"] = new SelectList(_context.Staff, "Id", "Name", engagement.StaffId);
             return View(engagement);
         }
 
@@ -187,10 +254,20 @@ namespace Trasalum.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var engagement = await _context.Engagement.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Engagement.Remove(engagement);
+            var noteIdToRemove = _context.Engagement.Where(e => e.Id == id).Single().NoteId;
+            var noteToRemove = await _context.Note.SingleOrDefaultAsync(n => n.Id == noteIdToRemove);
+            _context.Note.Remove(noteToRemove);
+            await _context.SaveChangesAsync();
+
+            var engagementAlumToRemove = _context.EngagementAlum.Where(ea => ea.EngagementId == id).Single();
+            _context.EngagementAlum.Remove(engagementAlumToRemove);
+            await _context.SaveChangesAsync();
+
+            var engagementToRemove = await _context.Engagement.SingleOrDefaultAsync(m => m.Id == id);
+            _context.Engagement.Remove(engagementToRemove);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+
         }
 
         private bool EngagementExists(int id)

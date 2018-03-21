@@ -2997,14 +2997,14 @@ namespace Trasalum
                                select t.Id).Single();
 
                 int jessica = (from s in context.Staff
-                            where s.Name.Equals("Jessica Brawner")
-                            select s.Id).Single();
-                int kristin = (from s in context.Staff
-                            where s.Name.Equals("Kristin McKinney")
-                            select s.Id).Single();
-                int gregt = (from s in context.Staff
-                               where s.Name.Equals("Greg Turner")
+                               where s.Name.Equals("Jessica Brawner")
                                select s.Id).Single();
+                int kristin = (from s in context.Staff
+                               where s.Name.Equals("Kristin McKinney")
+                               select s.Id).Single();
+                int gregt = (from s in context.Staff
+                             where s.Name.Equals("Greg Turner")
+                             select s.Id).Single();
 
                 int nashjs = (from m in context.Meetup
                               where m.Name.Equals("NashJS")
@@ -3023,8 +3023,8 @@ namespace Trasalum
                                  where n.Detail.Equals("Matt at Letter Logic will describe his experience the job search process post Demo Day.")
                                  select n.Id).Single();
                 int njscomment = (from n in context.Note
-                                 where n.Detail.Equals("Monthly NashJS meeting at NSS")
-                                 select n.Id).Single();
+                                  where n.Detail.Equals("Monthly NashJS meeting at NSS")
+                                  select n.Id).Single();
 
                 context.Engagement.Add(new Engagement
                 {
@@ -3062,12 +3062,71 @@ namespace Trasalum
                 context.Engagement.Add(new Engagement
                 {
                     Date = DateTime.ParseExact("28/04/2018 15:00:00", "dd/MM/yyyy HH:mm:ss", null),
-                    Description = "Monthly meeting with speaker and Javascropt coding.",
+                    Description = "Monthly meeting with speaker and Javascript coding.",
                     EngagementTypeId = meetup,
                     TechId = tjava,
                     MeetupId = nashjs,
                     StaffId = gregt,
                     NoteId = njscomment
+                });
+
+                context.SaveChanges();
+
+            }
+
+            /********************************/
+            /* Seeding EngagementAlum Table */
+            /********************************/
+            if (!context.EngagementAlum.Any())
+            {
+                int ekanban = (from e in context.Engagement
+                               where e.Description.Equals("Introducing the Kanban process")
+                               select e.Id).Single();
+                int edesign = (from e in context.Engagement
+                               where e.Description.Equals("Design and Developer")
+                               select e.Id).Single();
+                int eaccenture = (from e in context.Engagement
+                                  where e.Description.Equals("Evening Sponsored by Accenture")
+                                  select e.Id).Single();
+                int eletter = (from e in context.Engagement
+                               where e.Description.Equals("The post Demo Day job search")
+                               select e.Id).Single();
+                int ejs = (from e in context.Engagement
+                           where e.Description.Equals("Monthly meeting with speaker and Javascript coding.")
+                           select e.Id).Single();
+
+                int anone = (from a in context.Alum
+                             where a.LastName.Equals("(NONE)")
+                             select a.Id).Single();
+
+                context.EngagementAlum.Add(new EngagementAlum
+                {
+                    AlumId = anone,
+                    EngagementId = ekanban
+                });
+
+                context.EngagementAlum.Add(new EngagementAlum
+                {
+                    AlumId = anone,
+                    EngagementId = edesign
+                });
+
+                context.EngagementAlum.Add(new EngagementAlum
+                {
+                    AlumId = anone,
+                    EngagementId = eaccenture
+                });
+
+                context.EngagementAlum.Add(new EngagementAlum
+                {
+                    AlumId = anone,
+                    EngagementId = eletter
+                });
+
+                context.EngagementAlum.Add(new EngagementAlum
+                {
+                    AlumId = anone,
+                    EngagementId = ejs
                 });
 
                 context.SaveChanges();

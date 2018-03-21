@@ -66,7 +66,7 @@
                         @item.Tech.Name
                     }
             </td>
-            <td>
+            <td style="width:10%">
                 <a asp-action="Edit" asp-route-id="@item.Id">Update</a> |
                 <a asp-action="Details" asp-route-id="@item.Id"> View Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
@@ -132,7 +132,7 @@
                         @item.Tech.Name
                     }
             </td>
-            <td>
+            <td style="width:10%">
                 @* Users should not be able to Update Events that are complete 
                     stretch goal - make Comment for a past event updatable to add feedback from attendees*@
                 @*<a asp-action="Edit" asp-route-id="@item.Id">Update</a> |*@

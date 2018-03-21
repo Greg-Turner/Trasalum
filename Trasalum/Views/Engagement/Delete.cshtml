@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.Date)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Date)
+            @Model.Date
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Description)
@@ -33,7 +33,7 @@
             @Html.DisplayNameFor(model => model.Meetup)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Meetup.Description)
+            @Html.DisplayFor(model => model.Meetup.Name)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Note)
