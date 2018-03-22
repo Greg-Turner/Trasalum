@@ -1,4 +1,4 @@
-﻿@model Trasalum.Models.Engagement
+﻿@model Trasalum.Models.EngagementComments
 
 @{
     ViewData["Title"] = "Edit";
@@ -19,7 +19,7 @@
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Organizer (currently: @ViewBag.CurrentOrganizer)</label>
+                <label class="control-label">Organizer</label>
                 <select asp-for="StaffId" class="form-control" asp-items="ViewBag.OrganizerId"></select>
                 <span asp-validation-for="StaffId" class="text-danger"></span>
             </div>

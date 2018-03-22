@@ -1,54 +1,67 @@
-﻿@model Trasalum.Models.Engagement
+﻿@model Trasalum.Models.EngagementComments
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>View Details</h2>
 
 <div>
-    <h4>Engagement</h4>
+    <h4>Event / Engagement</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Date)
+            Date/Time of Event:
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Date)
+            @Model.Date
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            Organizer:
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Model.Organizer
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.EngagementType)
+            Description of Event:
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.EngagementType.Name)
+            @Model.Description
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Meetup)
+            Type of Event/Engagement:
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Meetup.Description)
+            @ViewBag.CurrentEngagementType
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Note)
+            Technology Topic:
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Note.Detail)
+            @ViewBag.CurrentTech
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Tech)
+            Associated Meetup Group:
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Tech.Name)
+            @ViewBag.CurrentMeetup
         </dd>
+        <dt>
+            Alum Speaker:
+        </dt>
+        <dd>
+            @ViewBag.CurrentAlum
+        </dd>
+        <dt>
+            Comments:
+        </dt>
+        <dd>
+            @Model.Comment
+        </dd>
+
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@ViewBag.CurrentEngagementId">Edit</a> |
+    <a asp-action="Index">Back to List of Events/Engagements</a>
 </div>

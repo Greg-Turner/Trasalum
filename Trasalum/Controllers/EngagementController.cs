@@ -40,18 +40,42 @@ namespace Trasalum.Controllers
                 return NotFound();
             }
 
-            var engagement = await _context.Engagement
-                .Include(e => e.EngagementType)
-                .Include(e => e.Meetup)
-                .Include(e => e.Note)
-                .Include(e => e.Tech)
-                .SingleOrDefaultAsync(m => m.Id == id);
+            var engagement = await _context.Engagement.SingleOrDefaultAsync(m => m.Id == id);
             if (engagement == null)
-            {
-                return NotFound();
-            }
+                {
+                    return NotFound();
+                }
+            var alumSpeakerId = _context.EngagementAlum.Where(ea => ea.EngagementId == id).Single().AlumId;
+            var alumSpeaker = _context.Alum.Where(a => a.Id == alumSpeakerId).Single();
+            
+            var currentSpeaker = "";
+            if (alumSpeaker.LastName == "(NONE)")
+                {
+                    currentSpeaker = alumSpeaker.LastName;
+                }
+            else
+                {
+                    currentSpeaker = alumSpeaker.LastName + ", " + alumSpeaker.FirstName;
+                }
 
-            return View(engagement);
+            var currentStaff = _context.Staff.Where(s => s.Id == engagement.StaffId).Single().Name;
+
+            EngagementComments currentEngagementComments = new EngagementComments()
+            {
+                Date = engagement.Date,
+                Organizer = _context.Staff.Where(s => s.Id == engagement.StaffId).Single().Name,
+                Description = engagement.Description,
+                EngagementType = _context.EngagementType.Where(et => et.Id == engagement.EngagementTypeId),
+                Comment = _context.Note.Where(n => n.Id == engagement.NoteId).Single().Detail
+            };
+            
+            ViewData["CurrentAlum"] = currentSpeaker;
+            ViewData["CurrentEngagementId"] = id;
+            ViewData["CurrentEngagementType"] = _context.EngagementType.Where(et => et.Id == engagement.EngagementTypeId).Single().Name;
+            ViewData["CurrentMeetup"] = _context.Meetup.Where(m => m.Id == engagement.MeetupId).Single().Name; 
+            ViewData["CurrentTech"] = _context.Tech.Where(t => t.Id == engagement.TechId).Single().Name;
+           
+            return View(currentEngagementComments);
         }
         
         // GET: Engagement/Create
@@ -193,23 +217,35 @@ namespace Trasalum.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Description,EngagementTypeId,TechId,MeetupId,NoteId")] Engagement engagement)
+        public async Task<IActionResult> Edit(int id, DateTime Date, string Description, int EngagementType, int Tech, int Meetup, string Comment, string Organizer, int Alum)
         {
-            if (id != engagement.Id)
-            {
-                return NotFound();
-            }
+            var engagementToUpdate = _context.Engagement.Where(m => m.Id == id).Single();
+            engagementToUpdate.Date = Date;
+            engagementToUpdate.Description = Description;
+            engagementToUpdate.EngagementTypeId = EngagementType;
+            engagementToUpdate.TechId = Tech;
+            engagementToUpdate.MeetupId = Meetup;
+            engagementToUpdate.StaffId = _context.Staff.Where(s => s.Name == Organizer).Single().Id;
+
+
+            var noteToUpdate = _context.Note.Where(n => n.Id == engagementToUpdate.Note.Id).Single();
+            noteToUpdate.Detail = Comment;
+            _context.Note.Update(noteToUpdate);
+
+            var engagementAlumToUpdate = _context.EngagementAlum.Where(ea => ea.EngagementId == engagementToUpdate.Id).Single();
+            engagementAlumToUpdate.AlumId = Alum;
+            _context.EngagementAlum.Update(engagementAlumToUpdate);
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(engagement);
+                    _context.Engagement.Update(engagementToUpdate);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EngagementExists(engagement.Id))
+                    if (!EngagementExists(engagementToUpdate.Id))
                     {
                         return NotFound();
                     }
@@ -220,11 +256,24 @@ namespace Trasalum.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EngagementTypeId"] = new SelectList(_context.EngagementType, "Id", "Name", engagement.EngagementTypeId);
-            ViewData["MeetupId"] = new SelectList(_context.Meetup, "Id", "Description", engagement.MeetupId);
-            ViewData["NoteId"] = new SelectList(_context.Note, "Id", "Detail", engagement.NoteId);
-            ViewData["TechId"] = new SelectList(_context.Tech, "Id", "Name", engagement.TechId);
-            return View(engagement);
+            ViewData["AlumList"] =
+                    new SelectList((from a in _context.Alum.OrderBy(a => a.LastName).ToList()
+                                    select new
+                                    {
+                                        Id = a.Id,
+                                        FullName = a.LastName + ", " + a.FirstName
+                                    }),
+                    "Id",
+                    "FullName",
+                    null);
+            ViewData["CurrentAlum"] = Alum;
+            ViewData["CurrentOrganizer"] = Organizer;
+            ViewData["EngagementTypeId"] = new SelectList(_context.EngagementType, "Id", "Name", engagementToUpdate.EngagementTypeId);
+            ViewData["MeetupId"] = new SelectList(_context.Meetup, "Id", "Name", engagementToUpdate.MeetupId);
+            ViewData["NoteId"] = new SelectList(_context.Note, "Id", "Detail", engagementToUpdate.NoteId);
+            ViewData["TechId"] = new SelectList(_context.Tech, "Id", "Name", engagementToUpdate.TechId);
+            ViewData["OrganizerId"] = new SelectList(_context.Staff, "Id", "Name", engagementToUpdate.StaffId);
+            return View(engagementToUpdate);
         }
 
         // GET: Engagement/Delete/5

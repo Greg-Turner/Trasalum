@@ -51,12 +51,12 @@ namespace Trasalum.Models
 
         [Required]
         [DataType(DataType.Url)]
-        [Display(Name = "GitHub Profile")]
+        [Display(Name = "GitHub Profile URL")]
         public string GitHub { get; set; }
 
         [Required]
         [DataType(DataType.Url)]
-        [Display(Name = "LinkedIn Profile")]
+        [Display(Name = "LinkedIn Profile URL")]
         public string LinkedIn { get; set; }
 
         [Required]
