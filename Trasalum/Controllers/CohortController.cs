@@ -43,7 +43,7 @@ namespace Trasalum.Controllers
             return View(model);
         }
       
-        // GET: Cohorts/Create
+        // GET: Cohorts/Add
         public IActionResult Add()
         {
             var cohort = new Cohort();
@@ -54,13 +54,15 @@ namespace Trasalum.Controllers
             return View(cohort);
         }
 
-        // POST: Cohorts/Create
+        // POST: Cohorts/Add
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Add([Bind("Id,StartDate,DemoDate")] Cohort cohort, int[] selectedTechs, int[] selectedStaffs)
+        public async Task<IActionResult> Add(string Id, DateTime StartDate, DateTime DemoDate,int[] selectedTechs, int[] selectedStaffs)
         {
+            Cohort cohort = new Cohort();
+
             if (selectedTechs != null)
             {
                 cohort.CohortTech = new List<CohortTech>();
@@ -86,6 +88,9 @@ namespace Trasalum.Controllers
             {
                 cohort.CohortStaff = new List<CohortStaff>();
             }
+            cohort.Id = Id;
+            cohort.StartDate = StartDate;
+            cohort.DemoDate = DemoDate;
 
             if (ModelState.IsValid)
             {

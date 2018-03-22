@@ -17,6 +17,10 @@
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+            </div><div class="form-group">
+                <label class="control-label">Type of Technology Knowledge</label>
+                <select asp-for="TechTypeId" class="form-control" asp-items="ViewBag.TechType"></select>
+                <span asp-validation-for="TechTypeId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />

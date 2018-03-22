@@ -62,6 +62,9 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@ViewBag.CurrentEngagementId">Edit</a> |
-    <a asp-action="Index">Back to List of Events/Engagements</a>
+    @if (Model.Date > DateTime.Now)
+    {
+        <a asp-action="Edit" asp-route-id="@ViewBag.CurrentEngagementId">Edit | </a>
+    }
+        <a asp-action="Index">Back to List of Events/Engagements</a>
 </div>

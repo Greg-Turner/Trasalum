@@ -91,7 +91,7 @@
             @{List<Trasalum.Models.TechViewModels.AssignedTechData> techs = ViewBag.AlumTechData;
                 foreach (var tech in techs)
                 {
-                    @:<input type="checkbox" Enabled="False" name="selectedTechs" value="@tech.TechId" @(Html.Raw(tech.Assigned ? "checked=\"checked\"" : "")) />
+                    @:<input type="checkbox" disabled="disabled" name="selectedTechs" value="@tech.TechId" @(Html.Raw(tech.Assigned ? "checked=\"checked\"" : "")) />
                     @:  @tech.TechName
                 }
             }
@@ -142,22 +142,13 @@
                         @item.ContactType.Name
                     </td>
                     <td>
-                        @if (item.Note.Detail.Length < 50)
-                            {
-                                string details = item.Note.Detail;
-                                @details
-                            }
-                            else
-                            {
-                                string details = item.Note.Detail.Substring(0, 50) + "...";
-                                @details
-                            }
+                        @item.Note.Detail                        
                     </td>
                     <td>
                         @item.Success
                     </td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@item.Id">View</a>
+                        @*<a asp-action="Details" asp-route-id="@item.Id">View</a>*@
                     </td>
                 </tr>
             }
@@ -191,6 +182,6 @@
 </table>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-controller="COntact" asp-action="Create" asp-route-id="@Model.Id">Log New Contact with @Model.FirstName</a> | 
+    <a asp-controller="Contact" asp-action="Create" asp-route-id="@Model.Id">Log New Contact with @Model.FirstName</a> | 
     <a asp-action="Index">Back to Full List of Alums</a>
 </div>

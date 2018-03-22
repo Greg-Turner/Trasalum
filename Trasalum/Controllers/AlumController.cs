@@ -182,7 +182,7 @@ namespace Trasalum.Controllers
                         "Try again, and if the problem persists, " +
                         "see your system administrator.");
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", new { id });
              }
             ViewData["CohortList"] = cohortList;
             UpdateAlumTechs(selectedTechs, alumToUpdate);

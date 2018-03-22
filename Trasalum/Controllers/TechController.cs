@@ -47,18 +47,19 @@ namespace Trasalum.Controllers
             return View(tech);
         }
 
-        // GET: Teches/Create
+        // GET: Techs/Create
         public IActionResult Create()
         {
+            ViewBag.TechType = new SelectList(_context.TechType, "Id", "Name");
             return View();
         }
 
-        // POST: Teches/Create
+        // POST: Techs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Tech tech)
+        public async Task<IActionResult> Create([Bind("Id,Name,TechTypeId")] Tech tech)
         {
             if (ModelState.IsValid)
             {
@@ -70,18 +71,16 @@ namespace Trasalum.Controllers
         }
 
         // GET: Teches/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var tech = await _context.Tech.SingleOrDefaultAsync(m => m.Id == id);
+            var tech = await _context.Tech.SingleOrDefaultAsync(t => t.Id == id);
+            
             if (tech == null)
             {
                 return NotFound();
             }
+            ViewBag.TechType = new SelectList(_context.TechType, "Id", "Name", tech.TechTypeId);
             return View(tech);
         }
 
@@ -90,7 +89,7 @@ namespace Trasalum.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Tech tech)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name, TechTypeId")] Tech tech)
         {
             if (id != tech.Id)
             {

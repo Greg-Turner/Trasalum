@@ -304,9 +304,9 @@ namespace Trasalum
                     State = " ",
                     ZipCode = " ",
                     Phone = " ",
-                    Email = " ",
-                    GitHub = " ",
-                    LinkedIn = " ",
+                    Email = "none@none.com",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = " "
                 });
 
@@ -321,8 +321,8 @@ namespace Trasalum
                     ZipCode = "37201",
                     Phone = "615-222-3344",
                     Email = "jsmith@email.com",
-                    GitHub = "john-smith",
-                    LinkedIn = "john-smith",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "john-smith"
                 });
 
@@ -337,8 +337,8 @@ namespace Trasalum
                     ZipCode = "37129",
                     Phone = "615-333-2255",
                     Email = "jdoe@email.com",
-                    GitHub = "jane-doe",
-                    LinkedIn = "jane-doe",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "jane-doe"
                 });
 
@@ -353,8 +353,8 @@ namespace Trasalum
                     ZipCode = "37024",
                     Phone = "615-777-5533",
                     Email = "sgordon@email.com",
-                    GitHub = "scott-gordon",
-                    LinkedIn = "scott-gordon",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "scott-gordon"
                 });
 
@@ -369,8 +369,8 @@ namespace Trasalum
                     ZipCode = "37066",
                     Phone = "615-579-2134",
                     Email = "rlynn@email.com",
-                    GitHub = "renee-lynn",
-                    LinkedIn = "renee-lynn",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "renee-lynn"
                 });
                 context.Alum.Add(new Alum
@@ -384,8 +384,8 @@ namespace Trasalum
                     ZipCode = "37031",
                     Phone = "615-923-8765",
                     Email = "twilliams@email.com",
-                    GitHub = "tom-williams",
-                    LinkedIn = "tom-williams",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "tom-williams"
                 });
 
@@ -400,8 +400,8 @@ namespace Trasalum
                     ZipCode = "37214",
                     Phone = "615-324-1234",
                     Email = "rroberts@email.com",
-                    GitHub = "robert-roberts",
-                    LinkedIn = "robert-roberts",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "robert-roberts"
                 });
 
@@ -416,8 +416,8 @@ namespace Trasalum
                     ZipCode = "37126",
                     Phone = "615-345-7654",
                     Email = "kfields@email.com",
-                    GitHub = "kim-fields",
-                    LinkedIn = "kim-fields",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "kim-fields"
                 });
 
@@ -432,8 +432,8 @@ namespace Trasalum
                     ZipCode = "37201",
                     Phone = "615-865-9078",
                     Email = "lthomas@email.com",
-                    GitHub = "larry-thomas",
-                    LinkedIn = "larry-thomas",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "larry-thomas"
                 });
 
@@ -448,8 +448,8 @@ namespace Trasalum
                     ZipCode = "37113",
                     Phone = "615-723-1738",
                     Email = "jstanton@email.com",
-                    GitHub = "jeff-stanton",
-                    LinkedIn = "jeff-stanton",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "jeff-stanton"
                 });
 
@@ -464,8 +464,8 @@ namespace Trasalum
                     ZipCode = "37127",
                     Phone = "615-327-8371",
                     Email = "dbradshaw@email.com",
-                    GitHub = "damon-bradshaw",
-                    LinkedIn = "damon-bradshaw",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "damon-bradshaw"
                 });
 
@@ -480,8 +480,8 @@ namespace Trasalum
                     ZipCode = "37134",
                     Phone = "615-221-9335",
                     Email = "sward@email.com",
-                    GitHub = "sue-ward",
-                    LinkedIn = "sue-ward",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "sue-ward"
                 });
 
@@ -496,8 +496,8 @@ namespace Trasalum
                     ZipCode = "37130",
                     Phone = "615-546-9976",
                     Email = "rcarmichael@email.com",
-                    GitHub = "ricky-carmichael",
-                    LinkedIn = "ricky-carmichael",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "ricky-carmichael"
                 });
 
@@ -512,8 +512,8 @@ namespace Trasalum
                     ZipCode = "37076",
                     Phone = "615-812-1298",
                     Email = "jbarcia@email.com",
-                    GitHub = "justin-barcia",
-                    LinkedIn = "justin-barcia",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "justin-barcia"
                 });
 
@@ -528,8 +528,8 @@ namespace Trasalum
                     ZipCode = "37221",
                     Phone = "615-383-9747",
                     Email = "malessi@email.com",
-                    GitHub = "mike-alessi",
-                    LinkedIn = "mike-alessi",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "mike-alessi"
                 });
 
@@ -544,8 +544,8 @@ namespace Trasalum
                     ZipCode = "37122",
                     Phone = "615-325-0026",
                     Email = "ashort@email.com",
-                    GitHub = "andrew-short",
-                    LinkedIn = "andrew-short",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "andrew-short"
                 });
 
@@ -560,8 +560,8 @@ namespace Trasalum
                     ZipCode = "37205",
                     Phone = "615-865-9846",
                     Email = "sburns@email.com",
-                    GitHub = "samantha-burns",
-                    LinkedIn = "samantha-burns",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "samanatha-burns"
                 });
 
@@ -576,8 +576,8 @@ namespace Trasalum
                     ZipCode = "37215",
                     Phone = "615-332-4599",
                     Email = "gcooper@email.com",
-                    GitHub = "guy-cooper",
-                    LinkedIn = "guy-cooper",
+                    GitHub = "http://www.none.com",
+                    LinkedIn = "http://www.none.com",
                     Slack = "guy-cooper"
                 });
                 context.Alum.Add(new Alum
@@ -666,8 +666,8 @@ namespace Trasalum
                     ZipCode = "37122",
                     Phone = "615-221-1791",
                     Email = "rmbw74@gmail.com",
-                    GitHub = "www.github.com/rmbw74",
-                    LinkedIn = "www.linkedin.com/in/rmbw74",
+                    GitHub = "https://www.github.com/rmbw74",
+                    LinkedIn = "https://www.linkedin.com/in/rmbw74",
                     Slack = "Ray Medrano"
                 });
                 context.Alum.Add(new Alum
@@ -681,7 +681,7 @@ namespace Trasalum
                     ZipCode = "37064",
                     Phone = "615-642-5582",
                     Email = "kghaggerty@gmail.com",
-                    GitHub = "www.github.com/kghaggerty",
+                    GitHub = "https://www.github.com/kghaggerty",
                     LinkedIn = "https://www.linkedin.com/in/kevin-haggerty-ab310b56/",
                     Slack = "Kevin Haggerty"
                 });
@@ -697,7 +697,7 @@ namespace Trasalum
                     Phone = "615-331-7193",
                     Email = "lissagoforthsoftwaredev@gmail.com",
                     GitHub = "https://github.com/lissagoforth",
-                    LinkedIn = "linkedin.com/in/lissagoforth-softwaredeveloper/",
+                    LinkedIn = "https://linkedin.com/in/lissagoforth-softwaredeveloper/",
                     Slack = "Lissa Goforth"
                 });
                 context.Alum.Add(new Alum
@@ -711,8 +711,8 @@ namespace Trasalum
                     ZipCode = "37208",
                     Phone = "615-822-3579",
                     Email = "camiller.yr@gmail.com",
-                    GitHub = "www.github.com/camillery",
-                    LinkedIn = "www.linkedin.com/in/camilleryr",
+                    GitHub = "https://www.github.com/camillery",
+                    LinkedIn = "https://www.linkedin.com/in/camilleryr",
                     Slack = "Chris Miller"
                 });
                 context.Alum.Add(new Alum
@@ -741,8 +741,8 @@ namespace Trasalum
                     ZipCode = "37211",
                     Phone = "615-838-7594",
                     Email = "krnorris65@gmail.com",
-                    GitHub = "www.github.com/krnorris65",
-                    LinkedIn = "www.linkedin.com/in/krnorris65",
+                    GitHub = "https://www.github.com/krnorris65",
+                    LinkedIn = "https://www.linkedin.com/in/krnorris65",
                     Slack = "Kristen Norris"
                 });
                 context.Alum.Add(new Alum
@@ -1032,15 +1032,18 @@ namespace Trasalum
                 });
                 context.Tech.Add(new Tech
                 {
-                    Name = "(General/Non-Specific)"
+                    Name = "(General/Non-Specific)",
+                    TechTypeId = tool
                 });
                 context.Tech.Add(new Tech
                 {
-                    Name = "(Unknown)"
+                    Name = "(Unknown)",
+                    TechTypeId = tool
                 });
                 context.Tech.Add(new Tech
                 {
-                    Name = "(N/A)"
+                    Name = "(N/A)",
+                    TechTypeId = tool
                 });
 
                 context.SaveChanges();
@@ -2782,6 +2785,27 @@ namespace Trasalum
                     Description = "A community of Angular enthusiasts and professionals meeting near Franklin, TN.",
                     TechId = tangular
                 });
+                //PyNash
+                context.Meetup.Add(new Meetup
+                {
+                    Name = "PyNash",
+                    Description = "We want to promote the use of the Python programming language in the Middle Tennessee. Our primary purpose is to share knowlege and to nurture a community of Python professionals and enthusiasts. Each meeting is open to the public and aims to provide useful content for both novices and professionals. We abide by the PyCon Code of Conduct at all functions!",
+                    TechId = tgeneral
+                });
+                //Nash.rb
+                context.Meetup.Add(new Meetup
+                {
+                    Name = "Nash.rb",
+                    Description = "Our group exists to bring together everyone interested in and using Ruby for software development in the Nashville Area.",
+                    TechId = truby
+                });
+                //Brunch and Code
+                context.Meetup.Add(new Meetup
+                {
+                    Name = "Brunch and Code",
+                    Description = "A gathering of past, present, and future NSS students bringing the dev community together over brunch. Come talk code, community, jobs - or whatever interests you - while enjoying the best meal of the day. All are welcome - whether you're a hobbyist, professional, college trained or bootcamp trained, or just plain curious - come ready to mingle!",
+                    TechId = tpython
+                });
                 //(NONE)
                 context.Meetup.Add(new Meetup
                 {
@@ -3010,6 +3034,10 @@ namespace Trasalum
                               where m.Name.Equals("NashJS")
                               select m.Id).Single();
 
+                int mnone = (from m in context.Meetup
+                              where m.Name.Equals("(NONE)")
+                              select m.Id).Single();
+
                 int jocomment = (from n in context.Note
                                  where n.Detail.Equals("Jason Orendorff will discuss Kanban process to Cohort 22.")
                                  select n.Id).Single();
@@ -3033,6 +3061,7 @@ namespace Trasalum
                     EngagementTypeId = speaker,
                     StaffId = jessica,
                     TechId = tkanban,
+                    MeetupId = mnone,
                     NoteId = jocomment
                 });
                 context.Engagement.Add(new Engagement
@@ -3041,6 +3070,8 @@ namespace Trasalum
                     Description = "Design and Developer",
                     EngagementTypeId = speaker,
                     StaffId = jessica,
+                    TechId = tunknown,
+                    MeetupId = mnone,
                     NoteId = kdcomment
                 });
                 context.Engagement.Add(new Engagement
@@ -3049,6 +3080,8 @@ namespace Trasalum
                     Description = "Evening Sponsored by Accenture",
                     EngagementTypeId = company,
                     StaffId = kristin,
+                    TechId = tunknown,
+                    MeetupId = mnone,
                     NoteId = acomment
                 });
                 context.Engagement.Add(new Engagement
@@ -3057,6 +3090,8 @@ namespace Trasalum
                     Description = "The post Demo Day job search",
                     EngagementTypeId = speaker,
                     StaffId = jessica,
+                    TechId = tunknown,
+                    MeetupId = mnone,
                     NoteId = llcomment
                 });
                 context.Engagement.Add(new Engagement
