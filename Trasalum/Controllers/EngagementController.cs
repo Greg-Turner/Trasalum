@@ -178,7 +178,7 @@ namespace Trasalum.Controllers
             {
                 return NotFound();
             }
-
+            
             var alumSpeakerId = _context.EngagementAlum.Where(ea => ea.EngagementId == id).Single().AlumId;
             var alumSpeaker = _context.Alum.Where(a => a.Id == alumSpeakerId).Single();
             var currentSpeaker = "";
@@ -191,6 +191,17 @@ namespace Trasalum.Controllers
             }
             
             var currentStaff = _context.Staff.Where(s => s.Id == engagement.StaffId).Single().Name;
+            EngagementComments engagementCommentsToUpdate = new EngagementComments()
+            {
+                Date = engagement.Date,
+                Organizer = currentStaff,
+                Description = engagement.Description,
+                EngagementType = _context.EngagementType.Where(et => et.Id == engagement.EngagementTypeId),
+                Alum = _context.Alum,
+                Meetup = _context.Meetup.Where(m => m.Id == engagement.MeetupId),
+                Tech = _context.Tech.Where(t => t.Id == engagement.TechId),
+                Comment = _context.Note.Where(n => n.Id == engagement.NoteId).Single().Detail,
+            };
 
             ViewData["AlumList"] =
                     new SelectList((from a in _context.Alum.OrderBy(a => a.LastName).ToList()
@@ -204,12 +215,15 @@ namespace Trasalum.Controllers
                     null);
             ViewData["CurrentAlum"] = currentSpeaker;
             ViewData["CurrentOrganizer"] = currentStaff;
+            ViewData["CurrentEngagementType"] = _context.EngagementType.Where(et => et.Id == engagement.EngagementTypeId).Single().Name;
+            ViewData["CurrentMeetup"] = _context.Meetup.Where(m => m.Id == engagement.MeetupId).Single().Name;
+            ViewData["CurrentTech"] = _context.Tech.Where(t => t.Id == engagement.TechId).Single().Name;
             ViewData["EngagementTypeId"] = new SelectList(_context.EngagementType, "Id", "Name", engagement.EngagementTypeId);
             ViewData["MeetupId"] = new SelectList(_context.Meetup, "Id", "Name", engagement.MeetupId);
             ViewData["NoteId"] = new SelectList(_context.Note, "Id", "Detail", engagement.NoteId);
             ViewData["TechId"] = new SelectList(_context.Tech, "Id", "Name", engagement.TechId);
             ViewData["OrganizerId"] = new SelectList(_context.Staff, "Id", "Name", engagement.StaffId);
-            return View(engagement);
+            return View(engagementCommentsToUpdate);
         }
 
         // POST: Engagement/Edit/5
@@ -217,7 +231,7 @@ namespace Trasalum.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, DateTime Date, string Description, int EngagementType, int Tech, int Meetup, string Comment, string Organizer, int Alum)
+        public async Task<IActionResult> Edit(int id, DateTime Date, string Description, int EngagementType, int Tech, int Meetup, string Comment, int Organizer, int Alum)
         {
             var engagementToUpdate = _context.Engagement.Where(m => m.Id == id).Single();
             engagementToUpdate.Date = Date;
@@ -225,10 +239,10 @@ namespace Trasalum.Controllers
             engagementToUpdate.EngagementTypeId = EngagementType;
             engagementToUpdate.TechId = Tech;
             engagementToUpdate.MeetupId = Meetup;
-            engagementToUpdate.StaffId = _context.Staff.Where(s => s.Name == Organizer).Single().Id;
+            engagementToUpdate.StaffId = _context.Staff.Where(s => s.Id == Organizer).Single().Id;
 
 
-            var noteToUpdate = _context.Note.Where(n => n.Id == engagementToUpdate.Note.Id).Single();
+            var noteToUpdate = _context.Note.Where(n => n.Id == engagementToUpdate.NoteId).Single();
             noteToUpdate.Detail = Comment;
             _context.Note.Update(noteToUpdate);
 

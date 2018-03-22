@@ -12,46 +12,46 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            @*<input type="hidden" asp-for="Id" />*@
             <div class="form-group">
                 <label class="control-label">Date/Time of Event</label>
                 <input asp-for="Date" class="form-control" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Organizer</label>
-                <select asp-for="StaffId" class="form-control" asp-items="ViewBag.OrganizerId"></select>
-                <span asp-validation-for="StaffId" class="text-danger"></span>
+                <label class="control-label">Organizer (currently: @ViewBag.CurrentOrganizer)</label>
+                <select asp-for="Organizer" class="form-control" asp-items="ViewBag.OrganizerId"></select>
+                <span asp-validation-for="Organizer" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Description of Event</label>
-                <input asp-for="Description" class="form-control" />
+                <input asp-for="Description" class="form-control" text="ViewBag.Description"/>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Type of Event/Engagement</label>
-                <select asp-for="EngagementTypeId" class="form-control" asp-items="ViewBag.EngagementTypeId"></select>
-                <span asp-validation-for="EngagementTypeId" class="text-danger"></span>
+                <label class="control-label">Type of Event/Engagement (currently: @ViewBag.CurrentEngagementType)</label>
+                <select asp-for="EngagementType" class="form-control" asp-items="ViewBag.EngagementTypeId"></select>
+                <span asp-validation-for="EngagementType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Technology Topic</label>
-                <select asp-for="TechId" class="form-control" asp-items="ViewBag.TechId"></select>
-                <span asp-validation-for="TechId" class="text-danger"></span>
+                <label class="control-label">Technology Topic (currently: @ViewBag.CurrentTech)</label>
+                <select asp-for="Tech" class="form-control" asp-items="ViewBag.TechId"></select>
+                <span asp-validation-for="Tech" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Associated Meetup Group (if any)</label>
-                <select asp-for="MeetupId" class="form-control" asp-items="ViewBag.MeetupId"></select>
-                <span asp-validation-for="MeetupId" class="text-danger"></span>
+                <label class="control-label">Associated Meetup Group (currently: @ViewBag.CurrentMeetup)</label>
+                <select asp-for="Meetup" class="form-control" asp-items="ViewBag.MeetupId"></select>
+                <span asp-validation-for="Meetup" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Alum Speaker (currently: @ViewBag.CurrentAlum)</label>
-                <select asp-for="EngagementAlum" class="form-control" asp-items="ViewBag.AlumList"></select>
-                <span asp-validation-for="EngagementAlum" class="text-danger"></span>
+                <select asp-for="Alum" class="form-control" asp-items="ViewBag.AlumList"></select>
+                <span asp-validation-for="Alum" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Comments (including any non-alum speaker names)</label>
-                <select asp-for="NoteId" class="form-control" asp-items="ViewBag.NoteId"></select>
-                <span asp-validation-for="NoteId" class="text-danger"></span>
+                <input asp-for="Comment" class="form-control"  />
+                <span asp-validation-for="Comment" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
