@@ -65,7 +65,7 @@ namespace Trasalum.Controllers
                     break;
             }
 
-            int pageSize = 7;
+            int pageSize = 12;
             return View(await PaginatedList<Alum>.CreateAsync(alums.AsNoTracking(), page ?? 1, pageSize));
         }
 
