@@ -51,7 +51,7 @@ The Events button reveals a table of upcoming events which can be Updated, Viewe
 
 Selecting Meetups under the External Groups navbar button takes the user to a paginated list of Meetup groups. These can be edited, view details, or deleted. An Add Meetup link above takes the user to a form to collect details about the group, including the primary technology knowledge on which the group may focus. 
 
-#### Database Tables
+## Database Tables
 
 ![alt text](https://github.com/Greg-Turner/Trasalum/blob/master/ERD.PNG)
 
