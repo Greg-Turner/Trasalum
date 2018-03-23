@@ -1,8 +1,9 @@
 # Trasalum
+## Project for Back-End Capstone
 
 #### By _Greg Turner_
 
-## Description
+## Documentation
 
 Trasalum (read as "Trace Alumn") allows an authenticated NSS staff user to maintain current details on recently gradualted Alumni, referred to as "Alums." The user can log contact attempts to Alums and consequently update the Alum's details. 
 
