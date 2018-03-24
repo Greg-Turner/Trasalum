@@ -10,5 +10,6 @@ namespace Trasalum.Models.StaffViewModels
         public int StaffId { get; set; }
         public string StaffName { get; set; }
         public bool Assigned { get; set; }
+        public string Department { get; set; }
     }
 }

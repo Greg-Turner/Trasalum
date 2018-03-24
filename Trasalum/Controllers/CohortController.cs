@@ -62,6 +62,9 @@ namespace Trasalum.Controllers
         public async Task<IActionResult> Add(string Id, DateTime StartDate, DateTime DemoDate,int[] selectedTechs, int[] selectedStaffs)
         {
             Cohort cohort = new Cohort();
+            cohort.Id = Id;
+            cohort.StartDate = StartDate;
+            cohort.DemoDate = DemoDate;
 
             if (selectedTechs != null)
             {
@@ -88,9 +91,7 @@ namespace Trasalum.Controllers
             {
                 cohort.CohortStaff = new List<CohortStaff>();
             }
-            cohort.Id = Id;
-            cohort.StartDate = StartDate;
-            cohort.DemoDate = DemoDate;
+            
 
             if (ModelState.IsValid)
             {
@@ -122,7 +123,7 @@ namespace Trasalum.Controllers
         // Adding viewmodel to display multiple Tech checkboxes
         private List<AssignedTechData> PopulateAssignedTechData(Cohort cohort)
         {
-            var allTechs = _context.Tech;
+            var allTechs = _context.Tech.OrderBy( t => t.Name);
             var cohortTechs = new HashSet<int>(cohort.CohortTech.Select(c => c.TechId)); 
             var viewModel = new List<AssignedTechData>();
             foreach (var tech in allTechs)
@@ -140,7 +141,8 @@ namespace Trasalum.Controllers
         // Adding viewmodel to display multiple Staff checkboxes
         private List<AssignedStaffData> PopulateAssignedStaffData(Cohort cohort)
         {
-            var allStaffs = _context.Staff;
+            var allStaffs = _context.Staff
+                .Include(s => s.Department).OrderBy(s => s.Name);
             var cohortStaffs = new HashSet<int>(cohort.CohortStaff.Select(c => c.StaffId)); 
             var viewModel = new List<AssignedStaffData>();
             foreach (var staff in allStaffs)
@@ -149,7 +151,8 @@ namespace Trasalum.Controllers
                 {
                     StaffId = staff.Id,
                     StaffName = staff.Name,
-                    Assigned = cohortStaffs.Contains(staff.Id)
+                    Assigned = cohortStaffs.Contains(staff.Id),
+                    Department = staff.Department.Name
                 });
             }
             return viewModel;
@@ -160,7 +163,7 @@ namespace Trasalum.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, int[] selectedTechs, int[] selectedStaff, [Bind("Id,StartDate,DemoDate")] Cohort cohort)
+        public async Task<IActionResult> Edit(string id, int[] selectedTechs, int[] selectedStaffs, [Bind("Id,StartDate,DemoDate")] Cohort cohort)
         {
             if (id != cohort.Id)
             {
@@ -180,7 +183,7 @@ namespace Trasalum.Controllers
                 c => c.Id, c => c.StartDate, c => c.DemoDate, c => c.CohortStaff, c => c.CohortTech))
             { 
                 UpdateCohortTechs(selectedTechs, cohortToUpdate);
-                UpdateCohortStaffs(selectedStaff, cohortToUpdate);
+                UpdateCohortStaffs(selectedStaffs, cohortToUpdate);
                 try
                 {
                     await _context.SaveChangesAsync();
@@ -194,7 +197,7 @@ namespace Trasalum.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            UpdateCohortStaffs(selectedStaff, cohortToUpdate);
+            UpdateCohortStaffs(selectedStaffs, cohortToUpdate);
             UpdateCohortTechs(selectedTechs, cohortToUpdate);
             PopulateAssignedTechData(cohortToUpdate);
             PopulateAssignedStaffData(cohortToUpdate);

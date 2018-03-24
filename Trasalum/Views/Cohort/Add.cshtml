@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Add">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
@@ -31,12 +31,13 @@
                 <label>Instructors</label>
                 <div class="col-md-offset-2 col-md-10">
                     <div>
+                        @* Only include staff members who are in the educator department *@
                         @{List<Trasalum.Models.StaffViewModels.AssignedStaffData> staffs = ViewBag.Staffs;
-                foreach (var staff in staffs)
-                {
-                    @:<input type="checkbox" name="selectedStaff" value="@staff.StaffId" @(Html.Raw(staff.Assigned ? "checked=\"checked\"" : "")) />
-                    @:  @staff.StaffName
-    }
+                            foreach (var staff in staffs.Where(s => s.Department == "Educator"))
+                            {
+                                @:<input type="checkbox" name="selectedStaffs" value="@staff.StaffId" @(Html.Raw(staff.Assigned ? "checked=\"checked\"" : "")) />
+                                @:  @staff.StaffName
+                            }
                         }
                     </div>
                 </div>
@@ -45,8 +46,9 @@
                 <label >Technologies</label>
                 <div class="col-md-offset-2 col-md-10">
                     <div>
+                        @* Only include technologies other than General and N/A *@
                         @{List<Trasalum.Models.TechViewModels.AssignedTechData> techs = ViewBag.Techs;
-                            foreach (var tech in techs)
+                            foreach (var tech in techs.Where(t => t.TechName != "(General/Non-Specific)" && t.TechName != "(N/A)"))
                             {
                                 @:<input type="checkbox" name="selectedTechs" value="@tech.TechId" @(Html.Raw(tech.Assigned ? "checked=\"checked\"" : "")) />
                                 @:  @tech.TechName
