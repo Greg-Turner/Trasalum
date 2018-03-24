@@ -1,8 +1,9 @@
 # Trasalum
+## Project for Back-End Capstone
 
 #### By _Greg Turner_
 
-## Description
+## Documentation
 
 Trasalum (read as "Trace Alumn") allows an authenticated NSS staff user to maintain current details on recently gradualted Alumni, referred to as "Alums." The user can log contact attempts to Alums and consequently update the Alum's details. 
 
@@ -11,7 +12,7 @@ Trasalum users are able to schedule events / engagments in which technologies or
 The application is ASP.NET MVC in C# language and utilizes SQL Server 2017 to manage the captured data. Visual Studio Community 2017 was the text editor used to create Trasalum.
 
 
-## Behavior Driven Development
+## Features
 
 #### Register/Login
 
@@ -50,6 +51,10 @@ The Events button reveals a table of upcoming events which can be Updated, Viewe
 #### External Groups -> Meetups
 
 Selecting Meetups under the External Groups navbar button takes the user to a paginated list of Meetup groups. These can be edited, view details, or deleted. An Add Meetup link above takes the user to a form to collect details about the group, including the primary technology knowledge on which the group may focus. 
+
+## Database Tables
+
+![alt text](https://github.com/Greg-Turner/Trasalum/blob/master/ERD.PNG)
 
 ### License
 
