@@ -18,6 +18,7 @@ namespace Trasalum.Models
         [Required]
         [Display(Name = "Date of Contact")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy HH:mm:tt}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         [Required]

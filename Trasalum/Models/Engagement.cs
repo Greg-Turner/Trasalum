@@ -14,6 +14,7 @@ namespace Trasalum.Models
         [Required]
         [Display(Name = "Event Date")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy HH:mm:tt}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         [Required]
