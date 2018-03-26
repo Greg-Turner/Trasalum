@@ -24,8 +24,17 @@ namespace Trasalum.Controllers
         }
      
         // GET: Cohorts
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(
+                string sortOrder,
+                string currentFilter,
+                string searchString,
+                int? page)
         {
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["DemoSortParm"] = String.IsNullOrEmpty(sortOrder) ? "demo_desc" : "";
+            ViewData["IdSortParm"] = sortOrder == "cohort#" ? "cohort_desc" : "Cohort";
+            ViewData["StartSortParm"] = sortOrder == "start" ? "start_desc" : "StartDate";
+
             CohortDetailedListViewModel model = new CohortDetailedListViewModel
             {
                 CohortDetailedList = await
@@ -40,7 +49,32 @@ namespace Trasalum.Controllers
                 }).ToListAsync()
             };
 
-            return View(model);
+            var cohorts = from c in _context.Cohort
+                          select c;
+            switch (sortOrder)
+            {
+                case "cohort_desc":
+                    cohorts = cohorts.OrderByDescending(c => c.Id);
+                    break;
+                case "cohort#":
+                    cohorts = cohorts.OrderBy(c => c.Id);
+                    break;
+                case "start_desc":
+                    cohorts = cohorts.OrderByDescending(c => c.StartDate);
+                    break;
+                case "start":
+                    cohorts = cohorts.OrderBy(c => c.StartDate);
+                    break;
+                case "demo":
+                    cohorts = cohorts.OrderBy(c => c.DemoDate);
+                    break;
+                default:
+                    cohorts = cohorts.OrderByDescending(c => c.DemoDate);
+                    break;
+            }
+            // NEED TO FIGURE OUT HOW TO SORT COHORTS BUT BE SENDING COHORTDETAILEDLISTVIEWMODEL
+            int pageSize = 6;
+            return View(await PaginatedList<CohortDetailedListViewModel>.CreateAsync(cohorts.AsNoTracking(), page ?? 1, pageSize));
         }
       
         // GET: Cohorts/Add

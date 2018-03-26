@@ -1,4 +1,4 @@
-﻿@model Trasalum.Models.CohortViewModels.CohortDetailedListViewModel
+﻿@model PaginatedList<Trasalum.Models.CohortDetailedList>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,20 +7,20 @@
 <h2>Cohorts</h2>
 
 <p>
-    @* Will implement later *@
+    
     <a asp-action="Add">Add New Cohort</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Cohort#
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["IdSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Cohort#</a>
             </th>
             <th>
-                Start Date
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["StartSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Start Date</a>
             </th>
             <th>
-                Demo Day
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DemoSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Demo Day</a>
             </th>
             <th>
                 Instructors
@@ -32,7 +32,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.CohortDetailedList.OrderByDescending(c => c.Cohort.DemoDate)) {
+@foreach (var item in Model) {
     @if (item.Cohort.Id != "NONE")
     {
         <tr>
@@ -58,7 +58,7 @@
                 }
             </td>
             <td>
-                @* Will implement later*@
+                
                 <a asp-action="Edit" asp-route-id="@item.Cohort.Id">UPDATE</a>
             </td>
         </tr>
@@ -66,3 +66,22 @@
     }
     </tbody>
 </table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
