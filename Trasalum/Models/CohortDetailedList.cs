@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Trasalum.Models.CohortViewModels;
 
 namespace Trasalum.Models
 {
@@ -16,7 +15,5 @@ namespace Trasalum.Models
 
         [Display(Name = "Technologies")]
         public IEnumerable<Tech> Tech { get; set; }
-
-        
     }
 }
